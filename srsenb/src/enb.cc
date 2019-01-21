@@ -233,7 +233,7 @@ bool enb::init(all_args_t *args_)
   memcpy(&phy_cfg.cell, &cell_cfg, sizeof(srslte_cell_t));
 
   // Init all layers   
-  phy.init(&args->expert.phy, &phy_cfg, &radio, &mac, phy_log);
+  phy.init(&args->expert.phy, &phy_cfg, &radio, &mac, &agent, phy_log);
   mac.init(&args->expert.mac, &cell_cfg, &phy, &rlc, &rrc, &agent, &mac_log);
   rlc.init(&pdcp, &rrc, &mac, &mac, &rlc_log);
   pdcp.init(&rlc, &rrc, &gtpu, &pdcp_log);
@@ -244,7 +244,7 @@ bool enb::init(all_args_t *args_)
   agent.init(args->enb.s1ap.enb_id, &rrc, &ran, &agent_log);
   ran.init(&mac, &ran_log);
 #else
-  agent.init(args->enb.s1ap.enb_id, &rrc, 0, &agent_log);
+  agent.init(args->enb.s1ap.enb_id, &rrc, 0, &phy, &agent_log);
 #endif /* HAVE_RAN_SLICER */
 
   started = true;

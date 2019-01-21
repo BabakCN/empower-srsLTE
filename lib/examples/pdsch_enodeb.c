@@ -82,7 +82,7 @@ uint32_t multiplex_nof_layers = 1;
 
 int mbsfn_area_id = -1;
 char *rf_args = "";
-float rf_amp = 0.8, rf_gain = 70.0, rf_freq = 2400000000;
+float rf_amp = 0.8, rf_gain = 75.0, last_rf_gain = 75, rf_freq = 5180000000;
 
 float output_file_snr = +INFINITY;
 
@@ -527,6 +527,8 @@ int update_radl() {
     ra_dl.rv_idx_1 = rvidx[1];
     ra_dl.tb_en[1] = 1;
   }
+  rf_gain = srslte_rf_set_tx_gain(&rf, rf_gain);
+  printf("tx_gain is set to %f\n", rf_gain);
 
   srslte_ra_pdsch_fprint(stdout, &ra_dl, cell.nof_prb);
   srslte_ra_dl_grant_t dummy_grant; 
@@ -545,7 +547,7 @@ int update_radl() {
     printf("\n");
     printf("Type new MCS index (0-28) or mode key and press Enter: ");
   } else {
-    printf("Type new MCS index (0-28) and press Enter: ");
+    printf("Type new rf_gain: ");
   }
   fflush(stdout);
 
@@ -626,15 +628,21 @@ int update_control() {
           case 'x':
             pdsch_cfg.mimo_type = SRSLTE_MIMO_TYPE_TX_DIVERSITY;
             break;
+	  case 'p':
+	    rf_gain = 0;
+	    break;
+	  case 'c':
+	    rf_gain = 89;
+	    break;
           default:
-            last_mcs_idx = mcs_idx;
-            mcs_idx = atoi(input);
+            last_rf_gain = rf_gain;
+            rf_gain = atof(input);
         }
       }
       bzero(input,sizeof(input));
       if (update_radl()) {
-        printf("Trying with last known MCS index\n");
-        mcs_idx = last_mcs_idx; 
+        printf("Trying with last known rf_gain\n");
+        rf_gain = last_rf_gain; 
         prbset_num = last_prbset_num; 
         return update_radl();
       }

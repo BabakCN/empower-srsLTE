@@ -93,13 +93,14 @@ bool phy::init(phy_args_t *args,
                phy_cfg_t *cfg, 
                srslte::radio* radio_handler_, 
                mac_interface_phy *mac,
+			   agent_interface_phy *agent,
                srslte::log_filter* log_h)
 {
   std::vector<srslte::log_filter*> log_vec;
   for (int i=0;i<args->nof_phy_threads;i++) {
     log_vec.push_back(log_h);
   }
-  init(args, cfg, radio_handler_, mac, log_vec);
+  init(args, cfg, radio_handler_, mac, agent,log_vec);
   return true; 
 }
 
@@ -107,6 +108,7 @@ bool phy::init(phy_args_t *args,
                phy_cfg_t *cfg, 
                srslte::radio* radio_handler_, 
                mac_interface_phy *mac, 
+			   agent_interface_phy *agent_,
                std::vector<srslte::log_filter*> log_vec)
 {
 
@@ -116,6 +118,8 @@ bool phy::init(phy_args_t *args,
   nof_workers = args->nof_phy_threads; 
   
   workers_common.params = *args; 
+
+  agent = agent_;
 
   workers_common.init(&cfg->cell, radio_handler, mac);
   
@@ -210,7 +214,12 @@ void phy::get_metrics(phy_metrics_t metrics[ENB_METRICS_MAX_USERS])
   }
 }
 
+/***** agent -> phy interface  ******/
 
+void phy::set_new_tx_gain(float new_tx_gain)
+{
+	radio_handler->set_tx_gain(new_tx_gain);
+}
 /***** RRC->PHY interface **********/
 
 void phy::set_conf_dedicated_ack(uint16_t rnti, bool ack)

@@ -93,6 +93,13 @@ public:
   virtual void rem_rnti(uint16_t rnti) = 0;
 };
 
+/* Interface agent-> PHY */
+class phy_interface_agent {
+public:
+	virtual void set_new_tx_gain(float new_tx_gain) = 0;
+	// get
+};
+
 /* Interface RRC -> PHY */
 class phy_interface_rrc
 {
@@ -320,6 +327,13 @@ public:
   virtual void     get_user_slices(uint16_t rnti, std::map<uint16_t, std::list<uint64_t> > & users) = 0;
   virtual uint32_t get_slice_sched() = 0;
 }; // ran_interface_agent
+
+/* agent_interface_phy */
+class agent_interface_phy {
+public:
+	virtual void report_phy_param(float tx_gain) = 0 ;
+};
+// report_tx_gain
 
 // Agent interface for MAC
 class agent_interface_mac

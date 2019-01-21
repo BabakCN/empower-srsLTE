@@ -1,0 +1,315 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_189ca/fast"
+/usr/bin/make -f CMakeFiles/cmTC_189ca.dir/build.make CMakeFiles/cmTC_189ca.dir/build
+make[1]: Entering directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_189ca.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_189ca.dir/CheckSymbolExists.c.o   -c /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_189ca
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_189ca.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_189ca.dir/CheckSymbolExists.c.o  -o cmTC_189ca 
+CMakeFiles/cmTC_189ca.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_189ca.dir/build.make:97: recipe for target 'cmTC_189ca' failed
+make[1]: *** [cmTC_189ca] Error 1
+make[1]: Leaving directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_189ca/fast' failed
+make: *** [cmTC_189ca/fast] Error 2
+
+File /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_ba242/fast"
+/usr/bin/make -f CMakeFiles/cmTC_ba242.dir/build.make CMakeFiles/cmTC_ba242.dir/build
+make[1]: Entering directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ba242.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_ba242.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_ba242
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ba242.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_ba242.dir/CheckFunctionExists.c.o  -o cmTC_ba242 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_ba242.dir/build.make:97: recipe for target 'cmTC_ba242' failed
+make[1]: *** [cmTC_ba242] Error 1
+make[1]: Leaving directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_ba242/fast' failed
+make: *** [cmTC_ba242/fast] Error 2
+
+
+Performing C SOURCE FILE Test HAVE_AVX512 failed with the following output:
+Change Dir: /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2b55a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2b55a.dir/build.make CMakeFiles/cmTC_2b55a.dir/build
+make[1]: Entering directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2b55a.dir/src.c.o
+/usr/bin/cc   -DHAVE_AVX512 -mavx512f   -o CMakeFiles/cmTC_2b55a.dir/src.c.o   -c /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_2b55a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2b55a.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE_AVX512 -mavx512f    -rdynamic CMakeFiles/cmTC_2b55a.dir/src.c.o  -o cmTC_2b55a 
+make[1]: Leaving directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+
+Return value: FAILED_TO_RUN
+Source file was:
+
+          #include <immintrin.h>
+          int main()
+          {
+            __m512i a, b, c;
+            const int src[16] = { 0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8 , 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF};
+            int dst[16];
+            a =  _mm512_loadu_si512( (__m512i*)src );
+            b =  _mm512_loadu_si512( (__m512i*)src );
+            c = _mm512_add_epi32( a, b );
+            _mm512_storeu_si512( (__m512i*)dst, c );
+            int i = 0;
+            for( i = 0; i < 16; i++ ){
+              if( ( src[i] + src[i] ) != dst[i] ){
+                return -1;
+              }
+            }
+            return 0;
+          }
+Performing C++ SOURCE FILE Test HAVE_VISIBILITY_HIDDEN failed with the following output:
+Change Dir: /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_5e9d6/fast"
+/usr/bin/make -f CMakeFiles/cmTC_5e9d6.dir/build.make CMakeFiles/cmTC_5e9d6.dir/build
+make[1]: Entering directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_5e9d6.dir/src.cxx.o
+/usr/bin/c++    -march=native -Wall -Wno-comment -Wno-reorder -Wno-unused-but-set-variable -Wno-unused-variable -Wformat -Wtype-limits -std=c++03 -mfpmath=sse -mavx2 -DLV_HAVE_AVX2 -DLV_HAVE_AVX -DLV_HAVE_SSE -O3 -DBUILD_TYPE_RELEASE -DHAVE_VISIBILITY_HIDDEN  -march=native -Wall -Wno-comment -Wno-write-strings -Winline -Wno-unused-result -Wformat -Wtype-limits -std=c99 -D_GNU_SOURCE -O3 -DBUILD_TYPE_RELEASE -mfpmath=sse -mavx2 -DLV_HAVE_AVX2 -DLV_HAVE_AVX -DLV_HAVE_SSE -Ofast -funroll-loops   -fvisibility=hidden -o CMakeFiles/cmTC_5e9d6.dir/src.cxx.o -c /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp/src.cxx
+cc1plus: warning: command line option '-std=c99' is valid for C/ObjC but not for C++
+Linking CXX executable cmTC_5e9d6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5e9d6.dir/link.txt --verbose=1
+/usr/bin/c++   -march=native -Wall -Wno-comment -Wno-reorder -Wno-unused-but-set-variable -Wno-unused-variable -Wformat -Wtype-limits -std=c++03 -mfpmath=sse -mavx2 -DLV_HAVE_AVX2 -DLV_HAVE_AVX -DLV_HAVE_SSE -O3 -DBUILD_TYPE_RELEASE -DHAVE_VISIBILITY_HIDDEN  -march=native -Wall -Wno-comment -Wno-write-strings -Winline -Wno-unused-result -Wformat -Wtype-limits -std=c99 -D_GNU_SOURCE -O3 -DBUILD_TYPE_RELEASE -mfpmath=sse -mavx2 -DLV_HAVE_AVX2 -DLV_HAVE_AVX -DLV_HAVE_SSE -Ofast -funroll-loops    -rdynamic CMakeFiles/cmTC_5e9d6.dir/src.cxx.o  -o cmTC_5e9d6 
+make[1]: Leaving directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main() { return 0; }
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_23a2b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_23a2b.dir/build.make CMakeFiles/cmTC_23a2b.dir/build
+make[1]: Entering directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_23a2b.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_23a2b.dir/CheckSymbolExists.c.o   -c /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_23a2b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_23a2b.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_23a2b.dir/CheckSymbolExists.c.o  -o cmTC_23a2b 
+CMakeFiles/cmTC_23a2b.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_23a2b.dir/build.make:97: recipe for target 'cmTC_23a2b' failed
+make[1]: *** [cmTC_23a2b] Error 1
+make[1]: Leaving directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_23a2b/fast' failed
+make: *** [cmTC_23a2b/fast] Error 2
+
+File /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7ddb3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_7ddb3.dir/build.make CMakeFiles/cmTC_7ddb3.dir/build
+make[1]: Entering directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7ddb3.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_7ddb3.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_7ddb3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7ddb3.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_7ddb3.dir/CheckFunctionExists.c.o  -o cmTC_7ddb3 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_7ddb3.dir/build.make:97: recipe for target 'cmTC_7ddb3' failed
+make[1]: *** [cmTC_7ddb3] Error 1
+make[1]: Leaving directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_7ddb3/fast' failed
+make: *** [cmTC_7ddb3/fast] Error 2
+
+
+Performing C SOURCE FILE Test HAVE_AVX512 failed with the following output:
+Change Dir: /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e9cf6/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e9cf6.dir/build.make CMakeFiles/cmTC_e9cf6.dir/build
+make[1]: Entering directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e9cf6.dir/src.c.o
+/usr/bin/cc   -DHAVE_AVX512 -mavx512f   -o CMakeFiles/cmTC_e9cf6.dir/src.c.o   -c /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_e9cf6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e9cf6.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE_AVX512 -mavx512f    -rdynamic CMakeFiles/cmTC_e9cf6.dir/src.c.o  -o cmTC_e9cf6 
+make[1]: Leaving directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+
+Return value: FAILED_TO_RUN
+Source file was:
+
+          #include <immintrin.h>
+          int main()
+          {
+            __m512i a, b, c;
+            const int src[16] = { 0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8 , 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF};
+            int dst[16];
+            a =  _mm512_loadu_si512( (__m512i*)src );
+            b =  _mm512_loadu_si512( (__m512i*)src );
+            c = _mm512_add_epi32( a, b );
+            _mm512_storeu_si512( (__m512i*)dst, c );
+            int i = 0;
+            for( i = 0; i < 16; i++ ){
+              if( ( src[i] + src[i] ) != dst[i] ){
+                return -1;
+              }
+            }
+            return 0;
+          }
+Performing C++ SOURCE FILE Test HAVE_VISIBILITY_HIDDEN failed with the following output:
+Change Dir: /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_399a7/fast"
+/usr/bin/make -f CMakeFiles/cmTC_399a7.dir/build.make CMakeFiles/cmTC_399a7.dir/build
+make[1]: Entering directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_399a7.dir/src.cxx.o
+/usr/bin/c++    -march=native -Wall -Wno-comment -Wno-reorder -Wno-unused-but-set-variable -Wno-unused-variable -Wformat -Wtype-limits -std=c++03 -mfpmath=sse -mavx2 -DLV_HAVE_AVX2 -DLV_HAVE_AVX -DLV_HAVE_SSE -O3 -DBUILD_TYPE_RELEASE -DHAVE_VISIBILITY_HIDDEN  -march=native -Wall -Wno-comment -Wno-write-strings -Winline -Wno-unused-result -Wformat -Wtype-limits -std=c99 -D_GNU_SOURCE -O3 -DBUILD_TYPE_RELEASE -mfpmath=sse -mavx2 -DLV_HAVE_AVX2 -DLV_HAVE_AVX -DLV_HAVE_SSE -Ofast -funroll-loops   -fvisibility=hidden -o CMakeFiles/cmTC_399a7.dir/src.cxx.o -c /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp/src.cxx
+cc1plus: warning: command line option '-std=c99' is valid for C/ObjC but not for C++
+Linking CXX executable cmTC_399a7
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_399a7.dir/link.txt --verbose=1
+/usr/bin/c++   -march=native -Wall -Wno-comment -Wno-reorder -Wno-unused-but-set-variable -Wno-unused-variable -Wformat -Wtype-limits -std=c++03 -mfpmath=sse -mavx2 -DLV_HAVE_AVX2 -DLV_HAVE_AVX -DLV_HAVE_SSE -O3 -DBUILD_TYPE_RELEASE -DHAVE_VISIBILITY_HIDDEN  -march=native -Wall -Wno-comment -Wno-write-strings -Winline -Wno-unused-result -Wformat -Wtype-limits -std=c99 -D_GNU_SOURCE -O3 -DBUILD_TYPE_RELEASE -mfpmath=sse -mavx2 -DLV_HAVE_AVX2 -DLV_HAVE_AVX -DLV_HAVE_SSE -Ofast -funroll-loops    -rdynamic CMakeFiles/cmTC_399a7.dir/src.cxx.o  -o cmTC_399a7 
+make[1]: Leaving directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main() { return 0; }
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3ca5b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3ca5b.dir/build.make CMakeFiles/cmTC_3ca5b.dir/build
+make[1]: Entering directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_3ca5b.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_3ca5b.dir/CheckSymbolExists.c.o   -c /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_3ca5b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3ca5b.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_3ca5b.dir/CheckSymbolExists.c.o  -o cmTC_3ca5b 
+CMakeFiles/cmTC_3ca5b.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_3ca5b.dir/build.make:97: recipe for target 'cmTC_3ca5b' failed
+make[1]: *** [cmTC_3ca5b] Error 1
+make[1]: Leaving directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_3ca5b/fast' failed
+make: *** [cmTC_3ca5b/fast] Error 2
+
+File /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_619e5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_619e5.dir/build.make CMakeFiles/cmTC_619e5.dir/build
+make[1]: Entering directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_619e5.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_619e5.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_619e5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_619e5.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_619e5.dir/CheckFunctionExists.c.o  -o cmTC_619e5 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_619e5.dir/build.make:97: recipe for target 'cmTC_619e5' failed
+make[1]: *** [cmTC_619e5] Error 1
+make[1]: Leaving directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_619e5/fast' failed
+make: *** [cmTC_619e5/fast] Error 2
+
+
+Performing C SOURCE FILE Test HAVE_AVX512 failed with the following output:
+Change Dir: /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_9162f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_9162f.dir/build.make CMakeFiles/cmTC_9162f.dir/build
+make[1]: Entering directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9162f.dir/src.c.o
+/usr/bin/cc   -DHAVE_AVX512 -mavx512f   -o CMakeFiles/cmTC_9162f.dir/src.c.o   -c /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_9162f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9162f.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE_AVX512 -mavx512f    -rdynamic CMakeFiles/cmTC_9162f.dir/src.c.o  -o cmTC_9162f 
+make[1]: Leaving directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+
+Return value: FAILED_TO_RUN
+Source file was:
+
+          #include <immintrin.h>
+          int main()
+          {
+            __m512i a, b, c;
+            const int src[16] = { 0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8 , 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF};
+            int dst[16];
+            a =  _mm512_loadu_si512( (__m512i*)src );
+            b =  _mm512_loadu_si512( (__m512i*)src );
+            c = _mm512_add_epi32( a, b );
+            _mm512_storeu_si512( (__m512i*)dst, c );
+            int i = 0;
+            for( i = 0; i < 16; i++ ){
+              if( ( src[i] + src[i] ) != dst[i] ){
+                return -1;
+              }
+            }
+            return 0;
+          }
+Performing C++ SOURCE FILE Test HAVE_VISIBILITY_HIDDEN failed with the following output:
+Change Dir: /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_91c63/fast"
+/usr/bin/make -f CMakeFiles/cmTC_91c63.dir/build.make CMakeFiles/cmTC_91c63.dir/build
+make[1]: Entering directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_91c63.dir/src.cxx.o
+/usr/bin/c++    -march=native -Wall -Wno-comment -Wno-reorder -Wno-unused-but-set-variable -Wno-unused-variable -Wformat -Wtype-limits -std=c++03 -mfpmath=sse -mavx2 -DLV_HAVE_AVX2 -DLV_HAVE_AVX -DLV_HAVE_SSE -O3 -DBUILD_TYPE_RELEASE -DHAVE_VISIBILITY_HIDDEN  -march=native -Wall -Wno-comment -Wno-write-strings -Winline -Wno-unused-result -Wformat -Wtype-limits -std=c99 -D_GNU_SOURCE -O3 -DBUILD_TYPE_RELEASE -mfpmath=sse -mavx2 -DLV_HAVE_AVX2 -DLV_HAVE_AVX -DLV_HAVE_SSE -Ofast -funroll-loops   -fvisibility=hidden -o CMakeFiles/cmTC_91c63.dir/src.cxx.o -c /home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp/src.cxx
+cc1plus: warning: command line option '-std=c99' is valid for C/ObjC but not for C++
+Linking CXX executable cmTC_91c63
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_91c63.dir/link.txt --verbose=1
+/usr/bin/c++   -march=native -Wall -Wno-comment -Wno-reorder -Wno-unused-but-set-variable -Wno-unused-variable -Wformat -Wtype-limits -std=c++03 -mfpmath=sse -mavx2 -DLV_HAVE_AVX2 -DLV_HAVE_AVX -DLV_HAVE_SSE -O3 -DBUILD_TYPE_RELEASE -DHAVE_VISIBILITY_HIDDEN  -march=native -Wall -Wno-comment -Wno-write-strings -Winline -Wno-unused-result -Wformat -Wtype-limits -std=c99 -D_GNU_SOURCE -O3 -DBUILD_TYPE_RELEASE -mfpmath=sse -mavx2 -DLV_HAVE_AVX2 -DLV_HAVE_AVX -DLV_HAVE_SSE -Ofast -funroll-loops    -rdynamic CMakeFiles/cmTC_91c63.dir/src.cxx.o  -o cmTC_91c63 
+make[1]: Leaving directory '/home/enb/empower-srsLTE/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main() { return 0; }

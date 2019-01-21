@@ -81,7 +81,8 @@ public:
   int init(
     int enb_id,
     rrc_interface_agent *rrc,
-    ran_interface_agent * ran,
+    ran_interface_agent *ran,
+	phy_interface_agent *phy,
     srslte::log * logger);
 
   /* Release any reserved resource. */
@@ -108,6 +109,9 @@ public:
 
   /* Order the agent to report RAN slicer modification */
   int setup_RAN_report(uint32_t mod);
+
+  /* agent_interface_phy: */
+  void report_phy_param (float tx_gain);
 
   /* agent_interface_mac: */
 
@@ -181,7 +185,7 @@ private:
   unsigned int m_id;
 
   //srslte::radio *    m_rf;
-  //srsenb::phy *      m_phy;
+  phy_interface_agent * m_phy;
   //srsenb::mac *      m_mac;
   //srsenb::rlc *      m_rlc;
   //srsenb::pdcp *     m_pdcp;

@@ -47,7 +47,8 @@ namespace srsenb {
 class agent :
   public agent_interface_rrc,
   public agent_interface_mac,
-  public agent_interface_ran
+  public agent_interface_ran,
+  public agent_interface_phy
 {
 public:
   /* Initializes the agent with the layers to interact with.
@@ -57,6 +58,7 @@ public:
     int enb_id,
     rrc_interface_agent * rrc,
     ran_interface_agent * ran,
+	phy_interface_agent * phy,
     srslte::log * logger) = 0;
 
   /* Stops the agent processing and terminates it. */

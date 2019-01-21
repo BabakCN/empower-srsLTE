@@ -350,29 +350,86 @@ void sig_int_handler(int signo)
   }
 }
 
-void *input_loop(void *m)
+/*void *input_loop(void *m)
 {
   metrics_stdout *metrics = (metrics_stdout*) m;
-  char key;
+  float key;
   while(running) {
+    cout << "Enter tx_gain power"<<endl;
     cin >> key;
+    
     if (cin.eof() || cin.bad()) {
       cout << "Closing stdin thread." << endl;
       break;
     } else {
-      if('t' == key) {
+      if( 't' = keya) {
         do_metrics = !do_metrics;
         if(do_metrics) {
-          cout << "Enter t to stop trace." << endl;
+	 bpo::options_description common("Configuration options");
+	
+          cout << "TX_gain is more than normal" << endl;
         } else {
-          cout << "Enter t to restart trace." << endl;
-        }
-        metrics->toggle_print(do_metrics);
-      }
+	    //    rf_args_t new_tx_gain;
+	      //  rf_args_t *ptr_new_tx;
+	       // ptr_new_tx = &new_tx_gain;
+
+	       // ptr_new_tx->tx_gain = key;
+		//new_tx_gain.rx_gain = key;	
+               // bpo::options_description common("Configuration options");
+	//	common.add_options()
+	  //     ("tx_gain",        bpo::value<float>(ptr_new_tx->tx_gain),           "Front-end transmitter gain");
+               cout << "TX-gain= "<<key << endl;
+		}
+        
+        //metrics->toggle_print(do_metrics);
+     // }
     }
   }
   return NULL;
 }
+
+*/
+void *input_loop(void *m)
+{
+	  metrics_stdout *metrics = (metrics_stdout*) m;
+	    char key;
+	      while(running) {
+	cin >> key;
+	  if (cin.eof() || cin.bad()) {
+	   cout << "Closing stdin thread." << endl;
+	   break;
+	   } else {
+	  if('t' == key) {
+	   do_metrics = !do_metrics;
+	   if(do_metrics) {
+	   cout << "Enter t to stop trace." << endl;
+	    } else {
+	   cout << "Enter t to restart trace." << endl;
+	           }
+	  metrics->toggle_print(do_metrics);
+	   }
+	 }
+ }
+    return NULL;
+}
+
+/*
+void *input_loop(void *m) {
+	metrics_stdout *metrics = (metrics_stdout*) m;
+	float key;
+	  while(running) {
+		  cout << "Enter new tx_gain" << endl;
+		  cin >> key;
+                  if (key > 120) {
+			  cout <<"Enter a lower value" << endl;
+			  }
+		  else {
+		          new_tx_gain.tx_gain = key;
+			  cout << "the new tx-gain is: "<< key << endl;
+		  }
+	  }
+}
+*/
 
 int main(int argc, char *argv[])
 {
@@ -381,31 +438,67 @@ int main(int argc, char *argv[])
   all_args_t        args;
   metrics_stdout    metrics;
   enb              *enb = enb::get_instance();
+  //rf_arg_t         new_tx_gain;
 
   srslte_debug_handle_crash(argc, argv);
 
   cout << "---  Software Radio Systems LTE eNodeB  ---" << endl << endl;
 
   parse_args(&args, argc, argv);
+
+
+
   if(!enb->init(&args)) {
     exit(1);
   }
-  metrics.init(enb, args.expert.metrics_period_secs);
+
+    metrics.init(enb, args.expert.metrics_period_secs);
+  
+  
 
   pthread_t input;
-  pthread_create(&input, NULL, &input_loop, &metrics);
+  //pthread_create(&input, NULL, &input_loop, &metrics);
 
   bool plot_started         = false; 
   bool signals_pregenerated = false; 
+
+
   while(running) {
     if (!plot_started && args.gui.enable) {
       enb->start_plot();
       plot_started = true; 
     }
     sleep(1);
+    cout << "Enter 'T' for TX_gain; 'M' for MCS_indx; 'N' for Bandwidth " << endl;
+      char option;
+      cin >> option;
+    switch(option) {
+    case 'T':
+    		cout << "TX GAIN " << args.rf.tx_gain<<endl;
+    		cout << "Enter new TX_gain" << endl;
+    	    cin >> args.rf.tx_gain;
+    	    enb->radio.set_tx_gain(args.rf.tx_gain);
+
+    	    break;
+    case 'M':
+    	cout << "DL Freq " << args.rf.dl_freq<<endl;
+    	cin >> args.rf.dl_freq;
+    	enb->radio.set_tx_freq(args.rf.dl_freq);
+    	break;
+
+    case 'N':
+    	cout << "N_prb " << args.enb.n_prb <<endl;
+    	cin>> args.enb.n_prb;
+
+    	break;
+
+    }
+
+
   }
-  pthread_cancel(input);
+  //pthread_cancel(input);
   metrics.stop();
+
   enb->stop();
   enb->cleanup();
   cout << "---  exiting  ---" << endl;

@@ -64,7 +64,8 @@ mac::mac() : timers_db(128), timers_thread(&timers_db), tti(0), last_rnti(0),
   bzero(&rar_softbuffer_tx, sizeof(rar_softbuffer_tx));
 }
   
-bool mac::init(mac_args_t *args_, srslte_cell_t *cell_, phy_interface_mac *phy, rlc_interface_mac *rlc, rrc_interface_mac *rrc, agent_interface_mac * agent, srslte::log *log_h_)
+bool mac::init(mac_args_t *args_, srslte_cell_t *cell_, phy_interface_mac *phy, rlc_interface_mac *rlc,
+		       rrc_interface_mac *rrc, agent_interface_mac * agent, srslte::log *log_h_)
 {
   started = false; 
 

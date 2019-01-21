@@ -178,6 +178,7 @@ public:
 
   void pregenerate_signals(bool enable);
 
+  srslte::radio radio;
 
 private:
   static enb *instance;
@@ -186,7 +187,7 @@ private:
 
   virtual ~enb();
 
-  srslte::radio radio;
+
   srsenb::phy phy;
   srsenb::mac mac;
   srslte::mac_pcap mac_pcap;

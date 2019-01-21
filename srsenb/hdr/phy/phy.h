@@ -50,15 +50,20 @@ typedef struct {
 } phy_cfg_t; 
 
 class phy : public phy_interface_mac,
-            public phy_interface_rrc
+            public phy_interface_rrc,
+			public phy_interface_agent
 {
 public:
 
   phy();
-  bool init(phy_args_t *args, phy_cfg_t *common_cfg, srslte::radio *radio_handler, mac_interface_phy *mac, srslte::log_filter* log_h);
-  bool init(phy_args_t *args, phy_cfg_t *common_cfg, srslte::radio *radio_handler, mac_interface_phy *mac, std::vector<srslte::log_filter *> log_vec);
+  bool init(phy_args_t *args, phy_cfg_t *common_cfg, srslte::radio *radio_handler, mac_interface_phy *mac, agent_interface_phy *agent, srslte::log_filter* log_h);
+  bool init(phy_args_t *args, phy_cfg_t *common_cfg, srslte::radio *radio_handler, mac_interface_phy *mac, agent_interface_phy *agent, std::vector<srslte::log_filter *> log_vec);
   void stop();
   
+  /*agent -> phy interfsce */
+
+  void set_new_tx_gain(float new_tx_gain);
+
   /* MAC->PHY interface */
   int  add_rnti(uint16_t rnti);
   void rem_rnti(uint16_t rnti);
@@ -84,7 +89,7 @@ private:
   const static int WORKERS_THREAD_PRIO = 0; 
   
   srslte::radio         *radio_handler;
-
+  agent_interface_phy * agent;
   srslte::thread_pool      workers_pool;
   std::vector<phch_worker> workers;
   phch_common              workers_common; 

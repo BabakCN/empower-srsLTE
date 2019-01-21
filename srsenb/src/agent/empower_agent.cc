@@ -240,6 +240,7 @@ static int ea_ue_report(uint32_t mod, int trig_id)
   return em_agent->setup_UE_report(mod, trig_id);
 }
 
+
 #ifdef HAVE_RAN_SLICER
 
 // Send situation of all the slices
@@ -508,6 +509,7 @@ int empower_agent::init(
   int enb_id, 
   rrc_interface_agent * rrc, 
   ran_interface_agent * ran, 
+  phy_interface_agent * phy,
   srslte::log * logger)
 {
   if(!rrc || !logger) {
@@ -518,6 +520,7 @@ int empower_agent::init(
 
   m_rrc = rrc;
   m_ran = ran;
+  m_phy = phy;
   m_logger= logger;
 
   m_args = enb::get_instance()->get_args();
@@ -811,6 +814,15 @@ int empower_agent::setup_RAN_report(uint32_t mod)
 
   return 0;
 }
+
+/******************************************************************************
+ * agent_interface_phy.                                                       *
+ ******************************************************************************/
+void empower_agent::report_phy_param (float tx_gain){
+
+}
+
+
 
 /******************************************************************************
  * agent_interface_mac.                                                       *
