@@ -48,13 +48,25 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -126,7 +138,7 @@ install/fast: preinstall/fast
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -137,7 +149,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/enb/empower-srsLTE/build/CPackSourceConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/ue/empower-srsLTE/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -147,14 +159,14 @@ package_source/fast: package_source
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles /home/enb/empower-srsLTE/build/lib/src/phy/utils/test/CMakeFiles/progress.marks
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/utils/test/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles /home/ue/empower-srsLTE/build/lib/src/phy/utils/test/CMakeFiles/progress.marks
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/utils/test/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/utils/test/clean
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/utils/test/clean
 .PHONY : clean
 
 # The main clean target
@@ -164,22 +176,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/utils/test/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/utils/test/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/utils/test/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/utils/test/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/rule
 .PHONY : lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/rule
 
 # Convenience name for target.
@@ -189,12 +201,12 @@ algebra_test: lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/rule
 
 # fast build rule for target.
 algebra_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/build
 .PHONY : algebra_test/fast
 
 # Convenience name for target.
 lib/src/phy/utils/test/CMakeFiles/dft_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/utils/test/CMakeFiles/dft_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/utils/test/CMakeFiles/dft_test.dir/rule
 .PHONY : lib/src/phy/utils/test/CMakeFiles/dft_test.dir/rule
 
 # Convenience name for target.
@@ -204,12 +216,12 @@ dft_test: lib/src/phy/utils/test/CMakeFiles/dft_test.dir/rule
 
 # fast build rule for target.
 dft_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/dft_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/dft_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/dft_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/dft_test.dir/build
 .PHONY : dft_test/fast
 
 # Convenience name for target.
 lib/src/phy/utils/test/CMakeFiles/vector_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/utils/test/CMakeFiles/vector_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/utils/test/CMakeFiles/vector_test.dir/rule
 .PHONY : lib/src/phy/utils/test/CMakeFiles/vector_test.dir/rule
 
 # Convenience name for target.
@@ -219,7 +231,7 @@ vector_test: lib/src/phy/utils/test/CMakeFiles/vector_test.dir/rule
 
 # fast build rule for target.
 vector_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/vector_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/vector_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/vector_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/vector_test.dir/build
 .PHONY : vector_test/fast
 
 dft_test.o: dft_test.c.o
@@ -228,7 +240,7 @@ dft_test.o: dft_test.c.o
 
 # target to build an object file
 dft_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/dft_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/dft_test.dir/dft_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/dft_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/dft_test.dir/dft_test.c.o
 .PHONY : dft_test.c.o
 
 dft_test.i: dft_test.c.i
@@ -237,7 +249,7 @@ dft_test.i: dft_test.c.i
 
 # target to preprocess a source file
 dft_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/dft_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/dft_test.dir/dft_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/dft_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/dft_test.dir/dft_test.c.i
 .PHONY : dft_test.c.i
 
 dft_test.s: dft_test.c.s
@@ -246,7 +258,7 @@ dft_test.s: dft_test.c.s
 
 # target to generate assembly for a file
 dft_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/dft_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/dft_test.dir/dft_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/dft_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/dft_test.dir/dft_test.c.s
 .PHONY : dft_test.c.s
 
 mat_test.o: mat_test.c.o
@@ -255,7 +267,7 @@ mat_test.o: mat_test.c.o
 
 # target to build an object file
 mat_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/mat_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/mat_test.c.o
 .PHONY : mat_test.c.o
 
 mat_test.i: mat_test.c.i
@@ -264,7 +276,7 @@ mat_test.i: mat_test.c.i
 
 # target to preprocess a source file
 mat_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/mat_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/mat_test.c.i
 .PHONY : mat_test.c.i
 
 mat_test.s: mat_test.c.s
@@ -273,7 +285,7 @@ mat_test.s: mat_test.c.s
 
 # target to generate assembly for a file
 mat_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/mat_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/algebra_test.dir/mat_test.c.s
 .PHONY : mat_test.c.s
 
 vector_test.o: vector_test.c.o
@@ -282,7 +294,7 @@ vector_test.o: vector_test.c.o
 
 # target to build an object file
 vector_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/vector_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/vector_test.dir/vector_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/vector_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/vector_test.dir/vector_test.c.o
 .PHONY : vector_test.c.o
 
 vector_test.i: vector_test.c.i
@@ -291,7 +303,7 @@ vector_test.i: vector_test.c.i
 
 # target to preprocess a source file
 vector_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/vector_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/vector_test.dir/vector_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/vector_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/vector_test.dir/vector_test.c.i
 .PHONY : vector_test.c.i
 
 vector_test.s: vector_test.c.s
@@ -300,7 +312,7 @@ vector_test.s: vector_test.c.s
 
 # target to generate assembly for a file
 vector_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/vector_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/vector_test.dir/vector_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/utils/test/CMakeFiles/vector_test.dir/build.make lib/src/phy/utils/test/CMakeFiles/vector_test.dir/vector_test.c.s
 .PHONY : vector_test.c.s
 
 # Help Target
@@ -309,6 +321,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install/strip"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... list_install_components"
@@ -340,6 +353,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

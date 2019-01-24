@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 # Include any dependencies generated for this target.
 include lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/depend.make
@@ -59,16 +59,16 @@ include lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/flags.make
 
 lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/scrambling.c.o: lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/flags.make
 lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/scrambling.c.o: ../lib/src/phy/scrambling/scrambling.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/enb/empower-srsLTE/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/scrambling.c.o"
-	cd /home/enb/empower-srsLTE/build/lib/src/phy/scrambling && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/srslte_scrambling.dir/scrambling.c.o   -c /home/enb/empower-srsLTE/lib/src/phy/scrambling/scrambling.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ue/empower-srsLTE/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/scrambling.c.o"
+	cd /home/ue/empower-srsLTE/build/lib/src/phy/scrambling && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/srslte_scrambling.dir/scrambling.c.o   -c /home/ue/empower-srsLTE/lib/src/phy/scrambling/scrambling.c
 
 lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/scrambling.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/srslte_scrambling.dir/scrambling.c.i"
-	cd /home/enb/empower-srsLTE/build/lib/src/phy/scrambling && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/enb/empower-srsLTE/lib/src/phy/scrambling/scrambling.c > CMakeFiles/srslte_scrambling.dir/scrambling.c.i
+	cd /home/ue/empower-srsLTE/build/lib/src/phy/scrambling && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ue/empower-srsLTE/lib/src/phy/scrambling/scrambling.c > CMakeFiles/srslte_scrambling.dir/scrambling.c.i
 
 lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/scrambling.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/srslte_scrambling.dir/scrambling.c.s"
-	cd /home/enb/empower-srsLTE/build/lib/src/phy/scrambling && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/enb/empower-srsLTE/lib/src/phy/scrambling/scrambling.c -o CMakeFiles/srslte_scrambling.dir/scrambling.c.s
+	cd /home/ue/empower-srsLTE/build/lib/src/phy/scrambling && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ue/empower-srsLTE/lib/src/phy/scrambling/scrambling.c -o CMakeFiles/srslte_scrambling.dir/scrambling.c.s
 
 lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/scrambling.c.o.requires:
 
@@ -96,10 +96,10 @@ lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/requires: lib/src/phy/sc
 .PHONY : lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/requires
 
 lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/clean:
-	cd /home/enb/empower-srsLTE/build/lib/src/phy/scrambling && $(CMAKE_COMMAND) -P CMakeFiles/srslte_scrambling.dir/cmake_clean.cmake
+	cd /home/ue/empower-srsLTE/build/lib/src/phy/scrambling && $(CMAKE_COMMAND) -P CMakeFiles/srslte_scrambling.dir/cmake_clean.cmake
 .PHONY : lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/clean
 
 lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/enb/empower-srsLTE /home/enb/empower-srsLTE/lib/src/phy/scrambling /home/enb/empower-srsLTE/build /home/enb/empower-srsLTE/build/lib/src/phy/scrambling /home/enb/empower-srsLTE/build/lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ue/empower-srsLTE /home/ue/empower-srsLTE/lib/src/phy/scrambling /home/ue/empower-srsLTE/build /home/ue/empower-srsLTE/build/lib/src/phy/scrambling /home/ue/empower-srsLTE/build/lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : lib/src/phy/scrambling/CMakeFiles/srslte_scrambling.dir/depend
 

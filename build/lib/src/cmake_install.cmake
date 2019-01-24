@@ -1,4 +1,4 @@
-# Install script for directory: /home/enb/empower-srsLTE/lib/src
+# Install script for directory: /home/ue/empower-srsLTE/lib/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,11 +39,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/enb/empower-srsLTE/build/lib/src/asn1/cmake_install.cmake")
-  include("/home/enb/empower-srsLTE/build/lib/src/common/cmake_install.cmake")
-  include("/home/enb/empower-srsLTE/build/lib/src/phy/cmake_install.cmake")
-  include("/home/enb/empower-srsLTE/build/lib/src/radio/cmake_install.cmake")
-  include("/home/enb/empower-srsLTE/build/lib/src/upper/cmake_install.cmake")
+  include("/home/ue/empower-srsLTE/build/lib/src/asn1/cmake_install.cmake")
+  include("/home/ue/empower-srsLTE/build/lib/src/common/cmake_install.cmake")
+  include("/home/ue/empower-srsLTE/build/lib/src/phy/cmake_install.cmake")
+  include("/home/ue/empower-srsLTE/build/lib/src/radio/cmake_install.cmake")
+  include("/home/ue/empower-srsLTE/build/lib/src/upper/cmake_install.cmake")
 
 endif()
 

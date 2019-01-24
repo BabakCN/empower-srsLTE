@@ -4,13 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/enb/empower-srsLTE/srsepc/src/spgw/spgw.cc" "/home/enb/empower-srsLTE/build/srsepc/src/spgw/CMakeFiles/srsepc_sgw.dir/spgw.cc.o"
+  "/home/ue/empower-srsLTE/srsepc/src/spgw/spgw.cc" "/home/ue/empower-srsLTE/build/srsepc/src/spgw/CMakeFiles/srsepc_sgw.dir/spgw.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 

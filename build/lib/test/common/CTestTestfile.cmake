@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/enb/empower-srsLTE/lib/test/common
-# Build directory: /home/enb/empower-srsLTE/build/lib/test/common
+# Source directory: /home/ue/empower-srsLTE/lib/test/common
+# Build directory: /home/ue/empower-srsLTE/build/lib/test/common
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

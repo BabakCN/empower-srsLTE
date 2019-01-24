@@ -4,17 +4,16 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/enb/empower-srsLTE/lib/src/asn1/gtpc.cc" "/home/enb/empower-srsLTE/build/lib/src/asn1/CMakeFiles/srslte_asn1.dir/gtpc.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/asn1/liblte_common.cc" "/home/enb/empower-srsLTE/build/lib/src/asn1/CMakeFiles/srslte_asn1.dir/liblte_common.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/asn1/liblte_mme.cc" "/home/enb/empower-srsLTE/build/lib/src/asn1/CMakeFiles/srslte_asn1.dir/liblte_mme.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/asn1/liblte_rrc.cc" "/home/enb/empower-srsLTE/build/lib/src/asn1/CMakeFiles/srslte_asn1.dir/liblte_rrc.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/asn1/liblte_s1ap.cc" "/home/enb/empower-srsLTE/build/lib/src/asn1/CMakeFiles/srslte_asn1.dir/liblte_s1ap.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/asn1/gtpc.cc" "/home/ue/empower-srsLTE/build/lib/src/asn1/CMakeFiles/srslte_asn1.dir/gtpc.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/asn1/liblte_common.cc" "/home/ue/empower-srsLTE/build/lib/src/asn1/CMakeFiles/srslte_asn1.dir/liblte_common.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/asn1/liblte_mme.cc" "/home/ue/empower-srsLTE/build/lib/src/asn1/CMakeFiles/srslte_asn1.dir/liblte_mme.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/asn1/liblte_rrc.cc" "/home/ue/empower-srsLTE/build/lib/src/asn1/CMakeFiles/srslte_asn1.dir/liblte_rrc.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/asn1/liblte_s1ap.cc" "/home/ue/empower-srsLTE/build/lib/src/asn1/CMakeFiles/srslte_asn1.dir/liblte_s1ap.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 

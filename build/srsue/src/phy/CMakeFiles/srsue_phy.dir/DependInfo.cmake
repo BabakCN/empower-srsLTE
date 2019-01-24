@@ -4,17 +4,16 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/enb/empower-srsLTE/srsue/src/phy/phch_common.cc" "/home/enb/empower-srsLTE/build/srsue/src/phy/CMakeFiles/srsue_phy.dir/phch_common.cc.o"
-  "/home/enb/empower-srsLTE/srsue/src/phy/phch_recv.cc" "/home/enb/empower-srsLTE/build/srsue/src/phy/CMakeFiles/srsue_phy.dir/phch_recv.cc.o"
-  "/home/enb/empower-srsLTE/srsue/src/phy/phch_worker.cc" "/home/enb/empower-srsLTE/build/srsue/src/phy/CMakeFiles/srsue_phy.dir/phch_worker.cc.o"
-  "/home/enb/empower-srsLTE/srsue/src/phy/phy.cc" "/home/enb/empower-srsLTE/build/srsue/src/phy/CMakeFiles/srsue_phy.dir/phy.cc.o"
-  "/home/enb/empower-srsLTE/srsue/src/phy/prach.cc" "/home/enb/empower-srsLTE/build/srsue/src/phy/CMakeFiles/srsue_phy.dir/prach.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/phy/phch_common.cc" "/home/ue/empower-srsLTE/build/srsue/src/phy/CMakeFiles/srsue_phy.dir/phch_common.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/phy/phch_recv.cc" "/home/ue/empower-srsLTE/build/srsue/src/phy/CMakeFiles/srsue_phy.dir/phch_recv.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/phy/phch_worker.cc" "/home/ue/empower-srsLTE/build/srsue/src/phy/CMakeFiles/srsue_phy.dir/phch_worker.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/phy/phy.cc" "/home/ue/empower-srsLTE/build/srsue/src/phy/CMakeFiles/srsue_phy.dir/phy.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/phy/prach.cc" "/home/ue/empower-srsLTE/build/srsue/src/phy/CMakeFiles/srsue_phy.dir/prach.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 

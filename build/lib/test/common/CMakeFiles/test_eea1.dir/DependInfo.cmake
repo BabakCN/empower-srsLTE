@@ -4,13 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/enb/empower-srsLTE/lib/test/common/test_eea1.cc" "/home/enb/empower-srsLTE/build/lib/test/common/CMakeFiles/test_eea1.dir/test_eea1.cc.o"
+  "/home/ue/empower-srsLTE/lib/test/common/test_eea1.cc" "/home/ue/empower-srsLTE/build/lib/test/common/CMakeFiles/test_eea1.dir/test_eea1.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 
@@ -23,7 +22,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/DependInfo.cmake"
+  "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

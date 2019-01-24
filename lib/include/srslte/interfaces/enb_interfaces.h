@@ -331,9 +331,10 @@ public:
 /* agent_interface_phy */
 class agent_interface_phy {
 public:
-	virtual void report_phy_param(float tx_gain) = 0 ;
+	virtual int report_phy_param(float tx_gain) = 0 ;
 };
 // report_tx_gain
+
 
 // Agent interface for MAC
 class agent_interface_mac

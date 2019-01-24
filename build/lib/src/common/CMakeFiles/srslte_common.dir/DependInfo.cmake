@@ -5,14 +5,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/enb/empower-srsLTE/lib/src/common/threads.c" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/threads.c.o"
-  "/home/enb/empower-srsLTE/lib/src/common/version.c" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/version.c.o"
+  "/home/ue/empower-srsLTE/lib/src/common/threads.c" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/threads.c.o"
+  "/home/ue/empower-srsLTE/lib/src/common/version.c" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/version.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_C
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 
@@ -23,25 +22,24 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "../lib/include"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/enb/empower-srsLTE/lib/src/common/buffer_pool.cc" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/buffer_pool.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/common/liblte_security.cc" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/liblte_security.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/common/log_filter.cc" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/log_filter.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/common/logger_file.cc" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/logger_file.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/common/mac_pcap.cc" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/mac_pcap.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/common/nas_pcap.cc" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/nas_pcap.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/common/pdu.cc" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/pdu.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/common/pdu_queue.cc" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/pdu_queue.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/common/security.cc" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/security.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/common/snow_3g.cc" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/snow_3g.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/common/task_dispatcher.cc" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/task_dispatcher.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/common/thread_pool.cc" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/thread_pool.cc.o"
-  "/home/enb/empower-srsLTE/lib/src/common/tti_sync_cv.cc" "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/tti_sync_cv.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/common/buffer_pool.cc" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/buffer_pool.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/common/liblte_security.cc" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/liblte_security.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/common/log_filter.cc" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/log_filter.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/common/logger_file.cc" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/logger_file.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/common/mac_pcap.cc" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/mac_pcap.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/common/nas_pcap.cc" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/nas_pcap.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/common/pdu.cc" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/pdu.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/common/pdu_queue.cc" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/pdu_queue.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/common/security.cc" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/security.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/common/snow_3g.cc" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/snow_3g.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/common/task_dispatcher.cc" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/task_dispatcher.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/common/thread_pool.cc" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/thread_pool.cc.o"
+  "/home/ue/empower-srsLTE/lib/src/common/tti_sync_cv.cc" "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/tti_sync_cv.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/enb/empower-srsLTE/srsue
+# Install script for directory: /home/ue/empower-srsLTE/srsue
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/enb/empower-srsLTE/build/srsue/src/cmake_install.cmake")
-  include("/home/enb/empower-srsLTE/build/srsue/test/cmake_install.cmake")
+  include("/home/ue/empower-srsLTE/build/srsue/src/cmake_install.cmake")
+  include("/home/ue/empower-srsLTE/build/srsue/test/cmake_install.cmake")
 
 endif()
 

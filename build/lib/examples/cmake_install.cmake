@@ -1,4 +1,4 @@
-# Install script for directory: /home/enb/empower-srsLTE/lib/examples
+# Install script for directory: /home/ue/empower-srsLTE/lib/examples
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -4,19 +4,18 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/enb/empower-srsLTE/srsue/src/mac/demux.cc" "/home/enb/empower-srsLTE/build/srsue/src/mac/CMakeFiles/srsue_mac.dir/demux.cc.o"
-  "/home/enb/empower-srsLTE/srsue/src/mac/mac.cc" "/home/enb/empower-srsLTE/build/srsue/src/mac/CMakeFiles/srsue_mac.dir/mac.cc.o"
-  "/home/enb/empower-srsLTE/srsue/src/mac/mux.cc" "/home/enb/empower-srsLTE/build/srsue/src/mac/CMakeFiles/srsue_mac.dir/mux.cc.o"
-  "/home/enb/empower-srsLTE/srsue/src/mac/proc_bsr.cc" "/home/enb/empower-srsLTE/build/srsue/src/mac/CMakeFiles/srsue_mac.dir/proc_bsr.cc.o"
-  "/home/enb/empower-srsLTE/srsue/src/mac/proc_phr.cc" "/home/enb/empower-srsLTE/build/srsue/src/mac/CMakeFiles/srsue_mac.dir/proc_phr.cc.o"
-  "/home/enb/empower-srsLTE/srsue/src/mac/proc_ra.cc" "/home/enb/empower-srsLTE/build/srsue/src/mac/CMakeFiles/srsue_mac.dir/proc_ra.cc.o"
-  "/home/enb/empower-srsLTE/srsue/src/mac/proc_sr.cc" "/home/enb/empower-srsLTE/build/srsue/src/mac/CMakeFiles/srsue_mac.dir/proc_sr.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/mac/demux.cc" "/home/ue/empower-srsLTE/build/srsue/src/mac/CMakeFiles/srsue_mac.dir/demux.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/mac/mac.cc" "/home/ue/empower-srsLTE/build/srsue/src/mac/CMakeFiles/srsue_mac.dir/mac.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/mac/mux.cc" "/home/ue/empower-srsLTE/build/srsue/src/mac/CMakeFiles/srsue_mac.dir/mux.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/mac/proc_bsr.cc" "/home/ue/empower-srsLTE/build/srsue/src/mac/CMakeFiles/srsue_mac.dir/proc_bsr.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/mac/proc_phr.cc" "/home/ue/empower-srsLTE/build/srsue/src/mac/CMakeFiles/srsue_mac.dir/proc_phr.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/mac/proc_ra.cc" "/home/ue/empower-srsLTE/build/srsue/src/mac/CMakeFiles/srsue_mac.dir/proc_ra.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/mac/proc_sr.cc" "/home/ue/empower-srsLTE/build/srsue/src/mac/CMakeFiles/srsue_mac.dir/proc_sr.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 

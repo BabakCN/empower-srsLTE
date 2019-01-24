@@ -3,6 +3,6 @@
 
 srsenb/test/upper/CMakeFiles/plmn_test.dir/plmn_test.cc.o
  ..//srsenb/hdr/upper/common_enb.h
- ../lib/include/srslte/asn1/liblte_common.h
- ../lib/include/srslte/asn1/liblte_rrc.h
- /home/enb/empower-srsLTE/srsenb/test/upper/plmn_test.cc
+ /home/ue/empower-srsLTE/srsenb/test/upper/plmn_test.cc
+ /usr/local/include/srslte/asn1/liblte_common.h
+ /usr/local/include/srslte/asn1/liblte_rrc.h

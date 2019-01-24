@@ -48,13 +48,25 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # Special rule for the target install
 install: preinstall
@@ -81,7 +93,7 @@ list_install_components/fast: list_install_components
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -92,7 +104,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/enb/empower-srsLTE/build/CPackSourceConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/ue/empower-srsLTE/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -147,14 +159,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles /home/enb/empower-srsLTE/build/lib/src/phy/ch_estimation/CMakeFiles/progress.marks
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/ch_estimation/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles /home/ue/empower-srsLTE/build/lib/src/phy/ch_estimation/CMakeFiles/progress.marks
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/ch_estimation/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/ch_estimation/clean
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/ch_estimation/clean
 .PHONY : clean
 
 # The main clean target
@@ -164,22 +176,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/ch_estimation/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/ch_estimation/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/ch_estimation/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/ch_estimation/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/rule
 .PHONY : lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/rule
 
 # Convenience name for target.
@@ -189,7 +201,7 @@ srslte_ch_estimation: lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.
 
 # fast build rule for target.
 srslte_ch_estimation/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build
 .PHONY : srslte_ch_estimation/fast
 
 chest_common.o: chest_common.c.o
@@ -198,7 +210,7 @@ chest_common.o: chest_common.c.o
 
 # target to build an object file
 chest_common.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_common.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_common.c.o
 .PHONY : chest_common.c.o
 
 chest_common.i: chest_common.c.i
@@ -207,7 +219,7 @@ chest_common.i: chest_common.c.i
 
 # target to preprocess a source file
 chest_common.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_common.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_common.c.i
 .PHONY : chest_common.c.i
 
 chest_common.s: chest_common.c.s
@@ -216,7 +228,7 @@ chest_common.s: chest_common.c.s
 
 # target to generate assembly for a file
 chest_common.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_common.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_common.c.s
 .PHONY : chest_common.c.s
 
 chest_dl.o: chest_dl.c.o
@@ -225,7 +237,7 @@ chest_dl.o: chest_dl.c.o
 
 # target to build an object file
 chest_dl.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_dl.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_dl.c.o
 .PHONY : chest_dl.c.o
 
 chest_dl.i: chest_dl.c.i
@@ -234,7 +246,7 @@ chest_dl.i: chest_dl.c.i
 
 # target to preprocess a source file
 chest_dl.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_dl.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_dl.c.i
 .PHONY : chest_dl.c.i
 
 chest_dl.s: chest_dl.c.s
@@ -243,7 +255,7 @@ chest_dl.s: chest_dl.c.s
 
 # target to generate assembly for a file
 chest_dl.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_dl.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_dl.c.s
 .PHONY : chest_dl.c.s
 
 chest_ul.o: chest_ul.c.o
@@ -252,7 +264,7 @@ chest_ul.o: chest_ul.c.o
 
 # target to build an object file
 chest_ul.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_ul.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_ul.c.o
 .PHONY : chest_ul.c.o
 
 chest_ul.i: chest_ul.c.i
@@ -261,7 +273,7 @@ chest_ul.i: chest_ul.c.i
 
 # target to preprocess a source file
 chest_ul.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_ul.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_ul.c.i
 .PHONY : chest_ul.c.i
 
 chest_ul.s: chest_ul.c.s
@@ -270,7 +282,7 @@ chest_ul.s: chest_ul.c.s
 
 # target to generate assembly for a file
 chest_ul.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_ul.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/chest_ul.c.s
 .PHONY : chest_ul.c.s
 
 refsignal_dl.o: refsignal_dl.c.o
@@ -279,7 +291,7 @@ refsignal_dl.o: refsignal_dl.c.o
 
 # target to build an object file
 refsignal_dl.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/refsignal_dl.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/refsignal_dl.c.o
 .PHONY : refsignal_dl.c.o
 
 refsignal_dl.i: refsignal_dl.c.i
@@ -288,7 +300,7 @@ refsignal_dl.i: refsignal_dl.c.i
 
 # target to preprocess a source file
 refsignal_dl.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/refsignal_dl.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/refsignal_dl.c.i
 .PHONY : refsignal_dl.c.i
 
 refsignal_dl.s: refsignal_dl.c.s
@@ -297,7 +309,7 @@ refsignal_dl.s: refsignal_dl.c.s
 
 # target to generate assembly for a file
 refsignal_dl.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/refsignal_dl.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/refsignal_dl.c.s
 .PHONY : refsignal_dl.c.s
 
 refsignal_ul.o: refsignal_ul.c.o
@@ -306,7 +318,7 @@ refsignal_ul.o: refsignal_ul.c.o
 
 # target to build an object file
 refsignal_ul.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/refsignal_ul.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/refsignal_ul.c.o
 .PHONY : refsignal_ul.c.o
 
 refsignal_ul.i: refsignal_ul.c.i
@@ -315,7 +327,7 @@ refsignal_ul.i: refsignal_ul.c.i
 
 # target to preprocess a source file
 refsignal_ul.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/refsignal_ul.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/refsignal_ul.c.i
 .PHONY : refsignal_ul.c.i
 
 refsignal_ul.s: refsignal_ul.c.s
@@ -324,7 +336,7 @@ refsignal_ul.s: refsignal_ul.c.s
 
 # target to generate assembly for a file
 refsignal_ul.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/refsignal_ul.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/build.make lib/src/phy/ch_estimation/CMakeFiles/srslte_ch_estimation.dir/refsignal_ul.c.s
 .PHONY : refsignal_ul.c.s
 
 # Help Target
@@ -333,6 +345,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install/strip"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... package"
@@ -368,6 +381,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

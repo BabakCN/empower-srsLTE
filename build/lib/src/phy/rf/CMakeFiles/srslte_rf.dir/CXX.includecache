@@ -6,9 +6,27 @@
 
 #IncludeRegexTransform: 
 
-../lib/include/srslte/config.h
+/home/ue/empower-srsLTE/lib/src/phy/rf/uhd_c_api.cpp
+uhd.h
+-
+uhd/usrp/multi_usrp.hpp
+-
+srslte/phy/rf/rf.h
+/home/ue/empower-srsLTE/lib/src/phy/rf/srslte/phy/rf/rf.h
+uhd_c_api.h
+/home/ue/empower-srsLTE/lib/src/phy/rf/uhd_c_api.h
 
-../lib/include/srslte/phy/rf/rf.h
+/home/ue/empower-srsLTE/lib/src/phy/rf/uhd_c_api.h
+uhd.h
+-
+srslte/config.h
+/home/ue/empower-srsLTE/lib/src/phy/rf/srslte/config.h
+srslte/phy/rf/rf.h
+/home/ue/empower-srsLTE/lib/src/phy/rf/srslte/phy/rf/rf.h
+
+/usr/local/include/srslte/config.h
+
+/usr/local/include/srslte/phy/rf/rf.h
 sys/time.h
 -
 stdbool.h
@@ -18,25 +36,7 @@ stdint.h
 pthread.h
 -
 srslte/config.h
-../lib/include/srslte/phy/rf/srslte/config.h
-
-/home/enb/empower-srsLTE/lib/src/phy/rf/uhd_c_api.cpp
-uhd.h
--
-uhd/usrp/multi_usrp.hpp
--
-srslte/phy/rf/rf.h
-/home/enb/empower-srsLTE/lib/src/phy/rf/srslte/phy/rf/rf.h
-uhd_c_api.h
-/home/enb/empower-srsLTE/lib/src/phy/rf/uhd_c_api.h
-
-/home/enb/empower-srsLTE/lib/src/phy/rf/uhd_c_api.h
-uhd.h
--
-srslte/config.h
-/home/enb/empower-srsLTE/lib/src/phy/rf/srslte/config.h
-srslte/phy/rf/rf.h
-/home/enb/empower-srsLTE/lib/src/phy/rf/srslte/phy/rf/rf.h
+/usr/local/include/srslte/phy/rf/srslte/config.h
 
 /usr/local/include/uhd.h
 uhd/config.h

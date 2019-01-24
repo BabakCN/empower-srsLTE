@@ -48,13 +48,25 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # Special rule for the target install
 install: preinstall
@@ -81,7 +93,7 @@ list_install_components/fast: list_install_components
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -92,7 +104,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/enb/empower-srsLTE/build/CPackSourceConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/ue/empower-srsLTE/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -147,14 +159,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles /home/enb/empower-srsLTE/build/srsue/src/CMakeFiles/progress.marks
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsue/src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles /home/ue/empower-srsLTE/build/srsue/src/CMakeFiles/progress.marks
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsue/src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsue/src/clean
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsue/src/clean
 .PHONY : clean
 
 # The main clean target
@@ -164,22 +176,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsue/src/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsue/src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsue/src/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsue/src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 srsue/src/CMakeFiles/srsue.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsue/src/CMakeFiles/srsue.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsue/src/CMakeFiles/srsue.dir/rule
 .PHONY : srsue/src/CMakeFiles/srsue.dir/rule
 
 # Convenience name for target.
@@ -189,13 +201,8 @@ srsue: srsue/src/CMakeFiles/srsue.dir/rule
 
 # fast build rule for target.
 srsue/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/build
 .PHONY : srsue/fast
-
-# Manual pre-install relink rule for target.
-srsue/preinstall:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsue/src/CMakeFiles/srsue.dir/preinstall
-.PHONY : srsue/preinstall
 
 main.o: main.cc.o
 
@@ -203,7 +210,7 @@ main.o: main.cc.o
 
 # target to build an object file
 main.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/main.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/main.cc.o
 .PHONY : main.cc.o
 
 main.i: main.cc.i
@@ -212,7 +219,7 @@ main.i: main.cc.i
 
 # target to preprocess a source file
 main.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/main.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/main.cc.i
 .PHONY : main.cc.i
 
 main.s: main.cc.s
@@ -221,7 +228,7 @@ main.s: main.cc.s
 
 # target to generate assembly for a file
 main.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/main.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/main.cc.s
 .PHONY : main.cc.s
 
 metrics_csv.o: metrics_csv.cc.o
@@ -230,7 +237,7 @@ metrics_csv.o: metrics_csv.cc.o
 
 # target to build an object file
 metrics_csv.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/metrics_csv.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/metrics_csv.cc.o
 .PHONY : metrics_csv.cc.o
 
 metrics_csv.i: metrics_csv.cc.i
@@ -239,7 +246,7 @@ metrics_csv.i: metrics_csv.cc.i
 
 # target to preprocess a source file
 metrics_csv.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/metrics_csv.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/metrics_csv.cc.i
 .PHONY : metrics_csv.cc.i
 
 metrics_csv.s: metrics_csv.cc.s
@@ -248,7 +255,7 @@ metrics_csv.s: metrics_csv.cc.s
 
 # target to generate assembly for a file
 metrics_csv.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/metrics_csv.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/metrics_csv.cc.s
 .PHONY : metrics_csv.cc.s
 
 metrics_stdout.o: metrics_stdout.cc.o
@@ -257,7 +264,7 @@ metrics_stdout.o: metrics_stdout.cc.o
 
 # target to build an object file
 metrics_stdout.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/metrics_stdout.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/metrics_stdout.cc.o
 .PHONY : metrics_stdout.cc.o
 
 metrics_stdout.i: metrics_stdout.cc.i
@@ -266,7 +273,7 @@ metrics_stdout.i: metrics_stdout.cc.i
 
 # target to preprocess a source file
 metrics_stdout.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/metrics_stdout.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/metrics_stdout.cc.i
 .PHONY : metrics_stdout.cc.i
 
 metrics_stdout.s: metrics_stdout.cc.s
@@ -275,7 +282,7 @@ metrics_stdout.s: metrics_stdout.cc.s
 
 # target to generate assembly for a file
 metrics_stdout.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/metrics_stdout.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/metrics_stdout.cc.s
 .PHONY : metrics_stdout.cc.s
 
 ue.o: ue.cc.o
@@ -284,7 +291,7 @@ ue.o: ue.cc.o
 
 # target to build an object file
 ue.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/ue.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/ue.cc.o
 .PHONY : ue.cc.o
 
 ue.i: ue.cc.i
@@ -293,7 +300,7 @@ ue.i: ue.cc.i
 
 # target to preprocess a source file
 ue.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/ue.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/ue.cc.i
 .PHONY : ue.cc.i
 
 ue.s: ue.cc.s
@@ -302,7 +309,7 @@ ue.s: ue.cc.s
 
 # target to generate assembly for a file
 ue.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/ue.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/ue.cc.s
 .PHONY : ue.cc.s
 
 ue_base.o: ue_base.cc.o
@@ -311,7 +318,7 @@ ue_base.o: ue_base.cc.o
 
 # target to build an object file
 ue_base.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/ue_base.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/ue_base.cc.o
 .PHONY : ue_base.cc.o
 
 ue_base.i: ue_base.cc.i
@@ -320,7 +327,7 @@ ue_base.i: ue_base.cc.i
 
 # target to preprocess a source file
 ue_base.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/ue_base.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/ue_base.cc.i
 .PHONY : ue_base.cc.i
 
 ue_base.s: ue_base.cc.s
@@ -329,7 +336,7 @@ ue_base.s: ue_base.cc.s
 
 # target to generate assembly for a file
 ue_base.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/ue_base.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/ue_base.cc.s
 .PHONY : ue_base.cc.s
 
 # Help Target
@@ -338,6 +345,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install/strip"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... package"
@@ -373,6 +381,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

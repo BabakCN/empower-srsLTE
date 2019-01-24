@@ -48,13 +48,25 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # Special rule for the target install
 install: preinstall
@@ -92,7 +104,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -103,7 +115,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/enb/empower-srsLTE/build/CPackSourceConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/ue/empower-srsLTE/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -147,14 +159,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles /home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/progress.marks
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/common/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles /home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/progress.marks
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/common/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/common/clean
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/common/clean
 .PHONY : clean
 
 # The main clean target
@@ -164,22 +176,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/common/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/common/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/common/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/common/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lib/src/common/CMakeFiles/srslte_common.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/common/CMakeFiles/srslte_common.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/common/CMakeFiles/srslte_common.dir/rule
 .PHONY : lib/src/common/CMakeFiles/srslte_common.dir/rule
 
 # Convenience name for target.
@@ -189,12 +201,12 @@ srslte_common: lib/src/common/CMakeFiles/srslte_common.dir/rule
 
 # fast build rule for target.
 srslte_common/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/build
 .PHONY : srslte_common/fast
 
 # Convenience name for target.
 lib/src/common/CMakeFiles/gen_build_info.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/common/CMakeFiles/gen_build_info.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/common/CMakeFiles/gen_build_info.dir/rule
 .PHONY : lib/src/common/CMakeFiles/gen_build_info.dir/rule
 
 # Convenience name for target.
@@ -204,7 +216,7 @@ gen_build_info: lib/src/common/CMakeFiles/gen_build_info.dir/rule
 
 # fast build rule for target.
 gen_build_info/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/gen_build_info.dir/build.make lib/src/common/CMakeFiles/gen_build_info.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/gen_build_info.dir/build.make lib/src/common/CMakeFiles/gen_build_info.dir/build
 .PHONY : gen_build_info/fast
 
 buffer_pool.o: buffer_pool.cc.o
@@ -213,7 +225,7 @@ buffer_pool.o: buffer_pool.cc.o
 
 # target to build an object file
 buffer_pool.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/buffer_pool.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/buffer_pool.cc.o
 .PHONY : buffer_pool.cc.o
 
 buffer_pool.i: buffer_pool.cc.i
@@ -222,7 +234,7 @@ buffer_pool.i: buffer_pool.cc.i
 
 # target to preprocess a source file
 buffer_pool.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/buffer_pool.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/buffer_pool.cc.i
 .PHONY : buffer_pool.cc.i
 
 buffer_pool.s: buffer_pool.cc.s
@@ -231,7 +243,7 @@ buffer_pool.s: buffer_pool.cc.s
 
 # target to generate assembly for a file
 buffer_pool.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/buffer_pool.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/buffer_pool.cc.s
 .PHONY : buffer_pool.cc.s
 
 liblte_security.o: liblte_security.cc.o
@@ -240,7 +252,7 @@ liblte_security.o: liblte_security.cc.o
 
 # target to build an object file
 liblte_security.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/liblte_security.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/liblte_security.cc.o
 .PHONY : liblte_security.cc.o
 
 liblte_security.i: liblte_security.cc.i
@@ -249,7 +261,7 @@ liblte_security.i: liblte_security.cc.i
 
 # target to preprocess a source file
 liblte_security.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/liblte_security.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/liblte_security.cc.i
 .PHONY : liblte_security.cc.i
 
 liblte_security.s: liblte_security.cc.s
@@ -258,7 +270,7 @@ liblte_security.s: liblte_security.cc.s
 
 # target to generate assembly for a file
 liblte_security.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/liblte_security.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/liblte_security.cc.s
 .PHONY : liblte_security.cc.s
 
 log_filter.o: log_filter.cc.o
@@ -267,7 +279,7 @@ log_filter.o: log_filter.cc.o
 
 # target to build an object file
 log_filter.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/log_filter.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/log_filter.cc.o
 .PHONY : log_filter.cc.o
 
 log_filter.i: log_filter.cc.i
@@ -276,7 +288,7 @@ log_filter.i: log_filter.cc.i
 
 # target to preprocess a source file
 log_filter.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/log_filter.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/log_filter.cc.i
 .PHONY : log_filter.cc.i
 
 log_filter.s: log_filter.cc.s
@@ -285,7 +297,7 @@ log_filter.s: log_filter.cc.s
 
 # target to generate assembly for a file
 log_filter.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/log_filter.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/log_filter.cc.s
 .PHONY : log_filter.cc.s
 
 logger_file.o: logger_file.cc.o
@@ -294,7 +306,7 @@ logger_file.o: logger_file.cc.o
 
 # target to build an object file
 logger_file.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/logger_file.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/logger_file.cc.o
 .PHONY : logger_file.cc.o
 
 logger_file.i: logger_file.cc.i
@@ -303,7 +315,7 @@ logger_file.i: logger_file.cc.i
 
 # target to preprocess a source file
 logger_file.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/logger_file.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/logger_file.cc.i
 .PHONY : logger_file.cc.i
 
 logger_file.s: logger_file.cc.s
@@ -312,7 +324,7 @@ logger_file.s: logger_file.cc.s
 
 # target to generate assembly for a file
 logger_file.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/logger_file.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/logger_file.cc.s
 .PHONY : logger_file.cc.s
 
 mac_pcap.o: mac_pcap.cc.o
@@ -321,7 +333,7 @@ mac_pcap.o: mac_pcap.cc.o
 
 # target to build an object file
 mac_pcap.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/mac_pcap.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/mac_pcap.cc.o
 .PHONY : mac_pcap.cc.o
 
 mac_pcap.i: mac_pcap.cc.i
@@ -330,7 +342,7 @@ mac_pcap.i: mac_pcap.cc.i
 
 # target to preprocess a source file
 mac_pcap.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/mac_pcap.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/mac_pcap.cc.i
 .PHONY : mac_pcap.cc.i
 
 mac_pcap.s: mac_pcap.cc.s
@@ -339,7 +351,7 @@ mac_pcap.s: mac_pcap.cc.s
 
 # target to generate assembly for a file
 mac_pcap.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/mac_pcap.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/mac_pcap.cc.s
 .PHONY : mac_pcap.cc.s
 
 nas_pcap.o: nas_pcap.cc.o
@@ -348,7 +360,7 @@ nas_pcap.o: nas_pcap.cc.o
 
 # target to build an object file
 nas_pcap.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/nas_pcap.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/nas_pcap.cc.o
 .PHONY : nas_pcap.cc.o
 
 nas_pcap.i: nas_pcap.cc.i
@@ -357,7 +369,7 @@ nas_pcap.i: nas_pcap.cc.i
 
 # target to preprocess a source file
 nas_pcap.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/nas_pcap.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/nas_pcap.cc.i
 .PHONY : nas_pcap.cc.i
 
 nas_pcap.s: nas_pcap.cc.s
@@ -366,7 +378,7 @@ nas_pcap.s: nas_pcap.cc.s
 
 # target to generate assembly for a file
 nas_pcap.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/nas_pcap.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/nas_pcap.cc.s
 .PHONY : nas_pcap.cc.s
 
 pdu.o: pdu.cc.o
@@ -375,7 +387,7 @@ pdu.o: pdu.cc.o
 
 # target to build an object file
 pdu.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/pdu.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/pdu.cc.o
 .PHONY : pdu.cc.o
 
 pdu.i: pdu.cc.i
@@ -384,7 +396,7 @@ pdu.i: pdu.cc.i
 
 # target to preprocess a source file
 pdu.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/pdu.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/pdu.cc.i
 .PHONY : pdu.cc.i
 
 pdu.s: pdu.cc.s
@@ -393,7 +405,7 @@ pdu.s: pdu.cc.s
 
 # target to generate assembly for a file
 pdu.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/pdu.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/pdu.cc.s
 .PHONY : pdu.cc.s
 
 pdu_queue.o: pdu_queue.cc.o
@@ -402,7 +414,7 @@ pdu_queue.o: pdu_queue.cc.o
 
 # target to build an object file
 pdu_queue.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/pdu_queue.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/pdu_queue.cc.o
 .PHONY : pdu_queue.cc.o
 
 pdu_queue.i: pdu_queue.cc.i
@@ -411,7 +423,7 @@ pdu_queue.i: pdu_queue.cc.i
 
 # target to preprocess a source file
 pdu_queue.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/pdu_queue.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/pdu_queue.cc.i
 .PHONY : pdu_queue.cc.i
 
 pdu_queue.s: pdu_queue.cc.s
@@ -420,7 +432,7 @@ pdu_queue.s: pdu_queue.cc.s
 
 # target to generate assembly for a file
 pdu_queue.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/pdu_queue.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/pdu_queue.cc.s
 .PHONY : pdu_queue.cc.s
 
 security.o: security.cc.o
@@ -429,7 +441,7 @@ security.o: security.cc.o
 
 # target to build an object file
 security.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/security.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/security.cc.o
 .PHONY : security.cc.o
 
 security.i: security.cc.i
@@ -438,7 +450,7 @@ security.i: security.cc.i
 
 # target to preprocess a source file
 security.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/security.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/security.cc.i
 .PHONY : security.cc.i
 
 security.s: security.cc.s
@@ -447,7 +459,7 @@ security.s: security.cc.s
 
 # target to generate assembly for a file
 security.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/security.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/security.cc.s
 .PHONY : security.cc.s
 
 snow_3g.o: snow_3g.cc.o
@@ -456,7 +468,7 @@ snow_3g.o: snow_3g.cc.o
 
 # target to build an object file
 snow_3g.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/snow_3g.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/snow_3g.cc.o
 .PHONY : snow_3g.cc.o
 
 snow_3g.i: snow_3g.cc.i
@@ -465,7 +477,7 @@ snow_3g.i: snow_3g.cc.i
 
 # target to preprocess a source file
 snow_3g.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/snow_3g.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/snow_3g.cc.i
 .PHONY : snow_3g.cc.i
 
 snow_3g.s: snow_3g.cc.s
@@ -474,7 +486,7 @@ snow_3g.s: snow_3g.cc.s
 
 # target to generate assembly for a file
 snow_3g.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/snow_3g.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/snow_3g.cc.s
 .PHONY : snow_3g.cc.s
 
 task_dispatcher.o: task_dispatcher.cc.o
@@ -483,7 +495,7 @@ task_dispatcher.o: task_dispatcher.cc.o
 
 # target to build an object file
 task_dispatcher.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/task_dispatcher.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/task_dispatcher.cc.o
 .PHONY : task_dispatcher.cc.o
 
 task_dispatcher.i: task_dispatcher.cc.i
@@ -492,7 +504,7 @@ task_dispatcher.i: task_dispatcher.cc.i
 
 # target to preprocess a source file
 task_dispatcher.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/task_dispatcher.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/task_dispatcher.cc.i
 .PHONY : task_dispatcher.cc.i
 
 task_dispatcher.s: task_dispatcher.cc.s
@@ -501,7 +513,7 @@ task_dispatcher.s: task_dispatcher.cc.s
 
 # target to generate assembly for a file
 task_dispatcher.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/task_dispatcher.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/task_dispatcher.cc.s
 .PHONY : task_dispatcher.cc.s
 
 thread_pool.o: thread_pool.cc.o
@@ -510,7 +522,7 @@ thread_pool.o: thread_pool.cc.o
 
 # target to build an object file
 thread_pool.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/thread_pool.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/thread_pool.cc.o
 .PHONY : thread_pool.cc.o
 
 thread_pool.i: thread_pool.cc.i
@@ -519,7 +531,7 @@ thread_pool.i: thread_pool.cc.i
 
 # target to preprocess a source file
 thread_pool.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/thread_pool.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/thread_pool.cc.i
 .PHONY : thread_pool.cc.i
 
 thread_pool.s: thread_pool.cc.s
@@ -528,7 +540,7 @@ thread_pool.s: thread_pool.cc.s
 
 # target to generate assembly for a file
 thread_pool.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/thread_pool.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/thread_pool.cc.s
 .PHONY : thread_pool.cc.s
 
 threads.o: threads.c.o
@@ -537,7 +549,7 @@ threads.o: threads.c.o
 
 # target to build an object file
 threads.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/threads.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/threads.c.o
 .PHONY : threads.c.o
 
 threads.i: threads.c.i
@@ -546,7 +558,7 @@ threads.i: threads.c.i
 
 # target to preprocess a source file
 threads.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/threads.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/threads.c.i
 .PHONY : threads.c.i
 
 threads.s: threads.c.s
@@ -555,7 +567,7 @@ threads.s: threads.c.s
 
 # target to generate assembly for a file
 threads.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/threads.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/threads.c.s
 .PHONY : threads.c.s
 
 tti_sync_cv.o: tti_sync_cv.cc.o
@@ -564,7 +576,7 @@ tti_sync_cv.o: tti_sync_cv.cc.o
 
 # target to build an object file
 tti_sync_cv.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/tti_sync_cv.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/tti_sync_cv.cc.o
 .PHONY : tti_sync_cv.cc.o
 
 tti_sync_cv.i: tti_sync_cv.cc.i
@@ -573,7 +585,7 @@ tti_sync_cv.i: tti_sync_cv.cc.i
 
 # target to preprocess a source file
 tti_sync_cv.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/tti_sync_cv.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/tti_sync_cv.cc.i
 .PHONY : tti_sync_cv.cc.i
 
 tti_sync_cv.s: tti_sync_cv.cc.s
@@ -582,7 +594,7 @@ tti_sync_cv.s: tti_sync_cv.cc.s
 
 # target to generate assembly for a file
 tti_sync_cv.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/tti_sync_cv.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/tti_sync_cv.cc.s
 .PHONY : tti_sync_cv.cc.s
 
 version.o: version.c.o
@@ -591,7 +603,7 @@ version.o: version.c.o
 
 # target to build an object file
 version.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/version.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/version.c.o
 .PHONY : version.c.o
 
 version.i: version.c.i
@@ -600,7 +612,7 @@ version.i: version.c.i
 
 # target to preprocess a source file
 version.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/version.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/version.c.i
 .PHONY : version.c.i
 
 version.s: version.c.s
@@ -609,7 +621,7 @@ version.s: version.c.s
 
 # target to generate assembly for a file
 version.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/version.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/common/CMakeFiles/srslte_common.dir/build.make lib/src/common/CMakeFiles/srslte_common.dir/version.c.s
 .PHONY : version.c.s
 
 # Help Target
@@ -618,6 +630,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install/strip"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
@@ -684,6 +697,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

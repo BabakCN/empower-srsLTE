@@ -48,13 +48,25 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # Special rule for the target install
 install: preinstall
@@ -71,7 +83,7 @@ install/fast: preinstall/fast
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/enb/empower-srsLTE/build/CPackSourceConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/ue/empower-srsLTE/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -82,7 +94,7 @@ package_source/fast: package_source
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -147,14 +159,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles /home/enb/empower-srsLTE/build/lib/src/CMakeFiles/progress.marks
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles /home/ue/empower-srsLTE/build/lib/src/CMakeFiles/progress.marks
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/clean
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/clean
 .PHONY : clean
 
 # The main clean target
@@ -164,17 +176,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -183,6 +195,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install/strip"
 	@echo "... install"
 	@echo "... package_source"
 	@echo "... package"
@@ -202,6 +215,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

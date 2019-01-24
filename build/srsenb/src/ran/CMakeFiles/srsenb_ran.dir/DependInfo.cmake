@@ -4,13 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/enb/empower-srsLTE/srsenb/src/ran/ran.cc" "/home/enb/empower-srsLTE/build/srsenb/src/ran/CMakeFiles/srsenb_ran.dir/ran.cc.o"
+  "/home/ue/empower-srsLTE/srsenb/src/ran/ran.cc" "/home/ue/empower-srsLTE/build/srsenb/src/ran/CMakeFiles/srsenb_ran.dir/ran.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "ENABLE_GUI"
   "HAVE_EMPOWER_AGENT"
   "HAVE_MBEDTLS"
   )

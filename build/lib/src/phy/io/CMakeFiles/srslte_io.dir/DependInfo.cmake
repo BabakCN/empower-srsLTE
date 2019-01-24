@@ -4,17 +4,16 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/enb/empower-srsLTE/lib/src/phy/io/binsource.c" "/home/enb/empower-srsLTE/build/lib/src/phy/io/CMakeFiles/srslte_io.dir/binsource.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/io/filesink.c" "/home/enb/empower-srsLTE/build/lib/src/phy/io/CMakeFiles/srslte_io.dir/filesink.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/io/filesource.c" "/home/enb/empower-srsLTE/build/lib/src/phy/io/CMakeFiles/srslte_io.dir/filesource.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/io/netsink.c" "/home/enb/empower-srsLTE/build/lib/src/phy/io/CMakeFiles/srslte_io.dir/netsink.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/io/netsource.c" "/home/enb/empower-srsLTE/build/lib/src/phy/io/CMakeFiles/srslte_io.dir/netsource.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/io/binsource.c" "/home/ue/empower-srsLTE/build/lib/src/phy/io/CMakeFiles/srslte_io.dir/binsource.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/io/filesink.c" "/home/ue/empower-srsLTE/build/lib/src/phy/io/CMakeFiles/srslte_io.dir/filesink.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/io/filesource.c" "/home/ue/empower-srsLTE/build/lib/src/phy/io/CMakeFiles/srslte_io.dir/filesource.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/io/netsink.c" "/home/ue/empower-srsLTE/build/lib/src/phy/io/CMakeFiles/srslte_io.dir/netsink.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/io/netsource.c" "/home/ue/empower-srsLTE/build/lib/src/phy/io/CMakeFiles/srslte_io.dir/netsource.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_C
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/enb/empower-srsLTE/lib/src/phy/sync/test
+# Install script for directory: /home/ue/empower-srsLTE/lib/src/phy/sync/test
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

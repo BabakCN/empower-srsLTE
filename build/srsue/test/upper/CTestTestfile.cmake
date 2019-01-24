@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/enb/empower-srsLTE/srsue/test/upper
-# Build directory: /home/enb/empower-srsLTE/build/srsue/test/upper
+# Source directory: /home/ue/empower-srsLTE/srsue/test/upper
+# Build directory: /home/ue/empower-srsLTE/build/srsue/test/upper
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

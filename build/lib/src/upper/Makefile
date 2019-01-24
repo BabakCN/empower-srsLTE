@@ -48,13 +48,25 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # Special rule for the target install
 install: preinstall
@@ -81,7 +93,7 @@ list_install_components/fast: list_install_components
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -92,7 +104,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/enb/empower-srsLTE/build/CPackSourceConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/ue/empower-srsLTE/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -147,14 +159,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles /home/enb/empower-srsLTE/build/lib/src/upper/CMakeFiles/progress.marks
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/upper/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles /home/ue/empower-srsLTE/build/lib/src/upper/CMakeFiles/progress.marks
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/upper/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/upper/clean
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/upper/clean
 .PHONY : clean
 
 # The main clean target
@@ -164,22 +176,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/upper/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/upper/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/upper/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/upper/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lib/src/upper/CMakeFiles/srslte_upper.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/upper/CMakeFiles/srslte_upper.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/upper/CMakeFiles/srslte_upper.dir/rule
 .PHONY : lib/src/upper/CMakeFiles/srslte_upper.dir/rule
 
 # Convenience name for target.
@@ -189,7 +201,7 @@ srslte_upper: lib/src/upper/CMakeFiles/srslte_upper.dir/rule
 
 # fast build rule for target.
 srslte_upper/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/build
 .PHONY : srslte_upper/fast
 
 gtpu.o: gtpu.cc.o
@@ -198,7 +210,7 @@ gtpu.o: gtpu.cc.o
 
 # target to build an object file
 gtpu.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/gtpu.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/gtpu.cc.o
 .PHONY : gtpu.cc.o
 
 gtpu.i: gtpu.cc.i
@@ -207,7 +219,7 @@ gtpu.i: gtpu.cc.i
 
 # target to preprocess a source file
 gtpu.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/gtpu.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/gtpu.cc.i
 .PHONY : gtpu.cc.i
 
 gtpu.s: gtpu.cc.s
@@ -216,7 +228,7 @@ gtpu.s: gtpu.cc.s
 
 # target to generate assembly for a file
 gtpu.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/gtpu.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/gtpu.cc.s
 .PHONY : gtpu.cc.s
 
 pdcp.o: pdcp.cc.o
@@ -225,7 +237,7 @@ pdcp.o: pdcp.cc.o
 
 # target to build an object file
 pdcp.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/pdcp.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/pdcp.cc.o
 .PHONY : pdcp.cc.o
 
 pdcp.i: pdcp.cc.i
@@ -234,7 +246,7 @@ pdcp.i: pdcp.cc.i
 
 # target to preprocess a source file
 pdcp.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/pdcp.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/pdcp.cc.i
 .PHONY : pdcp.cc.i
 
 pdcp.s: pdcp.cc.s
@@ -243,7 +255,7 @@ pdcp.s: pdcp.cc.s
 
 # target to generate assembly for a file
 pdcp.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/pdcp.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/pdcp.cc.s
 .PHONY : pdcp.cc.s
 
 pdcp_entity.o: pdcp_entity.cc.o
@@ -252,7 +264,7 @@ pdcp_entity.o: pdcp_entity.cc.o
 
 # target to build an object file
 pdcp_entity.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/pdcp_entity.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/pdcp_entity.cc.o
 .PHONY : pdcp_entity.cc.o
 
 pdcp_entity.i: pdcp_entity.cc.i
@@ -261,7 +273,7 @@ pdcp_entity.i: pdcp_entity.cc.i
 
 # target to preprocess a source file
 pdcp_entity.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/pdcp_entity.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/pdcp_entity.cc.i
 .PHONY : pdcp_entity.cc.i
 
 pdcp_entity.s: pdcp_entity.cc.s
@@ -270,7 +282,7 @@ pdcp_entity.s: pdcp_entity.cc.s
 
 # target to generate assembly for a file
 pdcp_entity.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/pdcp_entity.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/pdcp_entity.cc.s
 .PHONY : pdcp_entity.cc.s
 
 rlc.o: rlc.cc.o
@@ -279,7 +291,7 @@ rlc.o: rlc.cc.o
 
 # target to build an object file
 rlc.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc.cc.o
 .PHONY : rlc.cc.o
 
 rlc.i: rlc.cc.i
@@ -288,7 +300,7 @@ rlc.i: rlc.cc.i
 
 # target to preprocess a source file
 rlc.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc.cc.i
 .PHONY : rlc.cc.i
 
 rlc.s: rlc.cc.s
@@ -297,7 +309,7 @@ rlc.s: rlc.cc.s
 
 # target to generate assembly for a file
 rlc.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc.cc.s
 .PHONY : rlc.cc.s
 
 rlc_am.o: rlc_am.cc.o
@@ -306,7 +318,7 @@ rlc_am.o: rlc_am.cc.o
 
 # target to build an object file
 rlc_am.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_am.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_am.cc.o
 .PHONY : rlc_am.cc.o
 
 rlc_am.i: rlc_am.cc.i
@@ -315,7 +327,7 @@ rlc_am.i: rlc_am.cc.i
 
 # target to preprocess a source file
 rlc_am.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_am.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_am.cc.i
 .PHONY : rlc_am.cc.i
 
 rlc_am.s: rlc_am.cc.s
@@ -324,7 +336,7 @@ rlc_am.s: rlc_am.cc.s
 
 # target to generate assembly for a file
 rlc_am.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_am.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_am.cc.s
 .PHONY : rlc_am.cc.s
 
 rlc_entity.o: rlc_entity.cc.o
@@ -333,7 +345,7 @@ rlc_entity.o: rlc_entity.cc.o
 
 # target to build an object file
 rlc_entity.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_entity.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_entity.cc.o
 .PHONY : rlc_entity.cc.o
 
 rlc_entity.i: rlc_entity.cc.i
@@ -342,7 +354,7 @@ rlc_entity.i: rlc_entity.cc.i
 
 # target to preprocess a source file
 rlc_entity.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_entity.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_entity.cc.i
 .PHONY : rlc_entity.cc.i
 
 rlc_entity.s: rlc_entity.cc.s
@@ -351,7 +363,7 @@ rlc_entity.s: rlc_entity.cc.s
 
 # target to generate assembly for a file
 rlc_entity.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_entity.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_entity.cc.s
 .PHONY : rlc_entity.cc.s
 
 rlc_tm.o: rlc_tm.cc.o
@@ -360,7 +372,7 @@ rlc_tm.o: rlc_tm.cc.o
 
 # target to build an object file
 rlc_tm.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_tm.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_tm.cc.o
 .PHONY : rlc_tm.cc.o
 
 rlc_tm.i: rlc_tm.cc.i
@@ -369,7 +381,7 @@ rlc_tm.i: rlc_tm.cc.i
 
 # target to preprocess a source file
 rlc_tm.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_tm.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_tm.cc.i
 .PHONY : rlc_tm.cc.i
 
 rlc_tm.s: rlc_tm.cc.s
@@ -378,7 +390,7 @@ rlc_tm.s: rlc_tm.cc.s
 
 # target to generate assembly for a file
 rlc_tm.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_tm.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_tm.cc.s
 .PHONY : rlc_tm.cc.s
 
 rlc_um.o: rlc_um.cc.o
@@ -387,7 +399,7 @@ rlc_um.o: rlc_um.cc.o
 
 # target to build an object file
 rlc_um.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_um.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_um.cc.o
 .PHONY : rlc_um.cc.o
 
 rlc_um.i: rlc_um.cc.i
@@ -396,7 +408,7 @@ rlc_um.i: rlc_um.cc.i
 
 # target to preprocess a source file
 rlc_um.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_um.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_um.cc.i
 .PHONY : rlc_um.cc.i
 
 rlc_um.s: rlc_um.cc.s
@@ -405,7 +417,7 @@ rlc_um.s: rlc_um.cc.s
 
 # target to generate assembly for a file
 rlc_um.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_um.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/upper/CMakeFiles/srslte_upper.dir/build.make lib/src/upper/CMakeFiles/srslte_upper.dir/rlc_um.cc.s
 .PHONY : rlc_um.cc.s
 
 # Help Target
@@ -414,6 +426,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install/strip"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... package"
@@ -458,6 +471,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

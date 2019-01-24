@@ -1,4 +1,4 @@
-# Install script for directory: /home/enb/empower-srsLTE/srsenb/src/ran
+# Install script for directory: /home/ue/empower-srsLTE/srsenb/src/ran
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,6 +38,6 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/enb/empower-srsLTE/build/srsenb/src/ran/libsrsenb_ran.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/ue/empower-srsLTE/build/srsenb/src/ran/libsrsenb_ran.a")
 endif()
 

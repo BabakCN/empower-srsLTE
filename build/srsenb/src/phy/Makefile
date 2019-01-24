@@ -48,13 +48,25 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # Special rule for the target install
 install: preinstall
@@ -81,7 +93,7 @@ list_install_components/fast: list_install_components
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -92,7 +104,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/enb/empower-srsLTE/build/CPackSourceConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/ue/empower-srsLTE/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -147,14 +159,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles /home/enb/empower-srsLTE/build/srsenb/src/phy/CMakeFiles/progress.marks
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/phy/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles /home/ue/empower-srsLTE/build/srsenb/src/phy/CMakeFiles/progress.marks
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/phy/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/phy/clean
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/phy/clean
 .PHONY : clean
 
 # The main clean target
@@ -164,22 +176,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/phy/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/phy/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/phy/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/phy/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 srsenb/src/phy/CMakeFiles/srsenb_phy.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/phy/CMakeFiles/srsenb_phy.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/phy/CMakeFiles/srsenb_phy.dir/rule
 .PHONY : srsenb/src/phy/CMakeFiles/srsenb_phy.dir/rule
 
 # Convenience name for target.
@@ -189,7 +201,7 @@ srsenb_phy: srsenb/src/phy/CMakeFiles/srsenb_phy.dir/rule
 
 # fast build rule for target.
 srsenb_phy/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build
 .PHONY : srsenb_phy/fast
 
 phch_common.o: phch_common.cc.o
@@ -198,7 +210,7 @@ phch_common.o: phch_common.cc.o
 
 # target to build an object file
 phch_common.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phch_common.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phch_common.cc.o
 .PHONY : phch_common.cc.o
 
 phch_common.i: phch_common.cc.i
@@ -207,7 +219,7 @@ phch_common.i: phch_common.cc.i
 
 # target to preprocess a source file
 phch_common.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phch_common.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phch_common.cc.i
 .PHONY : phch_common.cc.i
 
 phch_common.s: phch_common.cc.s
@@ -216,7 +228,7 @@ phch_common.s: phch_common.cc.s
 
 # target to generate assembly for a file
 phch_common.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phch_common.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phch_common.cc.s
 .PHONY : phch_common.cc.s
 
 phch_worker.o: phch_worker.cc.o
@@ -225,7 +237,7 @@ phch_worker.o: phch_worker.cc.o
 
 # target to build an object file
 phch_worker.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phch_worker.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phch_worker.cc.o
 .PHONY : phch_worker.cc.o
 
 phch_worker.i: phch_worker.cc.i
@@ -234,7 +246,7 @@ phch_worker.i: phch_worker.cc.i
 
 # target to preprocess a source file
 phch_worker.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phch_worker.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phch_worker.cc.i
 .PHONY : phch_worker.cc.i
 
 phch_worker.s: phch_worker.cc.s
@@ -243,7 +255,7 @@ phch_worker.s: phch_worker.cc.s
 
 # target to generate assembly for a file
 phch_worker.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phch_worker.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phch_worker.cc.s
 .PHONY : phch_worker.cc.s
 
 phy.o: phy.cc.o
@@ -252,7 +264,7 @@ phy.o: phy.cc.o
 
 # target to build an object file
 phy.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phy.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phy.cc.o
 .PHONY : phy.cc.o
 
 phy.i: phy.cc.i
@@ -261,7 +273,7 @@ phy.i: phy.cc.i
 
 # target to preprocess a source file
 phy.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phy.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phy.cc.i
 .PHONY : phy.cc.i
 
 phy.s: phy.cc.s
@@ -270,7 +282,7 @@ phy.s: phy.cc.s
 
 # target to generate assembly for a file
 phy.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phy.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/phy.cc.s
 .PHONY : phy.cc.s
 
 prach_worker.o: prach_worker.cc.o
@@ -279,7 +291,7 @@ prach_worker.o: prach_worker.cc.o
 
 # target to build an object file
 prach_worker.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/prach_worker.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/prach_worker.cc.o
 .PHONY : prach_worker.cc.o
 
 prach_worker.i: prach_worker.cc.i
@@ -288,7 +300,7 @@ prach_worker.i: prach_worker.cc.i
 
 # target to preprocess a source file
 prach_worker.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/prach_worker.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/prach_worker.cc.i
 .PHONY : prach_worker.cc.i
 
 prach_worker.s: prach_worker.cc.s
@@ -297,7 +309,7 @@ prach_worker.s: prach_worker.cc.s
 
 # target to generate assembly for a file
 prach_worker.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/prach_worker.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/prach_worker.cc.s
 .PHONY : prach_worker.cc.s
 
 txrx.o: txrx.cc.o
@@ -306,7 +318,7 @@ txrx.o: txrx.cc.o
 
 # target to build an object file
 txrx.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/txrx.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/txrx.cc.o
 .PHONY : txrx.cc.o
 
 txrx.i: txrx.cc.i
@@ -315,7 +327,7 @@ txrx.i: txrx.cc.i
 
 # target to preprocess a source file
 txrx.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/txrx.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/txrx.cc.i
 .PHONY : txrx.cc.i
 
 txrx.s: txrx.cc.s
@@ -324,7 +336,7 @@ txrx.s: txrx.cc.s
 
 # target to generate assembly for a file
 txrx.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/txrx.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/phy/CMakeFiles/srsenb_phy.dir/build.make srsenb/src/phy/CMakeFiles/srsenb_phy.dir/txrx.cc.s
 .PHONY : txrx.cc.s
 
 # Help Target
@@ -333,6 +345,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install/strip"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... package"
@@ -368,6 +381,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

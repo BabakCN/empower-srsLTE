@@ -47,7 +47,7 @@ extern "C" {
 #endif
 
 // the configured build options for srsLTE
-static char build_info[] = "commit 61e48328 on branch agent";
+static char build_info[] = "commit 79a21a82 on branch phy";
 
 SRSLTE_API char* srslte_get_build_info() {
   return build_info;

@@ -1,4 +1,4 @@
-# Install script for directory: /home/enb/empower-srsLTE/srsenb/test/mac
+# Install script for directory: /home/ue/empower-srsLTE/srsenb/test/mac
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 # Utility rule file for gen_build_info.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
 include lib/src/common/CMakeFiles/gen_build_info.dir/progress.make
 
 lib/src/common/CMakeFiles/gen_build_info:
-	cd /home/enb/empower-srsLTE/build/lib/src/common && cmake -P /home/enb/empower-srsLTE/build/SRSLTEbuildinfo.cmake
+	cd /home/ue/empower-srsLTE/build/lib/src/common && cmake -P /home/ue/empower-srsLTE/build/SRSLTEbuildinfo.cmake
 
 gen_build_info: lib/src/common/CMakeFiles/gen_build_info
 gen_build_info: lib/src/common/CMakeFiles/gen_build_info.dir/build.make
@@ -67,10 +67,10 @@ lib/src/common/CMakeFiles/gen_build_info.dir/build: gen_build_info
 .PHONY : lib/src/common/CMakeFiles/gen_build_info.dir/build
 
 lib/src/common/CMakeFiles/gen_build_info.dir/clean:
-	cd /home/enb/empower-srsLTE/build/lib/src/common && $(CMAKE_COMMAND) -P CMakeFiles/gen_build_info.dir/cmake_clean.cmake
+	cd /home/ue/empower-srsLTE/build/lib/src/common && $(CMAKE_COMMAND) -P CMakeFiles/gen_build_info.dir/cmake_clean.cmake
 .PHONY : lib/src/common/CMakeFiles/gen_build_info.dir/clean
 
 lib/src/common/CMakeFiles/gen_build_info.dir/depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/enb/empower-srsLTE /home/enb/empower-srsLTE/lib/src/common /home/enb/empower-srsLTE/build /home/enb/empower-srsLTE/build/lib/src/common /home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/gen_build_info.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ue/empower-srsLTE /home/ue/empower-srsLTE/lib/src/common /home/ue/empower-srsLTE/build /home/ue/empower-srsLTE/build/lib/src/common /home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/gen_build_info.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : lib/src/common/CMakeFiles/gen_build_info.dir/depend
 

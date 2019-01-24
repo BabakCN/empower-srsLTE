@@ -48,69 +48,46 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
-.PHONY : rebuild_cache/fast
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
+.PHONY : list_install_components/fast
 
-.PHONY : edit_cache/fast
+# Special rule for the target package_source
+package_source:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/ue/empower-srsLTE/build/CPackSourceConfig.cmake
+.PHONY : package_source
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
+# Special rule for the target package_source
+package_source/fast: package_source
 
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target package
-package: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
-.PHONY : package
-
-# Special rule for the target package
-package/fast: package
-
-.PHONY : package/fast
+.PHONY : package_source/fast
 
 # Special rule for the target install
 install: preinstall
@@ -124,37 +101,72 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target package_source
-package_source:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/enb/empower-srsLTE/build/CPackSourceConfig.cmake
-.PHONY : package_source
+# Special rule for the target package
+package: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
+.PHONY : package
 
-# Special rule for the target package_source
-package_source/fast: package_source
+# Special rule for the target package
+package/fast: package
 
-.PHONY : package_source/fast
+.PHONY : package/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
+# Special rule for the target test
+test/fast: test
 
-.PHONY : list_install_components/fast
+.PHONY : test/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles /home/enb/empower-srsLTE/build/lib/examples/CMakeFiles/progress.marks
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles /home/ue/empower-srsLTE/build/lib/examples/CMakeFiles/progress.marks
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/clean
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/clean
 .PHONY : clean
 
 # The main clean target
@@ -164,127 +176,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
-lib/examples/CMakeFiles/usrp_txrx.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/usrp_txrx.dir/rule
-.PHONY : lib/examples/CMakeFiles/usrp_txrx.dir/rule
-
-# Convenience name for target.
-usrp_txrx: lib/examples/CMakeFiles/usrp_txrx.dir/rule
-
-.PHONY : usrp_txrx
-
-# fast build rule for target.
-usrp_txrx/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_txrx.dir/build.make lib/examples/CMakeFiles/usrp_txrx.dir/build
-.PHONY : usrp_txrx/fast
-
-# Convenience name for target.
-lib/examples/CMakeFiles/pdsch_ue.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/pdsch_ue.dir/rule
-.PHONY : lib/examples/CMakeFiles/pdsch_ue.dir/rule
-
-# Convenience name for target.
-pdsch_ue: lib/examples/CMakeFiles/pdsch_ue.dir/rule
-
-.PHONY : pdsch_ue
-
-# fast build rule for target.
-pdsch_ue/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_ue.dir/build.make lib/examples/CMakeFiles/pdsch_ue.dir/build
-.PHONY : pdsch_ue/fast
-
-# Convenience name for target.
-lib/examples/CMakeFiles/synch_file.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/synch_file.dir/rule
-.PHONY : lib/examples/CMakeFiles/synch_file.dir/rule
-
-# Convenience name for target.
-synch_file: lib/examples/CMakeFiles/synch_file.dir/rule
-
-.PHONY : synch_file
-
-# fast build rule for target.
-synch_file/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/synch_file.dir/build.make lib/examples/CMakeFiles/synch_file.dir/build
-.PHONY : synch_file/fast
-
-# Convenience name for target.
-lib/examples/CMakeFiles/pdsch_enodeb.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/pdsch_enodeb.dir/rule
-.PHONY : lib/examples/CMakeFiles/pdsch_enodeb.dir/rule
-
-# Convenience name for target.
-pdsch_enodeb: lib/examples/CMakeFiles/pdsch_enodeb.dir/rule
-
-.PHONY : pdsch_enodeb
-
-# fast build rule for target.
-pdsch_enodeb/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_enodeb.dir/build.make lib/examples/CMakeFiles/pdsch_enodeb.dir/build
-.PHONY : pdsch_enodeb/fast
-
-# Convenience name for target.
-lib/examples/CMakeFiles/cell_search.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/cell_search.dir/rule
-.PHONY : lib/examples/CMakeFiles/cell_search.dir/rule
-
-# Convenience name for target.
-cell_search: lib/examples/CMakeFiles/cell_search.dir/rule
-
-.PHONY : cell_search
-
-# fast build rule for target.
-cell_search/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_search.dir/build.make lib/examples/CMakeFiles/cell_search.dir/build
-.PHONY : cell_search/fast
-
-# Convenience name for target.
-lib/examples/CMakeFiles/cell_measurement.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/cell_measurement.dir/rule
-.PHONY : lib/examples/CMakeFiles/cell_measurement.dir/rule
-
-# Convenience name for target.
-cell_measurement: lib/examples/CMakeFiles/cell_measurement.dir/rule
-
-.PHONY : cell_measurement
-
-# fast build rule for target.
-cell_measurement/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_measurement.dir/build.make lib/examples/CMakeFiles/cell_measurement.dir/build
-.PHONY : cell_measurement/fast
-
-# Convenience name for target.
-lib/examples/CMakeFiles/usrp_capture_sync.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/usrp_capture_sync.dir/rule
-.PHONY : lib/examples/CMakeFiles/usrp_capture_sync.dir/rule
-
-# Convenience name for target.
-usrp_capture_sync: lib/examples/CMakeFiles/usrp_capture_sync.dir/rule
-
-.PHONY : usrp_capture_sync
-
-# fast build rule for target.
-usrp_capture_sync/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture_sync.dir/build.make lib/examples/CMakeFiles/usrp_capture_sync.dir/build
-.PHONY : usrp_capture_sync/fast
-
-# Convenience name for target.
 lib/examples/CMakeFiles/usrp_capture.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/usrp_capture.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/usrp_capture.dir/rule
 .PHONY : lib/examples/CMakeFiles/usrp_capture.dir/rule
 
 # Convenience name for target.
@@ -294,8 +201,113 @@ usrp_capture: lib/examples/CMakeFiles/usrp_capture.dir/rule
 
 # fast build rule for target.
 usrp_capture/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture.dir/build.make lib/examples/CMakeFiles/usrp_capture.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture.dir/build.make lib/examples/CMakeFiles/usrp_capture.dir/build
 .PHONY : usrp_capture/fast
+
+# Convenience name for target.
+lib/examples/CMakeFiles/usrp_capture_sync.dir/rule:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/usrp_capture_sync.dir/rule
+.PHONY : lib/examples/CMakeFiles/usrp_capture_sync.dir/rule
+
+# Convenience name for target.
+usrp_capture_sync: lib/examples/CMakeFiles/usrp_capture_sync.dir/rule
+
+.PHONY : usrp_capture_sync
+
+# fast build rule for target.
+usrp_capture_sync/fast:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture_sync.dir/build.make lib/examples/CMakeFiles/usrp_capture_sync.dir/build
+.PHONY : usrp_capture_sync/fast
+
+# Convenience name for target.
+lib/examples/CMakeFiles/cell_measurement.dir/rule:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/cell_measurement.dir/rule
+.PHONY : lib/examples/CMakeFiles/cell_measurement.dir/rule
+
+# Convenience name for target.
+cell_measurement: lib/examples/CMakeFiles/cell_measurement.dir/rule
+
+.PHONY : cell_measurement
+
+# fast build rule for target.
+cell_measurement/fast:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_measurement.dir/build.make lib/examples/CMakeFiles/cell_measurement.dir/build
+.PHONY : cell_measurement/fast
+
+# Convenience name for target.
+lib/examples/CMakeFiles/cell_search.dir/rule:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/cell_search.dir/rule
+.PHONY : lib/examples/CMakeFiles/cell_search.dir/rule
+
+# Convenience name for target.
+cell_search: lib/examples/CMakeFiles/cell_search.dir/rule
+
+.PHONY : cell_search
+
+# fast build rule for target.
+cell_search/fast:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_search.dir/build.make lib/examples/CMakeFiles/cell_search.dir/build
+.PHONY : cell_search/fast
+
+# Convenience name for target.
+lib/examples/CMakeFiles/pdsch_enodeb.dir/rule:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/pdsch_enodeb.dir/rule
+.PHONY : lib/examples/CMakeFiles/pdsch_enodeb.dir/rule
+
+# Convenience name for target.
+pdsch_enodeb: lib/examples/CMakeFiles/pdsch_enodeb.dir/rule
+
+.PHONY : pdsch_enodeb
+
+# fast build rule for target.
+pdsch_enodeb/fast:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_enodeb.dir/build.make lib/examples/CMakeFiles/pdsch_enodeb.dir/build
+.PHONY : pdsch_enodeb/fast
+
+# Convenience name for target.
+lib/examples/CMakeFiles/synch_file.dir/rule:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/synch_file.dir/rule
+.PHONY : lib/examples/CMakeFiles/synch_file.dir/rule
+
+# Convenience name for target.
+synch_file: lib/examples/CMakeFiles/synch_file.dir/rule
+
+.PHONY : synch_file
+
+# fast build rule for target.
+synch_file/fast:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/synch_file.dir/build.make lib/examples/CMakeFiles/synch_file.dir/build
+.PHONY : synch_file/fast
+
+# Convenience name for target.
+lib/examples/CMakeFiles/pdsch_ue.dir/rule:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/pdsch_ue.dir/rule
+.PHONY : lib/examples/CMakeFiles/pdsch_ue.dir/rule
+
+# Convenience name for target.
+pdsch_ue: lib/examples/CMakeFiles/pdsch_ue.dir/rule
+
+.PHONY : pdsch_ue
+
+# fast build rule for target.
+pdsch_ue/fast:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_ue.dir/build.make lib/examples/CMakeFiles/pdsch_ue.dir/build
+.PHONY : pdsch_ue/fast
+
+# Convenience name for target.
+lib/examples/CMakeFiles/usrp_txrx.dir/rule:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/examples/CMakeFiles/usrp_txrx.dir/rule
+.PHONY : lib/examples/CMakeFiles/usrp_txrx.dir/rule
+
+# Convenience name for target.
+usrp_txrx: lib/examples/CMakeFiles/usrp_txrx.dir/rule
+
+.PHONY : usrp_txrx
+
+# fast build rule for target.
+usrp_txrx/fast:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_txrx.dir/build.make lib/examples/CMakeFiles/usrp_txrx.dir/build
+.PHONY : usrp_txrx/fast
 
 cell_measurement.o: cell_measurement.c.o
 
@@ -303,7 +315,7 @@ cell_measurement.o: cell_measurement.c.o
 
 # target to build an object file
 cell_measurement.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_measurement.dir/build.make lib/examples/CMakeFiles/cell_measurement.dir/cell_measurement.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_measurement.dir/build.make lib/examples/CMakeFiles/cell_measurement.dir/cell_measurement.c.o
 .PHONY : cell_measurement.c.o
 
 cell_measurement.i: cell_measurement.c.i
@@ -312,7 +324,7 @@ cell_measurement.i: cell_measurement.c.i
 
 # target to preprocess a source file
 cell_measurement.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_measurement.dir/build.make lib/examples/CMakeFiles/cell_measurement.dir/cell_measurement.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_measurement.dir/build.make lib/examples/CMakeFiles/cell_measurement.dir/cell_measurement.c.i
 .PHONY : cell_measurement.c.i
 
 cell_measurement.s: cell_measurement.c.s
@@ -321,7 +333,7 @@ cell_measurement.s: cell_measurement.c.s
 
 # target to generate assembly for a file
 cell_measurement.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_measurement.dir/build.make lib/examples/CMakeFiles/cell_measurement.dir/cell_measurement.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_measurement.dir/build.make lib/examples/CMakeFiles/cell_measurement.dir/cell_measurement.c.s
 .PHONY : cell_measurement.c.s
 
 cell_search.o: cell_search.c.o
@@ -330,7 +342,7 @@ cell_search.o: cell_search.c.o
 
 # target to build an object file
 cell_search.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_search.dir/build.make lib/examples/CMakeFiles/cell_search.dir/cell_search.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_search.dir/build.make lib/examples/CMakeFiles/cell_search.dir/cell_search.c.o
 .PHONY : cell_search.c.o
 
 cell_search.i: cell_search.c.i
@@ -339,7 +351,7 @@ cell_search.i: cell_search.c.i
 
 # target to preprocess a source file
 cell_search.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_search.dir/build.make lib/examples/CMakeFiles/cell_search.dir/cell_search.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_search.dir/build.make lib/examples/CMakeFiles/cell_search.dir/cell_search.c.i
 .PHONY : cell_search.c.i
 
 cell_search.s: cell_search.c.s
@@ -348,7 +360,7 @@ cell_search.s: cell_search.c.s
 
 # target to generate assembly for a file
 cell_search.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_search.dir/build.make lib/examples/CMakeFiles/cell_search.dir/cell_search.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/cell_search.dir/build.make lib/examples/CMakeFiles/cell_search.dir/cell_search.c.s
 .PHONY : cell_search.c.s
 
 pdsch_enodeb.o: pdsch_enodeb.c.o
@@ -357,7 +369,7 @@ pdsch_enodeb.o: pdsch_enodeb.c.o
 
 # target to build an object file
 pdsch_enodeb.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_enodeb.dir/build.make lib/examples/CMakeFiles/pdsch_enodeb.dir/pdsch_enodeb.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_enodeb.dir/build.make lib/examples/CMakeFiles/pdsch_enodeb.dir/pdsch_enodeb.c.o
 .PHONY : pdsch_enodeb.c.o
 
 pdsch_enodeb.i: pdsch_enodeb.c.i
@@ -366,7 +378,7 @@ pdsch_enodeb.i: pdsch_enodeb.c.i
 
 # target to preprocess a source file
 pdsch_enodeb.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_enodeb.dir/build.make lib/examples/CMakeFiles/pdsch_enodeb.dir/pdsch_enodeb.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_enodeb.dir/build.make lib/examples/CMakeFiles/pdsch_enodeb.dir/pdsch_enodeb.c.i
 .PHONY : pdsch_enodeb.c.i
 
 pdsch_enodeb.s: pdsch_enodeb.c.s
@@ -375,7 +387,7 @@ pdsch_enodeb.s: pdsch_enodeb.c.s
 
 # target to generate assembly for a file
 pdsch_enodeb.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_enodeb.dir/build.make lib/examples/CMakeFiles/pdsch_enodeb.dir/pdsch_enodeb.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_enodeb.dir/build.make lib/examples/CMakeFiles/pdsch_enodeb.dir/pdsch_enodeb.c.s
 .PHONY : pdsch_enodeb.c.s
 
 pdsch_ue.o: pdsch_ue.c.o
@@ -384,7 +396,7 @@ pdsch_ue.o: pdsch_ue.c.o
 
 # target to build an object file
 pdsch_ue.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_ue.dir/build.make lib/examples/CMakeFiles/pdsch_ue.dir/pdsch_ue.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_ue.dir/build.make lib/examples/CMakeFiles/pdsch_ue.dir/pdsch_ue.c.o
 .PHONY : pdsch_ue.c.o
 
 pdsch_ue.i: pdsch_ue.c.i
@@ -393,7 +405,7 @@ pdsch_ue.i: pdsch_ue.c.i
 
 # target to preprocess a source file
 pdsch_ue.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_ue.dir/build.make lib/examples/CMakeFiles/pdsch_ue.dir/pdsch_ue.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_ue.dir/build.make lib/examples/CMakeFiles/pdsch_ue.dir/pdsch_ue.c.i
 .PHONY : pdsch_ue.c.i
 
 pdsch_ue.s: pdsch_ue.c.s
@@ -402,7 +414,7 @@ pdsch_ue.s: pdsch_ue.c.s
 
 # target to generate assembly for a file
 pdsch_ue.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_ue.dir/build.make lib/examples/CMakeFiles/pdsch_ue.dir/pdsch_ue.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/pdsch_ue.dir/build.make lib/examples/CMakeFiles/pdsch_ue.dir/pdsch_ue.c.s
 .PHONY : pdsch_ue.c.s
 
 synch_file.o: synch_file.c.o
@@ -411,7 +423,7 @@ synch_file.o: synch_file.c.o
 
 # target to build an object file
 synch_file.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/synch_file.dir/build.make lib/examples/CMakeFiles/synch_file.dir/synch_file.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/synch_file.dir/build.make lib/examples/CMakeFiles/synch_file.dir/synch_file.c.o
 .PHONY : synch_file.c.o
 
 synch_file.i: synch_file.c.i
@@ -420,7 +432,7 @@ synch_file.i: synch_file.c.i
 
 # target to preprocess a source file
 synch_file.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/synch_file.dir/build.make lib/examples/CMakeFiles/synch_file.dir/synch_file.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/synch_file.dir/build.make lib/examples/CMakeFiles/synch_file.dir/synch_file.c.i
 .PHONY : synch_file.c.i
 
 synch_file.s: synch_file.c.s
@@ -429,7 +441,7 @@ synch_file.s: synch_file.c.s
 
 # target to generate assembly for a file
 synch_file.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/synch_file.dir/build.make lib/examples/CMakeFiles/synch_file.dir/synch_file.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/synch_file.dir/build.make lib/examples/CMakeFiles/synch_file.dir/synch_file.c.s
 .PHONY : synch_file.c.s
 
 usrp_capture.o: usrp_capture.c.o
@@ -438,7 +450,7 @@ usrp_capture.o: usrp_capture.c.o
 
 # target to build an object file
 usrp_capture.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture.dir/build.make lib/examples/CMakeFiles/usrp_capture.dir/usrp_capture.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture.dir/build.make lib/examples/CMakeFiles/usrp_capture.dir/usrp_capture.c.o
 .PHONY : usrp_capture.c.o
 
 usrp_capture.i: usrp_capture.c.i
@@ -447,7 +459,7 @@ usrp_capture.i: usrp_capture.c.i
 
 # target to preprocess a source file
 usrp_capture.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture.dir/build.make lib/examples/CMakeFiles/usrp_capture.dir/usrp_capture.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture.dir/build.make lib/examples/CMakeFiles/usrp_capture.dir/usrp_capture.c.i
 .PHONY : usrp_capture.c.i
 
 usrp_capture.s: usrp_capture.c.s
@@ -456,7 +468,7 @@ usrp_capture.s: usrp_capture.c.s
 
 # target to generate assembly for a file
 usrp_capture.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture.dir/build.make lib/examples/CMakeFiles/usrp_capture.dir/usrp_capture.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture.dir/build.make lib/examples/CMakeFiles/usrp_capture.dir/usrp_capture.c.s
 .PHONY : usrp_capture.c.s
 
 usrp_capture_sync.o: usrp_capture_sync.c.o
@@ -465,7 +477,7 @@ usrp_capture_sync.o: usrp_capture_sync.c.o
 
 # target to build an object file
 usrp_capture_sync.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture_sync.dir/build.make lib/examples/CMakeFiles/usrp_capture_sync.dir/usrp_capture_sync.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture_sync.dir/build.make lib/examples/CMakeFiles/usrp_capture_sync.dir/usrp_capture_sync.c.o
 .PHONY : usrp_capture_sync.c.o
 
 usrp_capture_sync.i: usrp_capture_sync.c.i
@@ -474,7 +486,7 @@ usrp_capture_sync.i: usrp_capture_sync.c.i
 
 # target to preprocess a source file
 usrp_capture_sync.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture_sync.dir/build.make lib/examples/CMakeFiles/usrp_capture_sync.dir/usrp_capture_sync.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture_sync.dir/build.make lib/examples/CMakeFiles/usrp_capture_sync.dir/usrp_capture_sync.c.i
 .PHONY : usrp_capture_sync.c.i
 
 usrp_capture_sync.s: usrp_capture_sync.c.s
@@ -483,7 +495,7 @@ usrp_capture_sync.s: usrp_capture_sync.c.s
 
 # target to generate assembly for a file
 usrp_capture_sync.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture_sync.dir/build.make lib/examples/CMakeFiles/usrp_capture_sync.dir/usrp_capture_sync.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_capture_sync.dir/build.make lib/examples/CMakeFiles/usrp_capture_sync.dir/usrp_capture_sync.c.s
 .PHONY : usrp_capture_sync.c.s
 
 usrp_txrx.o: usrp_txrx.c.o
@@ -492,7 +504,7 @@ usrp_txrx.o: usrp_txrx.c.o
 
 # target to build an object file
 usrp_txrx.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_txrx.dir/build.make lib/examples/CMakeFiles/usrp_txrx.dir/usrp_txrx.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_txrx.dir/build.make lib/examples/CMakeFiles/usrp_txrx.dir/usrp_txrx.c.o
 .PHONY : usrp_txrx.c.o
 
 usrp_txrx.i: usrp_txrx.c.i
@@ -501,7 +513,7 @@ usrp_txrx.i: usrp_txrx.c.i
 
 # target to preprocess a source file
 usrp_txrx.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_txrx.dir/build.make lib/examples/CMakeFiles/usrp_txrx.dir/usrp_txrx.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_txrx.dir/build.make lib/examples/CMakeFiles/usrp_txrx.dir/usrp_txrx.c.i
 .PHONY : usrp_txrx.c.i
 
 usrp_txrx.s: usrp_txrx.c.s
@@ -510,7 +522,7 @@ usrp_txrx.s: usrp_txrx.c.s
 
 # target to generate assembly for a file
 usrp_txrx.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_txrx.dir/build.make lib/examples/CMakeFiles/usrp_txrx.dir/usrp_txrx.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/examples/CMakeFiles/usrp_txrx.dir/build.make lib/examples/CMakeFiles/usrp_txrx.dir/usrp_txrx.c.s
 .PHONY : usrp_txrx.c.s
 
 # Help Target
@@ -519,22 +531,23 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... install/local"
-	@echo "... test"
-	@echo "... package"
-	@echo "... usrp_txrx"
-	@echo "... pdsch_ue"
-	@echo "... synch_file"
-	@echo "... install"
-	@echo "... pdsch_enodeb"
-	@echo "... package_source"
-	@echo "... cell_search"
-	@echo "... list_install_components"
-	@echo "... cell_measurement"
-	@echo "... usrp_capture_sync"
+	@echo "... install/strip"
 	@echo "... usrp_capture"
+	@echo "... usrp_capture_sync"
+	@echo "... cell_measurement"
+	@echo "... list_install_components"
+	@echo "... cell_search"
+	@echo "... package_source"
+	@echo "... pdsch_enodeb"
+	@echo "... install"
+	@echo "... synch_file"
+	@echo "... pdsch_ue"
+	@echo "... usrp_txrx"
+	@echo "... package"
+	@echo "... test"
+	@echo "... install/local"
+	@echo "... edit_cache"
+	@echo "... rebuild_cache"
 	@echo "... cell_measurement.o"
 	@echo "... cell_measurement.i"
 	@echo "... cell_measurement.s"
@@ -570,6 +583,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

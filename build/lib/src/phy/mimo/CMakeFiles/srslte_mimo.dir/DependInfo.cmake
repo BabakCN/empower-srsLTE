@@ -4,14 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/enb/empower-srsLTE/lib/src/phy/mimo/layermap.c" "/home/enb/empower-srsLTE/build/lib/src/phy/mimo/CMakeFiles/srslte_mimo.dir/layermap.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/mimo/precoding.c" "/home/enb/empower-srsLTE/build/lib/src/phy/mimo/CMakeFiles/srslte_mimo.dir/precoding.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/mimo/layermap.c" "/home/ue/empower-srsLTE/build/lib/src/phy/mimo/CMakeFiles/srslte_mimo.dir/layermap.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/mimo/precoding.c" "/home/ue/empower-srsLTE/build/lib/src/phy/mimo/CMakeFiles/srslte_mimo.dir/precoding.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_C
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 

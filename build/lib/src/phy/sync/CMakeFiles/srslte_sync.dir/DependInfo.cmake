@@ -4,20 +4,19 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/enb/empower-srsLTE/lib/src/phy/sync/cfo.c" "/home/enb/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/cfo.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/sync/cp.c" "/home/enb/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/cp.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/sync/find_sss.c" "/home/enb/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/find_sss.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/sync/gen_sss.c" "/home/enb/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/gen_sss.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/sync/pss.c" "/home/enb/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/pss.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/sync/sfo.c" "/home/enb/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/sfo.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/sync/sss.c" "/home/enb/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/sss.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/sync/sync.c" "/home/enb/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/sync.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/sync/cfo.c" "/home/ue/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/cfo.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/sync/cp.c" "/home/ue/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/cp.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/sync/find_sss.c" "/home/ue/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/find_sss.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/sync/gen_sss.c" "/home/ue/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/gen_sss.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/sync/pss.c" "/home/ue/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/pss.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/sync/sfo.c" "/home/ue/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/sfo.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/sync/sss.c" "/home/ue/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/sss.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/sync/sync.c" "/home/ue/empower-srsLTE/build/lib/src/phy/sync/CMakeFiles/srslte_sync.dir/sync.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_C
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 

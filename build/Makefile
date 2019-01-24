@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -104,13 +104,25 @@ edit_cache/fast: edit_cache
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/enb/empower-srsLTE/build/CPackSourceConfig.cmake
+	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/ue/empower-srsLTE/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
 package_source/fast: package_source
 
 .PHONY : package_source/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # Special rule for the target package
 package: preinstall
@@ -147,9 +159,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles /home/enb/empower-srsLTE/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles /home/ue/empower-srsLTE/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -1100,11 +1112,6 @@ srslte_rf/fast:
 	$(MAKE) -f lib/src/phy/rf/CMakeFiles/srslte_rf.dir/build.make lib/src/phy/rf/CMakeFiles/srslte_rf.dir/build
 .PHONY : srslte_rf/fast
 
-# Manual pre-install relink rule for target.
-srslte_rf/preinstall:
-	$(MAKE) -f lib/src/phy/rf/CMakeFiles/srslte_rf.dir/build.make lib/src/phy/rf/CMakeFiles/srslte_rf.dir/preinstall
-.PHONY : srslte_rf/preinstall
-
 #=============================================================================
 # Target rules for targets named srslte_sync
 
@@ -1431,82 +1438,17 @@ srslte_upper/fast:
 .PHONY : srslte_upper/fast
 
 #=============================================================================
-# Target rules for targets named usrp_txrx
+# Target rules for targets named usrp_capture
 
 # Build rule for target.
-usrp_txrx: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 usrp_txrx
-.PHONY : usrp_txrx
+usrp_capture: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 usrp_capture
+.PHONY : usrp_capture
 
 # fast build rule for target.
-usrp_txrx/fast:
-	$(MAKE) -f lib/examples/CMakeFiles/usrp_txrx.dir/build.make lib/examples/CMakeFiles/usrp_txrx.dir/build
-.PHONY : usrp_txrx/fast
-
-#=============================================================================
-# Target rules for targets named pdsch_ue
-
-# Build rule for target.
-pdsch_ue: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 pdsch_ue
-.PHONY : pdsch_ue
-
-# fast build rule for target.
-pdsch_ue/fast:
-	$(MAKE) -f lib/examples/CMakeFiles/pdsch_ue.dir/build.make lib/examples/CMakeFiles/pdsch_ue.dir/build
-.PHONY : pdsch_ue/fast
-
-#=============================================================================
-# Target rules for targets named synch_file
-
-# Build rule for target.
-synch_file: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 synch_file
-.PHONY : synch_file
-
-# fast build rule for target.
-synch_file/fast:
-	$(MAKE) -f lib/examples/CMakeFiles/synch_file.dir/build.make lib/examples/CMakeFiles/synch_file.dir/build
-.PHONY : synch_file/fast
-
-#=============================================================================
-# Target rules for targets named pdsch_enodeb
-
-# Build rule for target.
-pdsch_enodeb: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 pdsch_enodeb
-.PHONY : pdsch_enodeb
-
-# fast build rule for target.
-pdsch_enodeb/fast:
-	$(MAKE) -f lib/examples/CMakeFiles/pdsch_enodeb.dir/build.make lib/examples/CMakeFiles/pdsch_enodeb.dir/build
-.PHONY : pdsch_enodeb/fast
-
-#=============================================================================
-# Target rules for targets named cell_search
-
-# Build rule for target.
-cell_search: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cell_search
-.PHONY : cell_search
-
-# fast build rule for target.
-cell_search/fast:
-	$(MAKE) -f lib/examples/CMakeFiles/cell_search.dir/build.make lib/examples/CMakeFiles/cell_search.dir/build
-.PHONY : cell_search/fast
-
-#=============================================================================
-# Target rules for targets named cell_measurement
-
-# Build rule for target.
-cell_measurement: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cell_measurement
-.PHONY : cell_measurement
-
-# fast build rule for target.
-cell_measurement/fast:
-	$(MAKE) -f lib/examples/CMakeFiles/cell_measurement.dir/build.make lib/examples/CMakeFiles/cell_measurement.dir/build
-.PHONY : cell_measurement/fast
+usrp_capture/fast:
+	$(MAKE) -f lib/examples/CMakeFiles/usrp_capture.dir/build.make lib/examples/CMakeFiles/usrp_capture.dir/build
+.PHONY : usrp_capture/fast
 
 #=============================================================================
 # Target rules for targets named usrp_capture_sync
@@ -1522,17 +1464,82 @@ usrp_capture_sync/fast:
 .PHONY : usrp_capture_sync/fast
 
 #=============================================================================
-# Target rules for targets named usrp_capture
+# Target rules for targets named cell_measurement
 
 # Build rule for target.
-usrp_capture: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 usrp_capture
-.PHONY : usrp_capture
+cell_measurement: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cell_measurement
+.PHONY : cell_measurement
 
 # fast build rule for target.
-usrp_capture/fast:
-	$(MAKE) -f lib/examples/CMakeFiles/usrp_capture.dir/build.make lib/examples/CMakeFiles/usrp_capture.dir/build
-.PHONY : usrp_capture/fast
+cell_measurement/fast:
+	$(MAKE) -f lib/examples/CMakeFiles/cell_measurement.dir/build.make lib/examples/CMakeFiles/cell_measurement.dir/build
+.PHONY : cell_measurement/fast
+
+#=============================================================================
+# Target rules for targets named cell_search
+
+# Build rule for target.
+cell_search: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cell_search
+.PHONY : cell_search
+
+# fast build rule for target.
+cell_search/fast:
+	$(MAKE) -f lib/examples/CMakeFiles/cell_search.dir/build.make lib/examples/CMakeFiles/cell_search.dir/build
+.PHONY : cell_search/fast
+
+#=============================================================================
+# Target rules for targets named pdsch_enodeb
+
+# Build rule for target.
+pdsch_enodeb: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pdsch_enodeb
+.PHONY : pdsch_enodeb
+
+# fast build rule for target.
+pdsch_enodeb/fast:
+	$(MAKE) -f lib/examples/CMakeFiles/pdsch_enodeb.dir/build.make lib/examples/CMakeFiles/pdsch_enodeb.dir/build
+.PHONY : pdsch_enodeb/fast
+
+#=============================================================================
+# Target rules for targets named synch_file
+
+# Build rule for target.
+synch_file: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 synch_file
+.PHONY : synch_file
+
+# fast build rule for target.
+synch_file/fast:
+	$(MAKE) -f lib/examples/CMakeFiles/synch_file.dir/build.make lib/examples/CMakeFiles/synch_file.dir/build
+.PHONY : synch_file/fast
+
+#=============================================================================
+# Target rules for targets named pdsch_ue
+
+# Build rule for target.
+pdsch_ue: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pdsch_ue
+.PHONY : pdsch_ue
+
+# fast build rule for target.
+pdsch_ue/fast:
+	$(MAKE) -f lib/examples/CMakeFiles/pdsch_ue.dir/build.make lib/examples/CMakeFiles/pdsch_ue.dir/build
+.PHONY : pdsch_ue/fast
+
+#=============================================================================
+# Target rules for targets named usrp_txrx
+
+# Build rule for target.
+usrp_txrx: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 usrp_txrx
+.PHONY : usrp_txrx
+
+# fast build rule for target.
+usrp_txrx/fast:
+	$(MAKE) -f lib/examples/CMakeFiles/usrp_txrx.dir/build.make lib/examples/CMakeFiles/usrp_txrx.dir/build
+.PHONY : usrp_txrx/fast
 
 #=============================================================================
 # Target rules for targets named rrc_meas_test
@@ -1548,69 +1555,17 @@ rrc_meas_test/fast:
 .PHONY : rrc_meas_test/fast
 
 #=============================================================================
-# Target rules for targets named bcd_helpers_test
+# Target rules for targets named test_f12345
 
 # Build rule for target.
-bcd_helpers_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 bcd_helpers_test
-.PHONY : bcd_helpers_test
+test_f12345: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_f12345
+.PHONY : test_f12345
 
 # fast build rule for target.
-bcd_helpers_test/fast:
-	$(MAKE) -f lib/test/common/CMakeFiles/bcd_helpers_test.dir/build.make lib/test/common/CMakeFiles/bcd_helpers_test.dir/build
-.PHONY : bcd_helpers_test/fast
-
-#=============================================================================
-# Target rules for targets named timeout_test
-
-# Build rule for target.
-timeout_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 timeout_test
-.PHONY : timeout_test
-
-# fast build rule for target.
-timeout_test/fast:
-	$(MAKE) -f lib/test/common/CMakeFiles/timeout_test.dir/build.make lib/test/common/CMakeFiles/timeout_test.dir/build
-.PHONY : timeout_test/fast
-
-#=============================================================================
-# Target rules for targets named msg_queue_test
-
-# Build rule for target.
-msg_queue_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 msg_queue_test
-.PHONY : msg_queue_test
-
-# fast build rule for target.
-msg_queue_test/fast:
-	$(MAKE) -f lib/test/common/CMakeFiles/msg_queue_test.dir/build.make lib/test/common/CMakeFiles/msg_queue_test.dir/build
-.PHONY : msg_queue_test/fast
-
-#=============================================================================
-# Target rules for targets named logger_test
-
-# Build rule for target.
-logger_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 logger_test
-.PHONY : logger_test
-
-# fast build rule for target.
-logger_test/fast:
-	$(MAKE) -f lib/test/common/CMakeFiles/logger_test.dir/build.make lib/test/common/CMakeFiles/logger_test.dir/build
-.PHONY : logger_test/fast
-
-#=============================================================================
-# Target rules for targets named test_eea2
-
-# Build rule for target.
-test_eea2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_eea2
-.PHONY : test_eea2
-
-# fast build rule for target.
-test_eea2/fast:
-	$(MAKE) -f lib/test/common/CMakeFiles/test_eea2.dir/build.make lib/test/common/CMakeFiles/test_eea2.dir/build
-.PHONY : test_eea2/fast
+test_f12345/fast:
+	$(MAKE) -f lib/test/common/CMakeFiles/test_f12345.dir/build.make lib/test/common/CMakeFiles/test_f12345.dir/build
+.PHONY : test_f12345/fast
 
 #=============================================================================
 # Target rules for targets named test_eea1
@@ -1626,6 +1581,32 @@ test_eea1/fast:
 .PHONY : test_eea1/fast
 
 #=============================================================================
+# Target rules for targets named logger_test
+
+# Build rule for target.
+logger_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 logger_test
+.PHONY : logger_test
+
+# fast build rule for target.
+logger_test/fast:
+	$(MAKE) -f lib/test/common/CMakeFiles/logger_test.dir/build.make lib/test/common/CMakeFiles/logger_test.dir/build
+.PHONY : logger_test/fast
+
+#=============================================================================
+# Target rules for targets named timeout_test
+
+# Build rule for target.
+timeout_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 timeout_test
+.PHONY : timeout_test
+
+# fast build rule for target.
+timeout_test/fast:
+	$(MAKE) -f lib/test/common/CMakeFiles/timeout_test.dir/build.make lib/test/common/CMakeFiles/timeout_test.dir/build
+.PHONY : timeout_test/fast
+
+#=============================================================================
 # Target rules for targets named log_filter_test
 
 # Build rule for target.
@@ -1639,17 +1620,43 @@ log_filter_test/fast:
 .PHONY : log_filter_test/fast
 
 #=============================================================================
-# Target rules for targets named test_f12345
+# Target rules for targets named bcd_helpers_test
 
 # Build rule for target.
-test_f12345: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_f12345
-.PHONY : test_f12345
+bcd_helpers_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bcd_helpers_test
+.PHONY : bcd_helpers_test
 
 # fast build rule for target.
-test_f12345/fast:
-	$(MAKE) -f lib/test/common/CMakeFiles/test_f12345.dir/build.make lib/test/common/CMakeFiles/test_f12345.dir/build
-.PHONY : test_f12345/fast
+bcd_helpers_test/fast:
+	$(MAKE) -f lib/test/common/CMakeFiles/bcd_helpers_test.dir/build.make lib/test/common/CMakeFiles/bcd_helpers_test.dir/build
+.PHONY : bcd_helpers_test/fast
+
+#=============================================================================
+# Target rules for targets named msg_queue_test
+
+# Build rule for target.
+msg_queue_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 msg_queue_test
+.PHONY : msg_queue_test
+
+# fast build rule for target.
+msg_queue_test/fast:
+	$(MAKE) -f lib/test/common/CMakeFiles/msg_queue_test.dir/build.make lib/test/common/CMakeFiles/msg_queue_test.dir/build
+.PHONY : msg_queue_test/fast
+
+#=============================================================================
+# Target rules for targets named test_eea2
+
+# Build rule for target.
+test_eea2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_eea2
+.PHONY : test_eea2
+
+# fast build rule for target.
+test_eea2/fast:
+	$(MAKE) -f lib/test/common/CMakeFiles/test_eea2.dir/build.make lib/test/common/CMakeFiles/test_eea2.dir/build
+.PHONY : test_eea2/fast
 
 #=============================================================================
 # Target rules for targets named rlc_am_control_test
@@ -1741,11 +1748,6 @@ srsue: cmake_check_build_system
 srsue/fast:
 	$(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/build
 .PHONY : srsue/fast
-
-# Manual pre-install relink rule for target.
-srsue/preinstall:
-	$(MAKE) -f srsue/src/CMakeFiles/srsue.dir/build.make srsue/src/CMakeFiles/srsue.dir/preinstall
-.PHONY : srsue/preinstall
 
 #=============================================================================
 # Target rules for targets named srsue_phy
@@ -1864,11 +1866,6 @@ srsenb/fast:
 	$(MAKE) -f srsenb/src/CMakeFiles/srsenb.dir/build.make srsenb/src/CMakeFiles/srsenb.dir/build
 .PHONY : srsenb/fast
 
-# Manual pre-install relink rule for target.
-srsenb/preinstall:
-	$(MAKE) -f srsenb/src/CMakeFiles/srsenb.dir/build.make srsenb/src/CMakeFiles/srsenb.dir/preinstall
-.PHONY : srsenb/preinstall
-
 #=============================================================================
 # Target rules for targets named srsenb_phy
 
@@ -1986,11 +1983,6 @@ srsepc/fast:
 	$(MAKE) -f srsepc/src/CMakeFiles/srsepc.dir/build.make srsepc/src/CMakeFiles/srsepc.dir/build
 .PHONY : srsepc/fast
 
-# Manual pre-install relink rule for target.
-srsepc/preinstall:
-	$(MAKE) -f srsepc/src/CMakeFiles/srsepc.dir/build.make srsepc/src/CMakeFiles/srsepc.dir/preinstall
-.PHONY : srsepc/preinstall
-
 #=============================================================================
 # Target rules for targets named srsepc_mme
 
@@ -2059,6 +2051,7 @@ help:
 	@echo "... NightlyBuild"
 	@echo "... NightlyMemoryCheck"
 	@echo "... NightlyStart"
+	@echo "... install/strip"
 	@echo "... NightlyUpdate"
 	@echo "... ExperimentalTest"
 	@echo "... ExperimentalMemCheck"
@@ -2140,23 +2133,23 @@ help:
 	@echo "... srslte_enb"
 	@echo "... srslte_radio"
 	@echo "... srslte_upper"
-	@echo "... usrp_txrx"
-	@echo "... pdsch_ue"
-	@echo "... synch_file"
-	@echo "... pdsch_enodeb"
-	@echo "... cell_search"
-	@echo "... cell_measurement"
-	@echo "... usrp_capture_sync"
 	@echo "... usrp_capture"
+	@echo "... usrp_capture_sync"
+	@echo "... cell_measurement"
+	@echo "... cell_search"
+	@echo "... pdsch_enodeb"
+	@echo "... synch_file"
+	@echo "... pdsch_ue"
+	@echo "... usrp_txrx"
 	@echo "... rrc_meas_test"
-	@echo "... bcd_helpers_test"
-	@echo "... timeout_test"
-	@echo "... msg_queue_test"
-	@echo "... logger_test"
-	@echo "... test_eea2"
-	@echo "... test_eea1"
-	@echo "... log_filter_test"
 	@echo "... test_f12345"
+	@echo "... test_eea1"
+	@echo "... logger_test"
+	@echo "... timeout_test"
+	@echo "... log_filter_test"
+	@echo "... bcd_helpers_test"
+	@echo "... msg_queue_test"
+	@echo "... test_eea2"
 	@echo "... rlc_am_control_test"
 	@echo "... rlc_am_data_test"
 	@echo "... rlc_am_test"

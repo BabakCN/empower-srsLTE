@@ -6,33 +6,43 @@
 
 #IncludeRegexTransform: 
 
-../lib/include/srslte/asn1/liblte_common.h
-stdint.h
+/home/ue/empower-srsLTE/lib/test/common/bcd_helpers_test.cc
+assert.h
 -
-stddef.h
--
-stdlib.h
--
-string.h
--
+srslte/common/bcd_helpers.h
+/home/ue/empower-srsLTE/lib/test/common/srslte/common/bcd_helpers.h
 
-../lib/include/srslte/asn1/liblte_rrc.h
-liblte_common.h
-../lib/include/srslte/asn1/liblte_common.h
-
-../lib/include/srslte/common/bcd_helpers.h
-ctype.h
+/usr/local/include/srslte/asn1/asn1_utils.h
+algorithm
+-
+cmath
+-
+cstring
+-
+sstream
+-
+stdarg.h
 -
 stdint.h
 -
 string
 -
-srslte/asn1/liblte_rrc.h
+
+/usr/local/include/srslte/asn1/rrc_asn1.h
+asn1_utils.h
+/usr/local/include/srslte/asn1/asn1_utils.h
+cstdio
+-
+stdarg.h
 -
 
-/home/enb/empower-srsLTE/lib/test/common/bcd_helpers_test.cc
-assert.h
+/usr/local/include/srslte/common/bcd_helpers.h
+ctype.h
 -
-srslte/common/bcd_helpers.h
-/home/enb/empower-srsLTE/lib/test/common/srslte/common/bcd_helpers.h
+srslte/asn1/rrc_asn1.h
+-
+stdint.h
+-
+string
+-
 

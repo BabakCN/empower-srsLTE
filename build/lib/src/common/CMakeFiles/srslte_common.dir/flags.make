@@ -5,13 +5,13 @@
 # compile CXX with /usr/bin/c++
 C_FLAGS =  -march=native -Wall -Wno-comment -Wno-write-strings -Winline -Wno-unused-result -Wformat -Wtype-limits -std=c99 -D_GNU_SOURCE -O3 -DBUILD_TYPE_RELEASE -mfpmath=sse -mavx2 -DLV_HAVE_AVX2 -DLV_HAVE_AVX -DLV_HAVE_SSE -Ofast -funroll-loops -O3 -DNDEBUG -fPIC   -Werror=incompatible-pointer-types
 
-C_DEFINES = -DENABLE_GUI -DHAVE_MBEDTLS
+C_DEFINES = -DHAVE_MBEDTLS
 
-C_INCLUDES = -I/usr/local/include -I/home/enb/empower-srsLTE/build/lib/include -I/home/enb/empower-srsLTE/lib/include 
+C_INCLUDES = -I/usr/local/include -I/home/ue/empower-srsLTE/build/lib/include -I/home/ue/empower-srsLTE/lib/include 
 
 CXX_FLAGS =  -march=native -Wall -Wno-comment -Wno-reorder -Wno-unused-but-set-variable -Wno-unused-variable -Wformat -Wtype-limits -std=c++03 -mfpmath=sse -mavx2 -DLV_HAVE_AVX2 -DLV_HAVE_AVX -DLV_HAVE_SSE -O3 -DBUILD_TYPE_RELEASE -O3 -DNDEBUG -fPIC   -Werror=incompatible-pointer-types
 
-CXX_DEFINES = -DENABLE_GUI -DHAVE_MBEDTLS
+CXX_DEFINES = -DHAVE_MBEDTLS
 
-CXX_INCLUDES = -I/usr/local/include -I/home/enb/empower-srsLTE/build/lib/include -I/home/enb/empower-srsLTE/lib/include 
+CXX_INCLUDES = -I/usr/local/include -I/home/ue/empower-srsLTE/build/lib/include -I/home/ue/empower-srsLTE/lib/include 
 

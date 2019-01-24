@@ -48,69 +48,46 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
-.PHONY : rebuild_cache/fast
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
+.PHONY : list_install_components/fast
 
-.PHONY : edit_cache/fast
+# Special rule for the target package_source
+package_source:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/ue/empower-srsLTE/build/CPackSourceConfig.cmake
+.PHONY : package_source
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
+# Special rule for the target package_source
+package_source/fast: package_source
 
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target package
-package: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
-.PHONY : package
-
-# Special rule for the target package
-package/fast: package
-
-.PHONY : package/fast
+.PHONY : package_source/fast
 
 # Special rule for the target install
 install: preinstall
@@ -124,37 +101,72 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target package_source
-package_source:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/enb/empower-srsLTE/build/CPackSourceConfig.cmake
-.PHONY : package_source
+# Special rule for the target package
+package: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
+.PHONY : package
 
-# Special rule for the target package_source
-package_source/fast: package_source
+# Special rule for the target package
+package/fast: package
 
-.PHONY : package_source/fast
+.PHONY : package/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
+# Special rule for the target test
+test/fast: test
 
-.PHONY : list_install_components/fast
+.PHONY : test/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles /home/enb/empower-srsLTE/build/lib/test/common/CMakeFiles/progress.marks
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles /home/ue/empower-srsLTE/build/lib/test/common/CMakeFiles/progress.marks
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/clean
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/clean
 .PHONY : clean
 
 # The main clean target
@@ -164,127 +176,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
-lib/test/common/CMakeFiles/bcd_helpers_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/bcd_helpers_test.dir/rule
-.PHONY : lib/test/common/CMakeFiles/bcd_helpers_test.dir/rule
-
-# Convenience name for target.
-bcd_helpers_test: lib/test/common/CMakeFiles/bcd_helpers_test.dir/rule
-
-.PHONY : bcd_helpers_test
-
-# fast build rule for target.
-bcd_helpers_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/bcd_helpers_test.dir/build.make lib/test/common/CMakeFiles/bcd_helpers_test.dir/build
-.PHONY : bcd_helpers_test/fast
-
-# Convenience name for target.
-lib/test/common/CMakeFiles/timeout_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/timeout_test.dir/rule
-.PHONY : lib/test/common/CMakeFiles/timeout_test.dir/rule
-
-# Convenience name for target.
-timeout_test: lib/test/common/CMakeFiles/timeout_test.dir/rule
-
-.PHONY : timeout_test
-
-# fast build rule for target.
-timeout_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/timeout_test.dir/build.make lib/test/common/CMakeFiles/timeout_test.dir/build
-.PHONY : timeout_test/fast
-
-# Convenience name for target.
-lib/test/common/CMakeFiles/msg_queue_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/msg_queue_test.dir/rule
-.PHONY : lib/test/common/CMakeFiles/msg_queue_test.dir/rule
-
-# Convenience name for target.
-msg_queue_test: lib/test/common/CMakeFiles/msg_queue_test.dir/rule
-
-.PHONY : msg_queue_test
-
-# fast build rule for target.
-msg_queue_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/msg_queue_test.dir/build.make lib/test/common/CMakeFiles/msg_queue_test.dir/build
-.PHONY : msg_queue_test/fast
-
-# Convenience name for target.
-lib/test/common/CMakeFiles/logger_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/logger_test.dir/rule
-.PHONY : lib/test/common/CMakeFiles/logger_test.dir/rule
-
-# Convenience name for target.
-logger_test: lib/test/common/CMakeFiles/logger_test.dir/rule
-
-.PHONY : logger_test
-
-# fast build rule for target.
-logger_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/logger_test.dir/build.make lib/test/common/CMakeFiles/logger_test.dir/build
-.PHONY : logger_test/fast
-
-# Convenience name for target.
-lib/test/common/CMakeFiles/test_eea2.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/test_eea2.dir/rule
-.PHONY : lib/test/common/CMakeFiles/test_eea2.dir/rule
-
-# Convenience name for target.
-test_eea2: lib/test/common/CMakeFiles/test_eea2.dir/rule
-
-.PHONY : test_eea2
-
-# fast build rule for target.
-test_eea2/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea2.dir/build.make lib/test/common/CMakeFiles/test_eea2.dir/build
-.PHONY : test_eea2/fast
-
-# Convenience name for target.
-lib/test/common/CMakeFiles/test_eea1.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/test_eea1.dir/rule
-.PHONY : lib/test/common/CMakeFiles/test_eea1.dir/rule
-
-# Convenience name for target.
-test_eea1: lib/test/common/CMakeFiles/test_eea1.dir/rule
-
-.PHONY : test_eea1
-
-# fast build rule for target.
-test_eea1/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea1.dir/build.make lib/test/common/CMakeFiles/test_eea1.dir/build
-.PHONY : test_eea1/fast
-
-# Convenience name for target.
-lib/test/common/CMakeFiles/log_filter_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/log_filter_test.dir/rule
-.PHONY : lib/test/common/CMakeFiles/log_filter_test.dir/rule
-
-# Convenience name for target.
-log_filter_test: lib/test/common/CMakeFiles/log_filter_test.dir/rule
-
-.PHONY : log_filter_test
-
-# fast build rule for target.
-log_filter_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/log_filter_test.dir/build.make lib/test/common/CMakeFiles/log_filter_test.dir/build
-.PHONY : log_filter_test/fast
-
-# Convenience name for target.
 lib/test/common/CMakeFiles/test_f12345.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/test_f12345.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/test_f12345.dir/rule
 .PHONY : lib/test/common/CMakeFiles/test_f12345.dir/rule
 
 # Convenience name for target.
@@ -294,8 +201,113 @@ test_f12345: lib/test/common/CMakeFiles/test_f12345.dir/rule
 
 # fast build rule for target.
 test_f12345/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_f12345.dir/build.make lib/test/common/CMakeFiles/test_f12345.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_f12345.dir/build.make lib/test/common/CMakeFiles/test_f12345.dir/build
 .PHONY : test_f12345/fast
+
+# Convenience name for target.
+lib/test/common/CMakeFiles/test_eea1.dir/rule:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/test_eea1.dir/rule
+.PHONY : lib/test/common/CMakeFiles/test_eea1.dir/rule
+
+# Convenience name for target.
+test_eea1: lib/test/common/CMakeFiles/test_eea1.dir/rule
+
+.PHONY : test_eea1
+
+# fast build rule for target.
+test_eea1/fast:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea1.dir/build.make lib/test/common/CMakeFiles/test_eea1.dir/build
+.PHONY : test_eea1/fast
+
+# Convenience name for target.
+lib/test/common/CMakeFiles/logger_test.dir/rule:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/logger_test.dir/rule
+.PHONY : lib/test/common/CMakeFiles/logger_test.dir/rule
+
+# Convenience name for target.
+logger_test: lib/test/common/CMakeFiles/logger_test.dir/rule
+
+.PHONY : logger_test
+
+# fast build rule for target.
+logger_test/fast:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/logger_test.dir/build.make lib/test/common/CMakeFiles/logger_test.dir/build
+.PHONY : logger_test/fast
+
+# Convenience name for target.
+lib/test/common/CMakeFiles/timeout_test.dir/rule:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/timeout_test.dir/rule
+.PHONY : lib/test/common/CMakeFiles/timeout_test.dir/rule
+
+# Convenience name for target.
+timeout_test: lib/test/common/CMakeFiles/timeout_test.dir/rule
+
+.PHONY : timeout_test
+
+# fast build rule for target.
+timeout_test/fast:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/timeout_test.dir/build.make lib/test/common/CMakeFiles/timeout_test.dir/build
+.PHONY : timeout_test/fast
+
+# Convenience name for target.
+lib/test/common/CMakeFiles/log_filter_test.dir/rule:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/log_filter_test.dir/rule
+.PHONY : lib/test/common/CMakeFiles/log_filter_test.dir/rule
+
+# Convenience name for target.
+log_filter_test: lib/test/common/CMakeFiles/log_filter_test.dir/rule
+
+.PHONY : log_filter_test
+
+# fast build rule for target.
+log_filter_test/fast:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/log_filter_test.dir/build.make lib/test/common/CMakeFiles/log_filter_test.dir/build
+.PHONY : log_filter_test/fast
+
+# Convenience name for target.
+lib/test/common/CMakeFiles/bcd_helpers_test.dir/rule:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/bcd_helpers_test.dir/rule
+.PHONY : lib/test/common/CMakeFiles/bcd_helpers_test.dir/rule
+
+# Convenience name for target.
+bcd_helpers_test: lib/test/common/CMakeFiles/bcd_helpers_test.dir/rule
+
+.PHONY : bcd_helpers_test
+
+# fast build rule for target.
+bcd_helpers_test/fast:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/bcd_helpers_test.dir/build.make lib/test/common/CMakeFiles/bcd_helpers_test.dir/build
+.PHONY : bcd_helpers_test/fast
+
+# Convenience name for target.
+lib/test/common/CMakeFiles/msg_queue_test.dir/rule:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/msg_queue_test.dir/rule
+.PHONY : lib/test/common/CMakeFiles/msg_queue_test.dir/rule
+
+# Convenience name for target.
+msg_queue_test: lib/test/common/CMakeFiles/msg_queue_test.dir/rule
+
+.PHONY : msg_queue_test
+
+# fast build rule for target.
+msg_queue_test/fast:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/msg_queue_test.dir/build.make lib/test/common/CMakeFiles/msg_queue_test.dir/build
+.PHONY : msg_queue_test/fast
+
+# Convenience name for target.
+lib/test/common/CMakeFiles/test_eea2.dir/rule:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/test/common/CMakeFiles/test_eea2.dir/rule
+.PHONY : lib/test/common/CMakeFiles/test_eea2.dir/rule
+
+# Convenience name for target.
+test_eea2: lib/test/common/CMakeFiles/test_eea2.dir/rule
+
+.PHONY : test_eea2
+
+# fast build rule for target.
+test_eea2/fast:
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea2.dir/build.make lib/test/common/CMakeFiles/test_eea2.dir/build
+.PHONY : test_eea2/fast
 
 bcd_helpers_test.o: bcd_helpers_test.cc.o
 
@@ -303,7 +315,7 @@ bcd_helpers_test.o: bcd_helpers_test.cc.o
 
 # target to build an object file
 bcd_helpers_test.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/bcd_helpers_test.dir/build.make lib/test/common/CMakeFiles/bcd_helpers_test.dir/bcd_helpers_test.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/bcd_helpers_test.dir/build.make lib/test/common/CMakeFiles/bcd_helpers_test.dir/bcd_helpers_test.cc.o
 .PHONY : bcd_helpers_test.cc.o
 
 bcd_helpers_test.i: bcd_helpers_test.cc.i
@@ -312,7 +324,7 @@ bcd_helpers_test.i: bcd_helpers_test.cc.i
 
 # target to preprocess a source file
 bcd_helpers_test.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/bcd_helpers_test.dir/build.make lib/test/common/CMakeFiles/bcd_helpers_test.dir/bcd_helpers_test.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/bcd_helpers_test.dir/build.make lib/test/common/CMakeFiles/bcd_helpers_test.dir/bcd_helpers_test.cc.i
 .PHONY : bcd_helpers_test.cc.i
 
 bcd_helpers_test.s: bcd_helpers_test.cc.s
@@ -321,7 +333,7 @@ bcd_helpers_test.s: bcd_helpers_test.cc.s
 
 # target to generate assembly for a file
 bcd_helpers_test.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/bcd_helpers_test.dir/build.make lib/test/common/CMakeFiles/bcd_helpers_test.dir/bcd_helpers_test.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/bcd_helpers_test.dir/build.make lib/test/common/CMakeFiles/bcd_helpers_test.dir/bcd_helpers_test.cc.s
 .PHONY : bcd_helpers_test.cc.s
 
 log_filter_test.o: log_filter_test.cc.o
@@ -330,7 +342,7 @@ log_filter_test.o: log_filter_test.cc.o
 
 # target to build an object file
 log_filter_test.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/log_filter_test.dir/build.make lib/test/common/CMakeFiles/log_filter_test.dir/log_filter_test.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/log_filter_test.dir/build.make lib/test/common/CMakeFiles/log_filter_test.dir/log_filter_test.cc.o
 .PHONY : log_filter_test.cc.o
 
 log_filter_test.i: log_filter_test.cc.i
@@ -339,7 +351,7 @@ log_filter_test.i: log_filter_test.cc.i
 
 # target to preprocess a source file
 log_filter_test.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/log_filter_test.dir/build.make lib/test/common/CMakeFiles/log_filter_test.dir/log_filter_test.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/log_filter_test.dir/build.make lib/test/common/CMakeFiles/log_filter_test.dir/log_filter_test.cc.i
 .PHONY : log_filter_test.cc.i
 
 log_filter_test.s: log_filter_test.cc.s
@@ -348,7 +360,7 @@ log_filter_test.s: log_filter_test.cc.s
 
 # target to generate assembly for a file
 log_filter_test.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/log_filter_test.dir/build.make lib/test/common/CMakeFiles/log_filter_test.dir/log_filter_test.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/log_filter_test.dir/build.make lib/test/common/CMakeFiles/log_filter_test.dir/log_filter_test.cc.s
 .PHONY : log_filter_test.cc.s
 
 logger_test.o: logger_test.cc.o
@@ -357,7 +369,7 @@ logger_test.o: logger_test.cc.o
 
 # target to build an object file
 logger_test.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/logger_test.dir/build.make lib/test/common/CMakeFiles/logger_test.dir/logger_test.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/logger_test.dir/build.make lib/test/common/CMakeFiles/logger_test.dir/logger_test.cc.o
 .PHONY : logger_test.cc.o
 
 logger_test.i: logger_test.cc.i
@@ -366,7 +378,7 @@ logger_test.i: logger_test.cc.i
 
 # target to preprocess a source file
 logger_test.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/logger_test.dir/build.make lib/test/common/CMakeFiles/logger_test.dir/logger_test.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/logger_test.dir/build.make lib/test/common/CMakeFiles/logger_test.dir/logger_test.cc.i
 .PHONY : logger_test.cc.i
 
 logger_test.s: logger_test.cc.s
@@ -375,7 +387,7 @@ logger_test.s: logger_test.cc.s
 
 # target to generate assembly for a file
 logger_test.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/logger_test.dir/build.make lib/test/common/CMakeFiles/logger_test.dir/logger_test.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/logger_test.dir/build.make lib/test/common/CMakeFiles/logger_test.dir/logger_test.cc.s
 .PHONY : logger_test.cc.s
 
 msg_queue_test.o: msg_queue_test.cc.o
@@ -384,7 +396,7 @@ msg_queue_test.o: msg_queue_test.cc.o
 
 # target to build an object file
 msg_queue_test.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/msg_queue_test.dir/build.make lib/test/common/CMakeFiles/msg_queue_test.dir/msg_queue_test.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/msg_queue_test.dir/build.make lib/test/common/CMakeFiles/msg_queue_test.dir/msg_queue_test.cc.o
 .PHONY : msg_queue_test.cc.o
 
 msg_queue_test.i: msg_queue_test.cc.i
@@ -393,7 +405,7 @@ msg_queue_test.i: msg_queue_test.cc.i
 
 # target to preprocess a source file
 msg_queue_test.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/msg_queue_test.dir/build.make lib/test/common/CMakeFiles/msg_queue_test.dir/msg_queue_test.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/msg_queue_test.dir/build.make lib/test/common/CMakeFiles/msg_queue_test.dir/msg_queue_test.cc.i
 .PHONY : msg_queue_test.cc.i
 
 msg_queue_test.s: msg_queue_test.cc.s
@@ -402,7 +414,7 @@ msg_queue_test.s: msg_queue_test.cc.s
 
 # target to generate assembly for a file
 msg_queue_test.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/msg_queue_test.dir/build.make lib/test/common/CMakeFiles/msg_queue_test.dir/msg_queue_test.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/msg_queue_test.dir/build.make lib/test/common/CMakeFiles/msg_queue_test.dir/msg_queue_test.cc.s
 .PHONY : msg_queue_test.cc.s
 
 test_eea1.o: test_eea1.cc.o
@@ -411,7 +423,7 @@ test_eea1.o: test_eea1.cc.o
 
 # target to build an object file
 test_eea1.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea1.dir/build.make lib/test/common/CMakeFiles/test_eea1.dir/test_eea1.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea1.dir/build.make lib/test/common/CMakeFiles/test_eea1.dir/test_eea1.cc.o
 .PHONY : test_eea1.cc.o
 
 test_eea1.i: test_eea1.cc.i
@@ -420,7 +432,7 @@ test_eea1.i: test_eea1.cc.i
 
 # target to preprocess a source file
 test_eea1.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea1.dir/build.make lib/test/common/CMakeFiles/test_eea1.dir/test_eea1.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea1.dir/build.make lib/test/common/CMakeFiles/test_eea1.dir/test_eea1.cc.i
 .PHONY : test_eea1.cc.i
 
 test_eea1.s: test_eea1.cc.s
@@ -429,7 +441,7 @@ test_eea1.s: test_eea1.cc.s
 
 # target to generate assembly for a file
 test_eea1.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea1.dir/build.make lib/test/common/CMakeFiles/test_eea1.dir/test_eea1.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea1.dir/build.make lib/test/common/CMakeFiles/test_eea1.dir/test_eea1.cc.s
 .PHONY : test_eea1.cc.s
 
 test_eea2.o: test_eea2.cc.o
@@ -438,7 +450,7 @@ test_eea2.o: test_eea2.cc.o
 
 # target to build an object file
 test_eea2.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea2.dir/build.make lib/test/common/CMakeFiles/test_eea2.dir/test_eea2.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea2.dir/build.make lib/test/common/CMakeFiles/test_eea2.dir/test_eea2.cc.o
 .PHONY : test_eea2.cc.o
 
 test_eea2.i: test_eea2.cc.i
@@ -447,7 +459,7 @@ test_eea2.i: test_eea2.cc.i
 
 # target to preprocess a source file
 test_eea2.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea2.dir/build.make lib/test/common/CMakeFiles/test_eea2.dir/test_eea2.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea2.dir/build.make lib/test/common/CMakeFiles/test_eea2.dir/test_eea2.cc.i
 .PHONY : test_eea2.cc.i
 
 test_eea2.s: test_eea2.cc.s
@@ -456,7 +468,7 @@ test_eea2.s: test_eea2.cc.s
 
 # target to generate assembly for a file
 test_eea2.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea2.dir/build.make lib/test/common/CMakeFiles/test_eea2.dir/test_eea2.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_eea2.dir/build.make lib/test/common/CMakeFiles/test_eea2.dir/test_eea2.cc.s
 .PHONY : test_eea2.cc.s
 
 test_f12345.o: test_f12345.cc.o
@@ -465,7 +477,7 @@ test_f12345.o: test_f12345.cc.o
 
 # target to build an object file
 test_f12345.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_f12345.dir/build.make lib/test/common/CMakeFiles/test_f12345.dir/test_f12345.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_f12345.dir/build.make lib/test/common/CMakeFiles/test_f12345.dir/test_f12345.cc.o
 .PHONY : test_f12345.cc.o
 
 test_f12345.i: test_f12345.cc.i
@@ -474,7 +486,7 @@ test_f12345.i: test_f12345.cc.i
 
 # target to preprocess a source file
 test_f12345.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_f12345.dir/build.make lib/test/common/CMakeFiles/test_f12345.dir/test_f12345.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_f12345.dir/build.make lib/test/common/CMakeFiles/test_f12345.dir/test_f12345.cc.i
 .PHONY : test_f12345.cc.i
 
 test_f12345.s: test_f12345.cc.s
@@ -483,7 +495,7 @@ test_f12345.s: test_f12345.cc.s
 
 # target to generate assembly for a file
 test_f12345.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_f12345.dir/build.make lib/test/common/CMakeFiles/test_f12345.dir/test_f12345.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/test_f12345.dir/build.make lib/test/common/CMakeFiles/test_f12345.dir/test_f12345.cc.s
 .PHONY : test_f12345.cc.s
 
 timeout_test.o: timeout_test.cc.o
@@ -492,7 +504,7 @@ timeout_test.o: timeout_test.cc.o
 
 # target to build an object file
 timeout_test.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/timeout_test.dir/build.make lib/test/common/CMakeFiles/timeout_test.dir/timeout_test.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/timeout_test.dir/build.make lib/test/common/CMakeFiles/timeout_test.dir/timeout_test.cc.o
 .PHONY : timeout_test.cc.o
 
 timeout_test.i: timeout_test.cc.i
@@ -501,7 +513,7 @@ timeout_test.i: timeout_test.cc.i
 
 # target to preprocess a source file
 timeout_test.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/timeout_test.dir/build.make lib/test/common/CMakeFiles/timeout_test.dir/timeout_test.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/timeout_test.dir/build.make lib/test/common/CMakeFiles/timeout_test.dir/timeout_test.cc.i
 .PHONY : timeout_test.cc.i
 
 timeout_test.s: timeout_test.cc.s
@@ -510,7 +522,7 @@ timeout_test.s: timeout_test.cc.s
 
 # target to generate assembly for a file
 timeout_test.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/timeout_test.dir/build.make lib/test/common/CMakeFiles/timeout_test.dir/timeout_test.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/test/common/CMakeFiles/timeout_test.dir/build.make lib/test/common/CMakeFiles/timeout_test.dir/timeout_test.cc.s
 .PHONY : timeout_test.cc.s
 
 # Help Target
@@ -519,22 +531,23 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... install/local"
-	@echo "... test"
-	@echo "... package"
-	@echo "... install"
-	@echo "... bcd_helpers_test"
-	@echo "... timeout_test"
-	@echo "... msg_queue_test"
-	@echo "... package_source"
-	@echo "... logger_test"
-	@echo "... test_eea2"
-	@echo "... test_eea1"
-	@echo "... list_install_components"
-	@echo "... log_filter_test"
+	@echo "... install/strip"
 	@echo "... test_f12345"
+	@echo "... list_install_components"
+	@echo "... test_eea1"
+	@echo "... logger_test"
+	@echo "... package_source"
+	@echo "... timeout_test"
+	@echo "... log_filter_test"
+	@echo "... bcd_helpers_test"
+	@echo "... install"
+	@echo "... package"
+	@echo "... msg_queue_test"
+	@echo "... test"
+	@echo "... test_eea2"
+	@echo "... install/local"
+	@echo "... edit_cache"
+	@echo "... rebuild_cache"
 	@echo "... bcd_helpers_test.o"
 	@echo "... bcd_helpers_test.i"
 	@echo "... bcd_helpers_test.s"
@@ -570,6 +583,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

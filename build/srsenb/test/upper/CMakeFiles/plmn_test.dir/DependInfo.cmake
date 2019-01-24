@@ -4,13 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/enb/empower-srsLTE/srsenb/test/upper/plmn_test.cc" "/home/enb/empower-srsLTE/build/srsenb/test/upper/CMakeFiles/plmn_test.dir/plmn_test.cc.o"
+  "/home/ue/empower-srsLTE/srsenb/test/upper/plmn_test.cc" "/home/ue/empower-srsLTE/build/srsenb/test/upper/CMakeFiles/plmn_test.dir/plmn_test.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "ENABLE_GUI"
   "HAVE_EMPOWER_AGENT"
   "HAVE_MBEDTLS"
   )
@@ -25,8 +24,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/enb/empower-srsLTE/build/srsenb/src/upper/CMakeFiles/srsenb_upper.dir/DependInfo.cmake"
-  "/home/enb/empower-srsLTE/build/lib/src/asn1/CMakeFiles/srslte_asn1.dir/DependInfo.cmake"
+  "/home/ue/empower-srsLTE/build/srsenb/src/upper/CMakeFiles/srsenb_upper.dir/DependInfo.cmake"
+  "/home/ue/empower-srsLTE/build/lib/src/asn1/CMakeFiles/srslte_asn1.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

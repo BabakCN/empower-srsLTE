@@ -4,18 +4,17 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/enb/empower-srsLTE/lib/src/phy/modem/demod_hard.c" "/home/enb/empower-srsLTE/build/lib/src/phy/modem/CMakeFiles/srslte_modem.dir/demod_hard.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/modem/demod_soft.c" "/home/enb/empower-srsLTE/build/lib/src/phy/modem/CMakeFiles/srslte_modem.dir/demod_soft.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/modem/hard_demod_lte.c" "/home/enb/empower-srsLTE/build/lib/src/phy/modem/CMakeFiles/srslte_modem.dir/hard_demod_lte.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/modem/lte_tables.c" "/home/enb/empower-srsLTE/build/lib/src/phy/modem/CMakeFiles/srslte_modem.dir/lte_tables.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/modem/mod.c" "/home/enb/empower-srsLTE/build/lib/src/phy/modem/CMakeFiles/srslte_modem.dir/mod.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/modem/modem_table.c" "/home/enb/empower-srsLTE/build/lib/src/phy/modem/CMakeFiles/srslte_modem.dir/modem_table.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/modem/demod_hard.c" "/home/ue/empower-srsLTE/build/lib/src/phy/modem/CMakeFiles/srslte_modem.dir/demod_hard.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/modem/demod_soft.c" "/home/ue/empower-srsLTE/build/lib/src/phy/modem/CMakeFiles/srslte_modem.dir/demod_soft.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/modem/hard_demod_lte.c" "/home/ue/empower-srsLTE/build/lib/src/phy/modem/CMakeFiles/srslte_modem.dir/hard_demod_lte.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/modem/lte_tables.c" "/home/ue/empower-srsLTE/build/lib/src/phy/modem/CMakeFiles/srslte_modem.dir/lte_tables.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/modem/mod.c" "/home/ue/empower-srsLTE/build/lib/src/phy/modem/CMakeFiles/srslte_modem.dir/mod.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/modem/modem_table.c" "/home/ue/empower-srsLTE/build/lib/src/phy/modem/CMakeFiles/srslte_modem.dir/modem_table.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_C
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 

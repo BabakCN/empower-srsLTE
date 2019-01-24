@@ -4,13 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/enb/empower-srsLTE/lib/src/phy/ch_estimation/test/refsignal_ul_test.c" "/home/enb/empower-srsLTE/build/lib/src/phy/ch_estimation/test/CMakeFiles/refsignal_ul_test_all.dir/refsignal_ul_test.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/ch_estimation/test/refsignal_ul_test.c" "/home/ue/empower-srsLTE/build/lib/src/phy/ch_estimation/test/CMakeFiles/refsignal_ul_test_all.dir/refsignal_ul_test.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_C
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 
@@ -23,8 +22,8 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/enb/empower-srsLTE/build/lib/src/phy/CMakeFiles/srslte_phy.dir/DependInfo.cmake"
-  "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/DependInfo.cmake"
+  "/home/ue/empower-srsLTE/build/lib/src/phy/CMakeFiles/srslte_phy.dir/DependInfo.cmake"
+  "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

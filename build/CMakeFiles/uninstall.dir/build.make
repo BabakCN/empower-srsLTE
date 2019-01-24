@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 # Utility rule file for uninstall.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
 include CMakeFiles/uninstall.dir/progress.make
 
 CMakeFiles/uninstall:
-	/usr/bin/cmake -P /home/enb/empower-srsLTE/build/cmake_uninstall.cmake
+	/usr/bin/cmake -P /home/ue/empower-srsLTE/build/cmake_uninstall.cmake
 
 uninstall: CMakeFiles/uninstall
 uninstall: CMakeFiles/uninstall.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/enb/empower-srsLTE /home/enb/empower-srsLTE /home/enb/empower-srsLTE/build /home/enb/empower-srsLTE/build /home/enb/empower-srsLTE/build/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ue/empower-srsLTE /home/ue/empower-srsLTE /home/ue/empower-srsLTE/build /home/ue/empower-srsLTE/build /home/ue/empower-srsLTE/build/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/uninstall.dir/depend
 

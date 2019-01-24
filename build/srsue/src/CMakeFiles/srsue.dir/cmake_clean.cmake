@@ -6,8 +6,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/srsue.dir/metrics_csv.cc.o"
   "srsue.pdb"
   "srsue"
-  "srsue.pdb"
-  "CMakeFiles/CMakeRelink.dir/srsue"
 )
 
 # Per-language clean rules from dependency scanning.

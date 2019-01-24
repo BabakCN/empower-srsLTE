@@ -235,6 +235,12 @@ static int ea_mac_report(
   return em_agent->setup_MAC_report(mod, interval, trig_id);
 }
 
+static int ea_phy_report(uint32_t mod, int trig_id, uint16_t interval,  uint32_t tx_gain)
+
+{
+  return em_agent->setup_PHY_report(mod, trig_id, interval, tx_gain);
+}
+
 static int ea_ue_report(uint32_t mod, int trig_id)
 {
   return em_agent->setup_UE_report(mod, trig_id);
@@ -431,6 +437,7 @@ static struct em_agent_ops empower_agent_ops = {
   ea_ue_measure,          /* UE measurement */
   0,                      /* handover_UE*/
   ea_mac_report,          /* mac_report*/
+  ea_phy_report,
 
   /*
    * RAN Request operations
@@ -446,7 +453,9 @@ static struct em_agent_ops empower_agent_ops = {
     0,
     0,
     0,
-    0
+    0,
+	0
+
 #endif
   }
 };
@@ -653,6 +662,20 @@ int empower_agent::setup_MAC_report(
   return 0;
 }
 
+
+int empower_agent::setup_PHY_report(uint32_t mod_id, int trig_id, uint16_t interval,  uint32_t tx_gain)
+{
+  m_phy_mod  = mod_id;
+  m_phy_tr   = trig_id;
+  m_phy_intv = interval;
+  m_phy_tx_gain = tx_gain;
+  m_phy_feat = 1;
+
+  printf ("Requesting phy tx power") ;
+
+  return 0;
+}
+
 int empower_agent::setup_UE_period_meas(
   uint32_t id,
   int      trigger_id,
@@ -818,11 +841,16 @@ int empower_agent::setup_RAN_report(uint32_t mod)
 /******************************************************************************
  * agent_interface_phy.                                                       *
  ******************************************************************************/
-void empower_agent::report_phy_param (float tx_gain){
+
+//int empower_agent::report_phy_param (uint32_t mod, int trig_id){
+	//return 0;
+
+//}
+
+int empower_agent::report_phy_param (float tx_gain){
+	return 0;
 
 }
-
-
 
 /******************************************************************************
  * agent_interface_mac.                                                       *

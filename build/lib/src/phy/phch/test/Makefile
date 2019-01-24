@@ -48,13 +48,25 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -116,7 +128,7 @@ test/fast: test
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -137,7 +149,7 @@ list_install_components/fast: list_install_components
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/enb/empower-srsLTE/build/CPackSourceConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/ue/empower-srsLTE/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -147,14 +159,14 @@ package_source/fast: package_source
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles /home/enb/empower-srsLTE/build/lib/src/phy/phch/test/CMakeFiles/progress.marks
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles /home/ue/empower-srsLTE/build/lib/src/phy/phch/test/CMakeFiles/progress.marks
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/clean
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/clean
 .PHONY : clean
 
 # The main clean target
@@ -164,22 +176,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/rule
 
 # Convenience name for target.
@@ -189,12 +201,12 @@ pdsch_test: lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/rule
 
 # fast build rule for target.
 pdsch_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/build
 .PHONY : pdsch_test/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/prach_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/prach_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/prach_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/prach_test.dir/rule
 
 # Convenience name for target.
@@ -204,12 +216,12 @@ prach_test: lib/src/phy/phch/test/CMakeFiles/prach_test.dir/rule
 
 # fast build rule for target.
 prach_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test.dir/build
 .PHONY : prach_test/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/rule
 
 # Convenience name for target.
@@ -219,12 +231,12 @@ pdcch_test: lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/rule
 
 # fast build rule for target.
 pdcch_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/build
 .PHONY : pdcch_test/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/phich_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/phich_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/phich_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/phich_test.dir/rule
 
 # Convenience name for target.
@@ -234,12 +246,12 @@ phich_test: lib/src/phy/phch/test/CMakeFiles/phich_test.dir/rule
 
 # fast build rule for target.
 phich_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_test.dir/build
 .PHONY : phich_test/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/rule
 
 # Convenience name for target.
@@ -249,12 +261,12 @@ pmch_file_test: lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/rule
 
 # fast build rule for target.
 pmch_file_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/build
 .PHONY : pmch_file_test/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/rule
 
 # Convenience name for target.
@@ -264,12 +276,12 @@ pucch_test: lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/rule
 
 # fast build rule for target.
 pucch_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/build
 .PHONY : pucch_test/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/rule
 
 # Convenience name for target.
@@ -279,12 +291,12 @@ pmch_test: lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/rule
 
 # fast build rule for target.
 pmch_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/build
 .PHONY : pmch_test/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/rule
 
 # Convenience name for target.
@@ -294,12 +306,12 @@ pusch_test: lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/rule
 
 # fast build rule for target.
 pusch_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/build
 .PHONY : pusch_test/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/rule
 
 # Convenience name for target.
@@ -309,12 +321,12 @@ pbch_file_test: lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/rule
 
 # fast build rule for target.
 pbch_file_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/build
 .PHONY : pbch_file_test/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/rule
 
 # Convenience name for target.
@@ -324,12 +336,12 @@ prach_test_usrp: lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/rule
 
 # fast build rule for target.
 prach_test_usrp/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/build
 .PHONY : prach_test_usrp/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/rule
 
 # Convenience name for target.
@@ -339,12 +351,12 @@ prach_test_multi: lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/rule
 
 # fast build rule for target.
 prach_test_multi/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/build
 .PHONY : prach_test_multi/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/rule
 
 # Convenience name for target.
@@ -354,12 +366,12 @@ phich_file_test: lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/rule
 
 # fast build rule for target.
 phich_file_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/build
 .PHONY : phich_file_test/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/rule
 
 # Convenience name for target.
@@ -369,12 +381,12 @@ pbch_test: lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/rule
 
 # fast build rule for target.
 pbch_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/build
 .PHONY : pbch_test/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/rule
 
 # Convenience name for target.
@@ -384,12 +396,12 @@ pcfich_file_test: lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/rule
 
 # fast build rule for target.
 pcfich_file_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/build
 .PHONY : pcfich_file_test/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/rule
 
 # Convenience name for target.
@@ -399,12 +411,12 @@ pdcch_file_test: lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/rule
 
 # fast build rule for target.
 pdcch_file_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/build
 .PHONY : pdcch_file_test/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/rule
 
 # Convenience name for target.
@@ -414,12 +426,12 @@ pcfich_test: lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/rule
 
 # fast build rule for target.
 pcfich_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/build
 .PHONY : pcfich_test/fast
 
 # Convenience name for target.
 lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/rule
 .PHONY : lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/rule
 
 # Convenience name for target.
@@ -429,7 +441,7 @@ pdsch_pdcch_file_test: lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.di
 
 # fast build rule for target.
 pdsch_pdcch_file_test/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/build
 .PHONY : pdsch_pdcch_file_test/fast
 
 pbch_file_test.o: pbch_file_test.c.o
@@ -438,7 +450,7 @@ pbch_file_test.o: pbch_file_test.c.o
 
 # target to build an object file
 pbch_file_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/pbch_file_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/pbch_file_test.c.o
 .PHONY : pbch_file_test.c.o
 
 pbch_file_test.i: pbch_file_test.c.i
@@ -447,7 +459,7 @@ pbch_file_test.i: pbch_file_test.c.i
 
 # target to preprocess a source file
 pbch_file_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/pbch_file_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/pbch_file_test.c.i
 .PHONY : pbch_file_test.c.i
 
 pbch_file_test.s: pbch_file_test.c.s
@@ -456,7 +468,7 @@ pbch_file_test.s: pbch_file_test.c.s
 
 # target to generate assembly for a file
 pbch_file_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/pbch_file_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_file_test.dir/pbch_file_test.c.s
 .PHONY : pbch_file_test.c.s
 
 pbch_test.o: pbch_test.c.o
@@ -465,7 +477,7 @@ pbch_test.o: pbch_test.c.o
 
 # target to build an object file
 pbch_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/pbch_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/pbch_test.c.o
 .PHONY : pbch_test.c.o
 
 pbch_test.i: pbch_test.c.i
@@ -474,7 +486,7 @@ pbch_test.i: pbch_test.c.i
 
 # target to preprocess a source file
 pbch_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/pbch_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/pbch_test.c.i
 .PHONY : pbch_test.c.i
 
 pbch_test.s: pbch_test.c.s
@@ -483,7 +495,7 @@ pbch_test.s: pbch_test.c.s
 
 # target to generate assembly for a file
 pbch_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/pbch_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pbch_test.dir/pbch_test.c.s
 .PHONY : pbch_test.c.s
 
 pcfich_file_test.o: pcfich_file_test.c.o
@@ -492,7 +504,7 @@ pcfich_file_test.o: pcfich_file_test.c.o
 
 # target to build an object file
 pcfich_file_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/pcfich_file_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/pcfich_file_test.c.o
 .PHONY : pcfich_file_test.c.o
 
 pcfich_file_test.i: pcfich_file_test.c.i
@@ -501,7 +513,7 @@ pcfich_file_test.i: pcfich_file_test.c.i
 
 # target to preprocess a source file
 pcfich_file_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/pcfich_file_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/pcfich_file_test.c.i
 .PHONY : pcfich_file_test.c.i
 
 pcfich_file_test.s: pcfich_file_test.c.s
@@ -510,7 +522,7 @@ pcfich_file_test.s: pcfich_file_test.c.s
 
 # target to generate assembly for a file
 pcfich_file_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/pcfich_file_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_file_test.dir/pcfich_file_test.c.s
 .PHONY : pcfich_file_test.c.s
 
 pcfich_test.o: pcfich_test.c.o
@@ -519,7 +531,7 @@ pcfich_test.o: pcfich_test.c.o
 
 # target to build an object file
 pcfich_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/pcfich_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/pcfich_test.c.o
 .PHONY : pcfich_test.c.o
 
 pcfich_test.i: pcfich_test.c.i
@@ -528,7 +540,7 @@ pcfich_test.i: pcfich_test.c.i
 
 # target to preprocess a source file
 pcfich_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/pcfich_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/pcfich_test.c.i
 .PHONY : pcfich_test.c.i
 
 pcfich_test.s: pcfich_test.c.s
@@ -537,7 +549,7 @@ pcfich_test.s: pcfich_test.c.s
 
 # target to generate assembly for a file
 pcfich_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/pcfich_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pcfich_test.dir/pcfich_test.c.s
 .PHONY : pcfich_test.c.s
 
 pdcch_file_test.o: pdcch_file_test.c.o
@@ -546,7 +558,7 @@ pdcch_file_test.o: pdcch_file_test.c.o
 
 # target to build an object file
 pdcch_file_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/pdcch_file_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/pdcch_file_test.c.o
 .PHONY : pdcch_file_test.c.o
 
 pdcch_file_test.i: pdcch_file_test.c.i
@@ -555,7 +567,7 @@ pdcch_file_test.i: pdcch_file_test.c.i
 
 # target to preprocess a source file
 pdcch_file_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/pdcch_file_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/pdcch_file_test.c.i
 .PHONY : pdcch_file_test.c.i
 
 pdcch_file_test.s: pdcch_file_test.c.s
@@ -564,7 +576,7 @@ pdcch_file_test.s: pdcch_file_test.c.s
 
 # target to generate assembly for a file
 pdcch_file_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/pdcch_file_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_file_test.dir/pdcch_file_test.c.s
 .PHONY : pdcch_file_test.c.s
 
 pdcch_test.o: pdcch_test.c.o
@@ -573,7 +585,7 @@ pdcch_test.o: pdcch_test.c.o
 
 # target to build an object file
 pdcch_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/pdcch_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/pdcch_test.c.o
 .PHONY : pdcch_test.c.o
 
 pdcch_test.i: pdcch_test.c.i
@@ -582,7 +594,7 @@ pdcch_test.i: pdcch_test.c.i
 
 # target to preprocess a source file
 pdcch_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/pdcch_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/pdcch_test.c.i
 .PHONY : pdcch_test.c.i
 
 pdcch_test.s: pdcch_test.c.s
@@ -591,7 +603,7 @@ pdcch_test.s: pdcch_test.c.s
 
 # target to generate assembly for a file
 pdcch_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/pdcch_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdcch_test.dir/pdcch_test.c.s
 .PHONY : pdcch_test.c.s
 
 pdsch_pdcch_file_test.o: pdsch_pdcch_file_test.c.o
@@ -600,7 +612,7 @@ pdsch_pdcch_file_test.o: pdsch_pdcch_file_test.c.o
 
 # target to build an object file
 pdsch_pdcch_file_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/pdsch_pdcch_file_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/pdsch_pdcch_file_test.c.o
 .PHONY : pdsch_pdcch_file_test.c.o
 
 pdsch_pdcch_file_test.i: pdsch_pdcch_file_test.c.i
@@ -609,7 +621,7 @@ pdsch_pdcch_file_test.i: pdsch_pdcch_file_test.c.i
 
 # target to preprocess a source file
 pdsch_pdcch_file_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/pdsch_pdcch_file_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/pdsch_pdcch_file_test.c.i
 .PHONY : pdsch_pdcch_file_test.c.i
 
 pdsch_pdcch_file_test.s: pdsch_pdcch_file_test.c.s
@@ -618,7 +630,7 @@ pdsch_pdcch_file_test.s: pdsch_pdcch_file_test.c.s
 
 # target to generate assembly for a file
 pdsch_pdcch_file_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/pdsch_pdcch_file_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_pdcch_file_test.dir/pdsch_pdcch_file_test.c.s
 .PHONY : pdsch_pdcch_file_test.c.s
 
 pdsch_test.o: pdsch_test.c.o
@@ -627,7 +639,7 @@ pdsch_test.o: pdsch_test.c.o
 
 # target to build an object file
 pdsch_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/pdsch_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/pdsch_test.c.o
 .PHONY : pdsch_test.c.o
 
 pdsch_test.i: pdsch_test.c.i
@@ -636,7 +648,7 @@ pdsch_test.i: pdsch_test.c.i
 
 # target to preprocess a source file
 pdsch_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/pdsch_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/pdsch_test.c.i
 .PHONY : pdsch_test.c.i
 
 pdsch_test.s: pdsch_test.c.s
@@ -645,7 +657,7 @@ pdsch_test.s: pdsch_test.c.s
 
 # target to generate assembly for a file
 pdsch_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/pdsch_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pdsch_test.dir/pdsch_test.c.s
 .PHONY : pdsch_test.c.s
 
 phich_file_test.o: phich_file_test.c.o
@@ -654,7 +666,7 @@ phich_file_test.o: phich_file_test.c.o
 
 # target to build an object file
 phich_file_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/phich_file_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/phich_file_test.c.o
 .PHONY : phich_file_test.c.o
 
 phich_file_test.i: phich_file_test.c.i
@@ -663,7 +675,7 @@ phich_file_test.i: phich_file_test.c.i
 
 # target to preprocess a source file
 phich_file_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/phich_file_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/phich_file_test.c.i
 .PHONY : phich_file_test.c.i
 
 phich_file_test.s: phich_file_test.c.s
@@ -672,7 +684,7 @@ phich_file_test.s: phich_file_test.c.s
 
 # target to generate assembly for a file
 phich_file_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/phich_file_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_file_test.dir/phich_file_test.c.s
 .PHONY : phich_file_test.c.s
 
 phich_test.o: phich_test.c.o
@@ -681,7 +693,7 @@ phich_test.o: phich_test.c.o
 
 # target to build an object file
 phich_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_test.dir/phich_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_test.dir/phich_test.c.o
 .PHONY : phich_test.c.o
 
 phich_test.i: phich_test.c.i
@@ -690,7 +702,7 @@ phich_test.i: phich_test.c.i
 
 # target to preprocess a source file
 phich_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_test.dir/phich_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_test.dir/phich_test.c.i
 .PHONY : phich_test.c.i
 
 phich_test.s: phich_test.c.s
@@ -699,7 +711,7 @@ phich_test.s: phich_test.c.s
 
 # target to generate assembly for a file
 phich_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_test.dir/phich_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/phich_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/phich_test.dir/phich_test.c.s
 .PHONY : phich_test.c.s
 
 pmch_file_test.o: pmch_file_test.c.o
@@ -708,7 +720,7 @@ pmch_file_test.o: pmch_file_test.c.o
 
 # target to build an object file
 pmch_file_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/pmch_file_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/pmch_file_test.c.o
 .PHONY : pmch_file_test.c.o
 
 pmch_file_test.i: pmch_file_test.c.i
@@ -717,7 +729,7 @@ pmch_file_test.i: pmch_file_test.c.i
 
 # target to preprocess a source file
 pmch_file_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/pmch_file_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/pmch_file_test.c.i
 .PHONY : pmch_file_test.c.i
 
 pmch_file_test.s: pmch_file_test.c.s
@@ -726,7 +738,7 @@ pmch_file_test.s: pmch_file_test.c.s
 
 # target to generate assembly for a file
 pmch_file_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/pmch_file_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_file_test.dir/pmch_file_test.c.s
 .PHONY : pmch_file_test.c.s
 
 pmch_test.o: pmch_test.c.o
@@ -735,7 +747,7 @@ pmch_test.o: pmch_test.c.o
 
 # target to build an object file
 pmch_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/pmch_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/pmch_test.c.o
 .PHONY : pmch_test.c.o
 
 pmch_test.i: pmch_test.c.i
@@ -744,7 +756,7 @@ pmch_test.i: pmch_test.c.i
 
 # target to preprocess a source file
 pmch_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/pmch_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/pmch_test.c.i
 .PHONY : pmch_test.c.i
 
 pmch_test.s: pmch_test.c.s
@@ -753,7 +765,7 @@ pmch_test.s: pmch_test.c.s
 
 # target to generate assembly for a file
 pmch_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/pmch_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pmch_test.dir/pmch_test.c.s
 .PHONY : pmch_test.c.s
 
 prach_test.o: prach_test.c.o
@@ -762,7 +774,7 @@ prach_test.o: prach_test.c.o
 
 # target to build an object file
 prach_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test.dir/prach_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test.dir/prach_test.c.o
 .PHONY : prach_test.c.o
 
 prach_test.i: prach_test.c.i
@@ -771,7 +783,7 @@ prach_test.i: prach_test.c.i
 
 # target to preprocess a source file
 prach_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test.dir/prach_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test.dir/prach_test.c.i
 .PHONY : prach_test.c.i
 
 prach_test.s: prach_test.c.s
@@ -780,7 +792,7 @@ prach_test.s: prach_test.c.s
 
 # target to generate assembly for a file
 prach_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test.dir/prach_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test.dir/prach_test.c.s
 .PHONY : prach_test.c.s
 
 prach_test_multi.o: prach_test_multi.c.o
@@ -789,7 +801,7 @@ prach_test_multi.o: prach_test_multi.c.o
 
 # target to build an object file
 prach_test_multi.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/prach_test_multi.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/prach_test_multi.c.o
 .PHONY : prach_test_multi.c.o
 
 prach_test_multi.i: prach_test_multi.c.i
@@ -798,7 +810,7 @@ prach_test_multi.i: prach_test_multi.c.i
 
 # target to preprocess a source file
 prach_test_multi.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/prach_test_multi.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/prach_test_multi.c.i
 .PHONY : prach_test_multi.c.i
 
 prach_test_multi.s: prach_test_multi.c.s
@@ -807,7 +819,7 @@ prach_test_multi.s: prach_test_multi.c.s
 
 # target to generate assembly for a file
 prach_test_multi.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/prach_test_multi.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_multi.dir/prach_test_multi.c.s
 .PHONY : prach_test_multi.c.s
 
 prach_test_usrp.o: prach_test_usrp.c.o
@@ -816,7 +828,7 @@ prach_test_usrp.o: prach_test_usrp.c.o
 
 # target to build an object file
 prach_test_usrp.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/prach_test_usrp.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/prach_test_usrp.c.o
 .PHONY : prach_test_usrp.c.o
 
 prach_test_usrp.i: prach_test_usrp.c.i
@@ -825,7 +837,7 @@ prach_test_usrp.i: prach_test_usrp.c.i
 
 # target to preprocess a source file
 prach_test_usrp.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/prach_test_usrp.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/prach_test_usrp.c.i
 .PHONY : prach_test_usrp.c.i
 
 prach_test_usrp.s: prach_test_usrp.c.s
@@ -834,7 +846,7 @@ prach_test_usrp.s: prach_test_usrp.c.s
 
 # target to generate assembly for a file
 prach_test_usrp.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/prach_test_usrp.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/build.make lib/src/phy/phch/test/CMakeFiles/prach_test_usrp.dir/prach_test_usrp.c.s
 .PHONY : prach_test_usrp.c.s
 
 pucch_test.o: pucch_test.c.o
@@ -843,7 +855,7 @@ pucch_test.o: pucch_test.c.o
 
 # target to build an object file
 pucch_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/pucch_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/pucch_test.c.o
 .PHONY : pucch_test.c.o
 
 pucch_test.i: pucch_test.c.i
@@ -852,7 +864,7 @@ pucch_test.i: pucch_test.c.i
 
 # target to preprocess a source file
 pucch_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/pucch_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/pucch_test.c.i
 .PHONY : pucch_test.c.i
 
 pucch_test.s: pucch_test.c.s
@@ -861,7 +873,7 @@ pucch_test.s: pucch_test.c.s
 
 # target to generate assembly for a file
 pucch_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/pucch_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pucch_test.dir/pucch_test.c.s
 .PHONY : pucch_test.c.s
 
 pusch_test.o: pusch_test.c.o
@@ -870,7 +882,7 @@ pusch_test.o: pusch_test.c.o
 
 # target to build an object file
 pusch_test.c.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/pusch_test.c.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/pusch_test.c.o
 .PHONY : pusch_test.c.o
 
 pusch_test.i: pusch_test.c.i
@@ -879,7 +891,7 @@ pusch_test.i: pusch_test.c.i
 
 # target to preprocess a source file
 pusch_test.c.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/pusch_test.c.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/pusch_test.c.i
 .PHONY : pusch_test.c.i
 
 pusch_test.s: pusch_test.c.s
@@ -888,7 +900,7 @@ pusch_test.s: pusch_test.c.s
 
 # target to generate assembly for a file
 pusch_test.c.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/pusch_test.c.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/build.make lib/src/phy/phch/test/CMakeFiles/pusch_test.dir/pusch_test.c.s
 .PHONY : pusch_test.c.s
 
 # Help Target
@@ -897,6 +909,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... install"
 	@echo "... rebuild_cache"
@@ -984,6 +997,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

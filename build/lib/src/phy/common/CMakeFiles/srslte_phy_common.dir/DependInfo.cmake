@@ -4,16 +4,15 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/enb/empower-srsLTE/lib/src/phy/common/phy_common.c" "/home/enb/empower-srsLTE/build/lib/src/phy/common/CMakeFiles/srslte_phy_common.dir/phy_common.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/common/phy_logger.c" "/home/enb/empower-srsLTE/build/lib/src/phy/common/CMakeFiles/srslte_phy_common.dir/phy_logger.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/common/sequence.c" "/home/enb/empower-srsLTE/build/lib/src/phy/common/CMakeFiles/srslte_phy_common.dir/sequence.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/common/timestamp.c" "/home/enb/empower-srsLTE/build/lib/src/phy/common/CMakeFiles/srslte_phy_common.dir/timestamp.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/common/phy_common.c" "/home/ue/empower-srsLTE/build/lib/src/phy/common/CMakeFiles/srslte_phy_common.dir/phy_common.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/common/phy_logger.c" "/home/ue/empower-srsLTE/build/lib/src/phy/common/CMakeFiles/srslte_phy_common.dir/phy_logger.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/common/sequence.c" "/home/ue/empower-srsLTE/build/lib/src/phy/common/CMakeFiles/srslte_phy_common.dir/sequence.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/common/timestamp.c" "/home/ue/empower-srsLTE/build/lib/src/phy/common/CMakeFiles/srslte_phy_common.dir/timestamp.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_C
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 

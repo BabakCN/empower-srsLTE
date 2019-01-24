@@ -6,21 +6,7 @@
 
 #IncludeRegexTransform: 
 
-../lib/include/srslte/common/threads.h
-pthread.h
--
-stdint.h
--
-sys/timerfd.h
--
-unistd.h
--
-stdio.h
--
-
-../lib/include/srslte/config.h
-
-/home/enb/empower-srsLTE/lib/src/common/threads.c
+/home/ue/empower-srsLTE/lib/src/common/threads.c
 errno.h
 -
 pthread.h
@@ -34,13 +20,27 @@ string.h
 sys/types.h
 -
 srslte/common/threads.h
-/home/enb/empower-srsLTE/lib/src/common/srslte/common/threads.h
+/home/ue/empower-srsLTE/lib/src/common/srslte/common/threads.h
 
-/home/enb/empower-srsLTE/lib/src/common/version.c
+/home/ue/empower-srsLTE/lib/src/common/version.c
 srslte/version.h
-/home/enb/empower-srsLTE/lib/src/common/srslte/version.h
+/home/ue/empower-srsLTE/lib/src/common/srslte/version.h
 
-lib/include/srslte/version.h
+/usr/local/include/srslte/common/threads.h
+pthread.h
+-
+stdint.h
+-
+sys/timerfd.h
+-
+unistd.h
+-
+stdio.h
+-
+
+/usr/local/include/srslte/config.h
+
+/usr/local/include/srslte/version.h
 srslte/config.h
-lib/include/srslte/srslte/config.h
+/usr/local/include/srslte/srslte/config.h
 

@@ -48,13 +48,25 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # Special rule for the target install
 install: preinstall
@@ -71,7 +83,7 @@ install/fast: preinstall/fast
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -82,7 +94,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/enb/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/enb/empower-srsLTE/build/CPackSourceConfig.cmake
+	cd /home/ue/empower-srsLTE/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/ue/empower-srsLTE/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -147,14 +159,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles /home/enb/empower-srsLTE/build/srsenb/src/mac/CMakeFiles/progress.marks
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/mac/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/enb/empower-srsLTE/build/CMakeFiles 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles /home/ue/empower-srsLTE/build/srsenb/src/mac/CMakeFiles/progress.marks
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/mac/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ue/empower-srsLTE/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/mac/clean
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/mac/clean
 .PHONY : clean
 
 # The main clean target
@@ -164,22 +176,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/mac/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/mac/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/mac/preinstall
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/mac/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 srsenb/src/mac/CMakeFiles/srsenb_mac.dir/rule:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/mac/CMakeFiles/srsenb_mac.dir/rule
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f CMakeFiles/Makefile2 srsenb/src/mac/CMakeFiles/srsenb_mac.dir/rule
 .PHONY : srsenb/src/mac/CMakeFiles/srsenb_mac.dir/rule
 
 # Convenience name for target.
@@ -189,7 +201,7 @@ srsenb_mac: srsenb/src/mac/CMakeFiles/srsenb_mac.dir/rule
 
 # fast build rule for target.
 srsenb_mac/fast:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build
 .PHONY : srsenb_mac/fast
 
 mac.o: mac.cc.o
@@ -198,7 +210,7 @@ mac.o: mac.cc.o
 
 # target to build an object file
 mac.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/mac.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/mac.cc.o
 .PHONY : mac.cc.o
 
 mac.i: mac.cc.i
@@ -207,7 +219,7 @@ mac.i: mac.cc.i
 
 # target to preprocess a source file
 mac.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/mac.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/mac.cc.i
 .PHONY : mac.cc.i
 
 mac.s: mac.cc.s
@@ -216,7 +228,7 @@ mac.s: mac.cc.s
 
 # target to generate assembly for a file
 mac.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/mac.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/mac.cc.s
 .PHONY : mac.cc.s
 
 scheduler.o: scheduler.cc.o
@@ -225,7 +237,7 @@ scheduler.o: scheduler.cc.o
 
 # target to build an object file
 scheduler.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler.cc.o
 .PHONY : scheduler.cc.o
 
 scheduler.i: scheduler.cc.i
@@ -234,7 +246,7 @@ scheduler.i: scheduler.cc.i
 
 # target to preprocess a source file
 scheduler.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler.cc.i
 .PHONY : scheduler.cc.i
 
 scheduler.s: scheduler.cc.s
@@ -243,7 +255,7 @@ scheduler.s: scheduler.cc.s
 
 # target to generate assembly for a file
 scheduler.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler.cc.s
 .PHONY : scheduler.cc.s
 
 scheduler_RAN.o: scheduler_RAN.cc.o
@@ -252,7 +264,7 @@ scheduler_RAN.o: scheduler_RAN.cc.o
 
 # target to build an object file
 scheduler_RAN.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_RAN.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_RAN.cc.o
 .PHONY : scheduler_RAN.cc.o
 
 scheduler_RAN.i: scheduler_RAN.cc.i
@@ -261,7 +273,7 @@ scheduler_RAN.i: scheduler_RAN.cc.i
 
 # target to preprocess a source file
 scheduler_RAN.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_RAN.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_RAN.cc.i
 .PHONY : scheduler_RAN.cc.i
 
 scheduler_RAN.s: scheduler_RAN.cc.s
@@ -270,7 +282,7 @@ scheduler_RAN.s: scheduler_RAN.cc.s
 
 # target to generate assembly for a file
 scheduler_RAN.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_RAN.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_RAN.cc.s
 .PHONY : scheduler_RAN.cc.s
 
 scheduler_harq.o: scheduler_harq.cc.o
@@ -279,7 +291,7 @@ scheduler_harq.o: scheduler_harq.cc.o
 
 # target to build an object file
 scheduler_harq.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_harq.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_harq.cc.o
 .PHONY : scheduler_harq.cc.o
 
 scheduler_harq.i: scheduler_harq.cc.i
@@ -288,7 +300,7 @@ scheduler_harq.i: scheduler_harq.cc.i
 
 # target to preprocess a source file
 scheduler_harq.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_harq.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_harq.cc.i
 .PHONY : scheduler_harq.cc.i
 
 scheduler_harq.s: scheduler_harq.cc.s
@@ -297,7 +309,7 @@ scheduler_harq.s: scheduler_harq.cc.s
 
 # target to generate assembly for a file
 scheduler_harq.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_harq.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_harq.cc.s
 .PHONY : scheduler_harq.cc.s
 
 scheduler_metric.o: scheduler_metric.cc.o
@@ -306,7 +318,7 @@ scheduler_metric.o: scheduler_metric.cc.o
 
 # target to build an object file
 scheduler_metric.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_metric.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_metric.cc.o
 .PHONY : scheduler_metric.cc.o
 
 scheduler_metric.i: scheduler_metric.cc.i
@@ -315,7 +327,7 @@ scheduler_metric.i: scheduler_metric.cc.i
 
 # target to preprocess a source file
 scheduler_metric.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_metric.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_metric.cc.i
 .PHONY : scheduler_metric.cc.i
 
 scheduler_metric.s: scheduler_metric.cc.s
@@ -324,7 +336,7 @@ scheduler_metric.s: scheduler_metric.cc.s
 
 # target to generate assembly for a file
 scheduler_metric.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_metric.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_metric.cc.s
 .PHONY : scheduler_metric.cc.s
 
 scheduler_ue.o: scheduler_ue.cc.o
@@ -333,7 +345,7 @@ scheduler_ue.o: scheduler_ue.cc.o
 
 # target to build an object file
 scheduler_ue.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_ue.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_ue.cc.o
 .PHONY : scheduler_ue.cc.o
 
 scheduler_ue.i: scheduler_ue.cc.i
@@ -342,7 +354,7 @@ scheduler_ue.i: scheduler_ue.cc.i
 
 # target to preprocess a source file
 scheduler_ue.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_ue.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_ue.cc.i
 .PHONY : scheduler_ue.cc.i
 
 scheduler_ue.s: scheduler_ue.cc.s
@@ -351,7 +363,7 @@ scheduler_ue.s: scheduler_ue.cc.s
 
 # target to generate assembly for a file
 scheduler_ue.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_ue.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/scheduler_ue.cc.s
 .PHONY : scheduler_ue.cc.s
 
 ue.o: ue.cc.o
@@ -360,7 +372,7 @@ ue.o: ue.cc.o
 
 # target to build an object file
 ue.cc.o:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/ue.cc.o
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/ue.cc.o
 .PHONY : ue.cc.o
 
 ue.i: ue.cc.i
@@ -369,7 +381,7 @@ ue.i: ue.cc.i
 
 # target to preprocess a source file
 ue.cc.i:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/ue.cc.i
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/ue.cc.i
 .PHONY : ue.cc.i
 
 ue.s: ue.cc.s
@@ -378,7 +390,7 @@ ue.s: ue.cc.s
 
 # target to generate assembly for a file
 ue.cc.s:
-	cd /home/enb/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/ue.cc.s
+	cd /home/ue/empower-srsLTE/build && $(MAKE) -f srsenb/src/mac/CMakeFiles/srsenb_mac.dir/build.make srsenb/src/mac/CMakeFiles/srsenb_mac.dir/ue.cc.s
 .PHONY : ue.cc.s
 
 # Help Target
@@ -387,6 +399,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install/strip"
 	@echo "... install"
 	@echo "... package"
 	@echo "... package_source"
@@ -428,6 +441,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

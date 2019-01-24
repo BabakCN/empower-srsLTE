@@ -96,6 +96,12 @@ public:
   /* Request a MAC report */
   int setup_MAC_report(uint32_t mod_id, uint32_t interval, int trig_id);
 
+  /* agent_interface_phy: */
+  int report_phy_param (float tx_gain);
+
+    /* Request a PHY report */
+  int setup_PHY_report(uint32_t mod_id, int trig_id, uint16_t interval, uint32_t tx_gain);
+
   /* Request an UE measurement */
   int setup_UE_period_meas(
     uint32_t id,
@@ -110,8 +116,7 @@ public:
   /* Order the agent to report RAN slicer modification */
   int setup_RAN_report(uint32_t mod);
 
-  /* agent_interface_phy: */
-  void report_phy_param (float tx_gain);
+
 
   /* agent_interface_mac: */
 
@@ -201,6 +206,13 @@ private:
   unsigned int  m_uer_mod;
 
   /* UE report variables */
+
+  int           m_phy_feat;
+  int           m_phy_tr;
+  int 			m_phy_intv;
+  int 			m_phy_tx_gain;
+  unsigned int  m_phy_mod;
+  /* PHY report variables */
 
   int           m_nof_ues;
   std::map<uint16_t, em_ue *> m_ues;

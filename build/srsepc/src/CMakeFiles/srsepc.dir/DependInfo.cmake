@@ -4,13 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/enb/empower-srsLTE/srsepc/src/main.cc" "/home/enb/empower-srsLTE/build/srsepc/src/CMakeFiles/srsepc.dir/main.cc.o"
+  "/home/ue/empower-srsLTE/srsepc/src/main.cc" "/home/ue/empower-srsLTE/build/srsepc/src/CMakeFiles/srsepc.dir/main.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 
@@ -24,12 +23,12 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/enb/empower-srsLTE/build/srsepc/src/mme/CMakeFiles/srsepc_mme.dir/DependInfo.cmake"
-  "/home/enb/empower-srsLTE/build/srsepc/src/hss/CMakeFiles/srsepc_hss.dir/DependInfo.cmake"
-  "/home/enb/empower-srsLTE/build/srsepc/src/spgw/CMakeFiles/srsepc_sgw.dir/DependInfo.cmake"
-  "/home/enb/empower-srsLTE/build/lib/src/upper/CMakeFiles/srslte_upper.dir/DependInfo.cmake"
-  "/home/enb/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/DependInfo.cmake"
-  "/home/enb/empower-srsLTE/build/lib/src/asn1/CMakeFiles/srslte_asn1.dir/DependInfo.cmake"
+  "/home/ue/empower-srsLTE/build/srsepc/src/mme/CMakeFiles/srsepc_mme.dir/DependInfo.cmake"
+  "/home/ue/empower-srsLTE/build/srsepc/src/hss/CMakeFiles/srsepc_hss.dir/DependInfo.cmake"
+  "/home/ue/empower-srsLTE/build/srsepc/src/spgw/CMakeFiles/srsepc_sgw.dir/DependInfo.cmake"
+  "/home/ue/empower-srsLTE/build/lib/src/upper/CMakeFiles/srslte_upper.dir/DependInfo.cmake"
+  "/home/ue/empower-srsLTE/build/lib/src/common/CMakeFiles/srslte_common.dir/DependInfo.cmake"
+  "/home/ue/empower-srsLTE/build/lib/src/asn1/CMakeFiles/srslte_asn1.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

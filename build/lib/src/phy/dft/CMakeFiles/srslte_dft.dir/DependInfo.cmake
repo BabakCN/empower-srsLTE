@@ -4,15 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/enb/empower-srsLTE/lib/src/phy/dft/dft_fftw.c" "/home/enb/empower-srsLTE/build/lib/src/phy/dft/CMakeFiles/srslte_dft.dir/dft_fftw.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/dft/dft_precoding.c" "/home/enb/empower-srsLTE/build/lib/src/phy/dft/CMakeFiles/srslte_dft.dir/dft_precoding.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/dft/ofdm.c" "/home/enb/empower-srsLTE/build/lib/src/phy/dft/CMakeFiles/srslte_dft.dir/ofdm.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/dft/dft_fftw.c" "/home/ue/empower-srsLTE/build/lib/src/phy/dft/CMakeFiles/srslte_dft.dir/dft_fftw.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/dft/dft_precoding.c" "/home/ue/empower-srsLTE/build/lib/src/phy/dft/CMakeFiles/srslte_dft.dir/dft_precoding.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/dft/ofdm.c" "/home/ue/empower-srsLTE/build/lib/src/phy/dft/CMakeFiles/srslte_dft.dir/ofdm.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_C
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 

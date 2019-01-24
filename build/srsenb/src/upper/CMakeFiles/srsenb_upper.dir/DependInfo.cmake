@@ -4,17 +4,16 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/enb/empower-srsLTE/srsenb/src/upper/gtpu.cc" "/home/enb/empower-srsLTE/build/srsenb/src/upper/CMakeFiles/srsenb_upper.dir/gtpu.cc.o"
-  "/home/enb/empower-srsLTE/srsenb/src/upper/pdcp.cc" "/home/enb/empower-srsLTE/build/srsenb/src/upper/CMakeFiles/srsenb_upper.dir/pdcp.cc.o"
-  "/home/enb/empower-srsLTE/srsenb/src/upper/rlc.cc" "/home/enb/empower-srsLTE/build/srsenb/src/upper/CMakeFiles/srsenb_upper.dir/rlc.cc.o"
-  "/home/enb/empower-srsLTE/srsenb/src/upper/rrc.cc" "/home/enb/empower-srsLTE/build/srsenb/src/upper/CMakeFiles/srsenb_upper.dir/rrc.cc.o"
-  "/home/enb/empower-srsLTE/srsenb/src/upper/s1ap.cc" "/home/enb/empower-srsLTE/build/srsenb/src/upper/CMakeFiles/srsenb_upper.dir/s1ap.cc.o"
+  "/home/ue/empower-srsLTE/srsenb/src/upper/gtpu.cc" "/home/ue/empower-srsLTE/build/srsenb/src/upper/CMakeFiles/srsenb_upper.dir/gtpu.cc.o"
+  "/home/ue/empower-srsLTE/srsenb/src/upper/pdcp.cc" "/home/ue/empower-srsLTE/build/srsenb/src/upper/CMakeFiles/srsenb_upper.dir/pdcp.cc.o"
+  "/home/ue/empower-srsLTE/srsenb/src/upper/rlc.cc" "/home/ue/empower-srsLTE/build/srsenb/src/upper/CMakeFiles/srsenb_upper.dir/rlc.cc.o"
+  "/home/ue/empower-srsLTE/srsenb/src/upper/rrc.cc" "/home/ue/empower-srsLTE/build/srsenb/src/upper/CMakeFiles/srsenb_upper.dir/rrc.cc.o"
+  "/home/ue/empower-srsLTE/srsenb/src/upper/s1ap.cc" "/home/ue/empower-srsLTE/build/srsenb/src/upper/CMakeFiles/srsenb_upper.dir/s1ap.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "ENABLE_GUI"
   "HAVE_EMPOWER_AGENT"
   "HAVE_MBEDTLS"
   )

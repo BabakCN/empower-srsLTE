@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/enb/empower-srsLTE
+CMAKE_SOURCE_DIR = /home/ue/empower-srsLTE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/enb/empower-srsLTE/build
+CMAKE_BINARY_DIR = /home/ue/empower-srsLTE/build
 
 # Utility rule file for add_srslte_headers.
 
@@ -67,6 +67,6 @@ CMakeFiles/add_srslte_headers.dir/clean:
 .PHONY : CMakeFiles/add_srslte_headers.dir/clean
 
 CMakeFiles/add_srslte_headers.dir/depend:
-	cd /home/enb/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/enb/empower-srsLTE /home/enb/empower-srsLTE /home/enb/empower-srsLTE/build /home/enb/empower-srsLTE/build /home/enb/empower-srsLTE/build/CMakeFiles/add_srslte_headers.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ue/empower-srsLTE/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ue/empower-srsLTE /home/ue/empower-srsLTE /home/ue/empower-srsLTE/build /home/ue/empower-srsLTE/build /home/ue/empower-srsLTE/build/CMakeFiles/add_srslte_headers.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/add_srslte_headers.dir/depend
 

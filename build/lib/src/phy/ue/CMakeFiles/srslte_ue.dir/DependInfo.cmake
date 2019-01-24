@@ -4,17 +4,16 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/enb/empower-srsLTE/lib/src/phy/ue/ue_cell_search.c" "/home/enb/empower-srsLTE/build/lib/src/phy/ue/CMakeFiles/srslte_ue.dir/ue_cell_search.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/ue/ue_dl.c" "/home/enb/empower-srsLTE/build/lib/src/phy/ue/CMakeFiles/srslte_ue.dir/ue_dl.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/ue/ue_mib.c" "/home/enb/empower-srsLTE/build/lib/src/phy/ue/CMakeFiles/srslte_ue.dir/ue_mib.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/ue/ue_sync.c" "/home/enb/empower-srsLTE/build/lib/src/phy/ue/CMakeFiles/srslte_ue.dir/ue_sync.c.o"
-  "/home/enb/empower-srsLTE/lib/src/phy/ue/ue_ul.c" "/home/enb/empower-srsLTE/build/lib/src/phy/ue/CMakeFiles/srslte_ue.dir/ue_ul.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/ue/ue_cell_search.c" "/home/ue/empower-srsLTE/build/lib/src/phy/ue/CMakeFiles/srslte_ue.dir/ue_cell_search.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/ue/ue_dl.c" "/home/ue/empower-srsLTE/build/lib/src/phy/ue/CMakeFiles/srslte_ue.dir/ue_dl.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/ue/ue_mib.c" "/home/ue/empower-srsLTE/build/lib/src/phy/ue/CMakeFiles/srslte_ue.dir/ue_mib.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/ue/ue_sync.c" "/home/ue/empower-srsLTE/build/lib/src/phy/ue/CMakeFiles/srslte_ue.dir/ue_sync.c.o"
+  "/home/ue/empower-srsLTE/lib/src/phy/ue/ue_ul.c" "/home/ue/empower-srsLTE/build/lib/src/phy/ue/CMakeFiles/srslte_ue.dir/ue_ul.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_C
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 

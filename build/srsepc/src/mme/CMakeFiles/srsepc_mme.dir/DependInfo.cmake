@@ -4,18 +4,17 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/enb/empower-srsLTE/srsepc/src/mme/mme.cc" "/home/enb/empower-srsLTE/build/srsepc/src/mme/CMakeFiles/srsepc_mme.dir/mme.cc.o"
-  "/home/enb/empower-srsLTE/srsepc/src/mme/mme_gtpc.cc" "/home/enb/empower-srsLTE/build/srsepc/src/mme/CMakeFiles/srsepc_mme.dir/mme_gtpc.cc.o"
-  "/home/enb/empower-srsLTE/srsepc/src/mme/s1ap.cc" "/home/enb/empower-srsLTE/build/srsepc/src/mme/CMakeFiles/srsepc_mme.dir/s1ap.cc.o"
-  "/home/enb/empower-srsLTE/srsepc/src/mme/s1ap_ctx_mngmt_proc.cc" "/home/enb/empower-srsLTE/build/srsepc/src/mme/CMakeFiles/srsepc_mme.dir/s1ap_ctx_mngmt_proc.cc.o"
-  "/home/enb/empower-srsLTE/srsepc/src/mme/s1ap_mngmt_proc.cc" "/home/enb/empower-srsLTE/build/srsepc/src/mme/CMakeFiles/srsepc_mme.dir/s1ap_mngmt_proc.cc.o"
-  "/home/enb/empower-srsLTE/srsepc/src/mme/s1ap_nas_transport.cc" "/home/enb/empower-srsLTE/build/srsepc/src/mme/CMakeFiles/srsepc_mme.dir/s1ap_nas_transport.cc.o"
+  "/home/ue/empower-srsLTE/srsepc/src/mme/mme.cc" "/home/ue/empower-srsLTE/build/srsepc/src/mme/CMakeFiles/srsepc_mme.dir/mme.cc.o"
+  "/home/ue/empower-srsLTE/srsepc/src/mme/mme_gtpc.cc" "/home/ue/empower-srsLTE/build/srsepc/src/mme/CMakeFiles/srsepc_mme.dir/mme_gtpc.cc.o"
+  "/home/ue/empower-srsLTE/srsepc/src/mme/s1ap.cc" "/home/ue/empower-srsLTE/build/srsepc/src/mme/CMakeFiles/srsepc_mme.dir/s1ap.cc.o"
+  "/home/ue/empower-srsLTE/srsepc/src/mme/s1ap_ctx_mngmt_proc.cc" "/home/ue/empower-srsLTE/build/srsepc/src/mme/CMakeFiles/srsepc_mme.dir/s1ap_ctx_mngmt_proc.cc.o"
+  "/home/ue/empower-srsLTE/srsepc/src/mme/s1ap_mngmt_proc.cc" "/home/ue/empower-srsLTE/build/srsepc/src/mme/CMakeFiles/srsepc_mme.dir/s1ap_mngmt_proc.cc.o"
+  "/home/ue/empower-srsLTE/srsepc/src/mme/s1ap_nas_transport.cc" "/home/ue/empower-srsLTE/build/srsepc/src/mme/CMakeFiles/srsepc_mme.dir/s1ap_nas_transport.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 

@@ -4,16 +4,15 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/enb/empower-srsLTE/srsue/src/upper/gw.cc" "/home/enb/empower-srsLTE/build/srsue/src/upper/CMakeFiles/srsue_upper.dir/gw.cc.o"
-  "/home/enb/empower-srsLTE/srsue/src/upper/nas.cc" "/home/enb/empower-srsLTE/build/srsue/src/upper/CMakeFiles/srsue_upper.dir/nas.cc.o"
-  "/home/enb/empower-srsLTE/srsue/src/upper/rrc.cc" "/home/enb/empower-srsLTE/build/srsue/src/upper/CMakeFiles/srsue_upper.dir/rrc.cc.o"
-  "/home/enb/empower-srsLTE/srsue/src/upper/usim.cc" "/home/enb/empower-srsLTE/build/srsue/src/upper/CMakeFiles/srsue_upper.dir/usim.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/upper/gw.cc" "/home/ue/empower-srsLTE/build/srsue/src/upper/CMakeFiles/srsue_upper.dir/gw.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/upper/nas.cc" "/home/ue/empower-srsLTE/build/srsue/src/upper/CMakeFiles/srsue_upper.dir/nas.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/upper/rrc.cc" "/home/ue/empower-srsLTE/build/srsue/src/upper/CMakeFiles/srsue_upper.dir/rrc.cc.o"
+  "/home/ue/empower-srsLTE/srsue/src/upper/usim.cc" "/home/ue/empower-srsLTE/build/srsue/src/upper/CMakeFiles/srsue_upper.dir/usim.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "ENABLE_GUI"
   "HAVE_MBEDTLS"
   )
 

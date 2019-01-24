@@ -4,14 +4,14 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/enb/empower-srsLTE
-BuildDirectory: /home/enb/empower-srsLTE/build
+SourceDirectory: /home/ue/empower-srsLTE
+BuildDirectory: /home/ue/empower-srsLTE/build
 
 # Where to place the cost data store
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: enb-Latitude-E6540
+Site: UE
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
 BuildName: Linux-c++
@@ -36,7 +36,7 @@ ScpCommand: /usr/bin/scp
 NightlyStartTime: 00:00:00 GMT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/enb/empower-srsLTE"
+ConfigureCommand: "/usr/bin/cmake" "/home/ue/empower-srsLTE"
 MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
 DefaultCTestConfigurationType: Release
 
@@ -81,7 +81,7 @@ ValgrindCommand:
 ValgrindCommandOptions: --trace-children=yes --leak-check=full --show-reachable=yes --vex-guest-max-insns=25
 MemoryCheckType: 
 MemoryCheckSanitizerOptions: 
-MemoryCheckCommand: MEMORYCHECK_COMMAND-NOTFOUND
+MemoryCheckCommand: /usr/bin/valgrind
 MemoryCheckCommandOptions: 
 MemoryCheckSuppressionFile: 
 

@@ -4,8 +4,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/srslte_rf.dir/uhd_c_api.cpp.o"
   "libsrslte_rf.pdb"
   "libsrslte_rf.so"
-  "libsrslte_rf.pdb"
-  "CMakeFiles/CMakeRelink.dir/libsrslte_rf.so"
 )
 
 # Per-language clean rules from dependency scanning.

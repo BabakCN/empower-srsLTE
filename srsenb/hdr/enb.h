@@ -201,6 +201,7 @@ private:
 #else
   srsenb::dummy_agent agent;
 #endif /* HAVE_EMPOWER_AGENT */
+
 #ifdef HAVE_RAN_SLICER
   srsenb::ran ran;
 #endif /* HAVE_RAN_SLICER */
